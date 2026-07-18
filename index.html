@@ -1,0 +1,1362 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alquimia do Bonsai · Bonsai Alchemy</title>
+<link rel="icon" type="image/jpeg" href="assets/brand-alquimia-logo.jpg"/>
+<link rel="apple-touch-icon" href="assets/brand-alquimia-logo.jpg"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#0A0A08;--deep:#111410;--panel:#181C14;--green:#2D4A1E;--green-light:#4A7A30;--gold:#C9A84C;--gold-light:#E2C97E;--gold-dim:rgba(201,168,76,0.18);--cream:#F0EDE4;--muted:#8A8A7A;--white:#FAFAF7;--red:#C0392B;--success:#27AE60;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--cream);font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+.hidden{display:none!important;}
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.section-label{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;line-height:1.15;color:var(--white);}
+.section-title em{font-style:italic;color:var(--gold-light);}
+.divider{width:52px;height:1px;background:var(--gold);margin:1.8rem 0;}
+.btn{display:inline-block;padding:.8rem 2rem;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .3s;}
+.btn-gold{background:var(--gold);color:var(--black);}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(240,237,228,.3);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-danger{background:var(--red);color:#fff;}
+.btn-sm{padding:.5rem 1.2rem;font-size:.65rem;}
+.tag{display:inline-block;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid var(--gold-dim);color:var(--gold);}
+.brand-lockup{display:flex;justify-content:center;gap:1rem;align-items:center;margin:0 auto 1.8rem;opacity:0;animation:fadeUp 1s .45s forwards;}
+.brand-mark{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,.75);box-shadow:0 0 36px rgba(201,168,76,.22),0 0 0 7px rgba(201,168,76,.04);}
+.brand-mark.secondary{border-color:rgba(240,237,228,.18);opacity:.9;}
+.hero-proof{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem;opacity:0;animation:fadeUp 1s .95s forwards;}
+.hero-proof span{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,237,228,.72);border:1px solid rgba(201,168,76,.18);padding:.35rem .75rem;background:rgba(10,10,8,.35);}
+.link-card{display:block;color:inherit;text-decoration:none;}
+.link-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.45);}
+.link-card .tag{display:inline-block;}
+.content-band{background:var(--black);padding:6rem 2rem;}
+.content-band.alt{background:var(--deep);}
+.section-intro{max-width:680px;margin-bottom:3rem;}
+.section-intro p{color:var(--muted);margin-top:1rem;font-size:.88rem;}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.12);}
+.feature-card{background:var(--deep);padding:1.8rem;min-height:210px;}
+.alt .feature-card{background:var(--black);}
+.feature-icon{font-size:1.8rem;margin-bottom:1rem;}
+.feature-card h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:var(--white);margin-bottom:.7rem;}
+.feature-card p{font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;}
+.feature-card .tag{margin-top:.4rem;}
+.content-showcase{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:stretch;margin-bottom:3rem;}
+.showcase-panel{background:var(--deep);border:1px solid rgba(201,168,76,.14);padding:2rem;display:flex;flex-direction:column;justify-content:space-between;min-height:360px;}
+.showcase-panel.light{background:#fff;}
+.showcase-panel.light .section-title{color:#203316;}
+.showcase-panel.light .section-title em{color:#557E28;}
+.showcase-panel p{font-size:.86rem;color:var(--muted);margin:1rem 0 1.5rem;}
+.showcase-media{min-height:360px;background:#EEE4D0;border:1px solid rgba(36,64,25,.12);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.showcase-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.content-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.12);}
+.content-item{background:var(--deep);padding:1.4rem;min-height:180px;color:inherit;text-decoration:none;display:flex;flex-direction:column;gap:.65rem;}
+.content-item:hover{transform:translateY(-3px);border-color:rgba(201,168,76,.45);}
+.content-item h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--white);line-height:1.2;}
+.content-item p{font-size:.76rem;color:var(--muted);line-height:1.65;}
+.content-item .mini-label{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
+.creator-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.12);margin-top:3.5rem;}
+.creator-card{background:var(--deep);padding:1.6rem;text-decoration:none;color:inherit;min-height:220px;}
+.creator-card img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;background:#EEE4D0;margin-bottom:1rem;}
+.creator-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--white);margin-bottom:.45rem;}
+.creator-card p{font-size:.78rem;color:var(--muted);line-height:1.65;}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:3.5rem;}
+.portfolio-shot{background:#fff;border:1px solid rgba(36,64,25,.1);box-shadow:0 18px 46px rgba(16,17,14,.06);overflow:hidden;}
+.portfolio-shot img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center;display:block;background:#EEE4D0;}
+.portfolio-shot figcaption{padding:1rem;font-size:.72rem;color:var(--muted);line-height:1.55;}
+.portfolio-shot strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--white);margin-bottom:.25rem;}
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:900;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(10,10,8,.97),rgba(10,10,8,.7));backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,168,76,.1);}
+.topbar-logo{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.18em;color:var(--gold);cursor:pointer;}
+.topbar-nav{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.topbar-nav a,.topbar-nav button{background:none;border:none;color:var(--cream);font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;opacity:.65;cursor:pointer;text-decoration:none;transition:opacity .3s,color .3s;padding:0;}
+.topbar-nav a:hover,.topbar-nav button:hover{opacity:1;color:var(--gold);}
+.topbar-icons{display:flex;align-items:center;gap:1rem;}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--cream);font-size:1.1rem;position:relative;padding:.2rem;transition:color .3s;}
+.icon-btn:hover{color:var(--gold);}
+.badge{position:absolute;top:-4px;right:-6px;background:var(--gold);color:var(--black);font-size:.55rem;font-weight:600;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;}
+#lang-toggle{display:flex;border:1px solid var(--gold-dim);border-radius:2rem;overflow:hidden;}
+#lang-toggle button{background:rgba(10,10,8,.7);color:var(--muted);border:none;padding:.3rem .75rem;font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;transition:all .3s;}
+#lang-toggle button.active{background:var(--gold);color:var(--black);font-weight:500;}
+/* TOAST */
+#toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--deep);border:1px solid var(--gold-dim);padding:1rem 1.5rem;font-size:.8rem;color:var(--cream);opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;max-width:300px;}
+#toast.show{opacity:1;transform:translateY(0);}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1rem;}
+.modal{background:var(--deep);border:1px solid var(--gold-dim);width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:2.5rem;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;}
+.modal-close:hover{color:var(--gold);}
+.modal h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);margin-bottom:1.5rem;}
+/* FORMS */
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--black);border:1px solid rgba(201,168,76,.2);color:var(--cream);padding:.75rem 1rem;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;transition:border-color .3s;border-radius:0;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group select option{background:var(--black);}
+.form-group textarea{resize:vertical;min-height:80px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-error{color:var(--red);font-size:.72rem;margin-top:.4rem;}
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 55% 45%,#162910 0%,#0A0A08 65%);}
+canvas#particles{position:absolute;inset:0;pointer-events:none;}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:800px;}
+.hero-eyebrow{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s .3s forwards;}
+.hero-bonsai{font-size:clamp(4.5rem,16vw,10rem);line-height:1;margin:1rem 0;filter:drop-shadow(0 0 50px rgba(74,122,48,.55));opacity:0;animation:fadeUp 1s .55s forwards;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,8vw,6rem);font-weight:300;line-height:1.05;color:var(--white);opacity:0;animation:fadeUp 1s .5s forwards;}
+.hero-title em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.35rem);font-style:italic;color:var(--muted);margin-top:1.2rem;opacity:0;animation:fadeUp 1s .8s forwards;}
+.hero-cta{margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s 1.1s forwards;}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeIn 1s 2s forwards;}
+.scroll-hint span{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+.scroll-line{width:1px;height:38px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite;}
+/* SECTIONS */
+#philosophy{background:var(--deep);padding:6rem 2rem;}
+.philosophy-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem;}
+.philosophy-text p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;line-height:1.85;color:rgba(240,237,228,.82);margin-bottom:1.4rem;}
+.philosophy-visual{text-align:center;}
+.alchemical-symbol{font-size:6rem;filter:drop-shadow(0 0 28px rgba(201,168,76,.3));}
+.phil-quote{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);margin-top:1.5rem;font-size:1.1rem;}
+.seven-transform{margin-top:2.5rem;display:flex;flex-direction:column;gap:.6rem;}
+.transform-step{display:flex;align-items:center;gap:1rem;padding:.7rem 1.2rem;border-left:1px solid rgba(201,168,76,.22);transition:border-color .3s,background .3s;}
+.transform-step:hover{border-color:var(--gold);background:rgba(201,168,76,.03);}
+.step-num{font-family:'Cinzel',serif;font-size:.62rem;color:var(--gold);min-width:1.5rem;}
+.step-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--cream);}
+/* PRODUCTS */
+#shop-section{background:var(--black);padding:6rem 2rem;}
+.shop-intro{max-width:600px;margin-bottom:3.5rem;}
+.shop-intro p{color:var(--muted);margin-top:1rem;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:2px;}
+.product-card{background:var(--deep);padding:1.8rem;position:relative;cursor:pointer;transition:transform .4s;overflow:hidden;}
+.product-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.05),transparent);opacity:0;transition:opacity .4s;}
+.product-card:hover::before{opacity:1;}
+.product-card:hover{transform:translateY(-4px);}
+.product-img-placeholder{width:100%;aspect-ratio:4/3;background:linear-gradient(145deg,#1a2e12,#0d1a09);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:1.2rem;}
+.product-species{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;}
+.product-name-card{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:.4rem;}
+.product-desc-card{font-size:.75rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
+.product-price-card{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);margin-bottom:1rem;}
+.product-card-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
+/* BOOK */
+#book-section{background:linear-gradient(145deg,#0D1A09 0%,#111410 60%,#0A0A08 100%);padding:6rem 2rem;position:relative;overflow:hidden;}
+#book-section::before{content:'';position:absolute;top:-40%;right:-5%;width:550px;height:550px;background:radial-gradient(circle,rgba(201,168,76,.07),transparent 70%);pointer-events:none;}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.book-cover{text-align:center;}
+.book-gallery{display:grid;gap:1rem;grid-template-columns:.7fr 1fr;align-items:center;}
+.book-gallery img{width:100%;display:block;border-radius:4px;box-shadow:0 24px 70px rgba(16,17,14,.16);background:#EEE4D0;}
+.book-gallery .book-cover-portrait{max-height:620px;object-fit:contain;}
+.book-gallery .book-cover-wide{object-fit:contain;max-height:520px;}
+.book-visual{width:240px;height:340px;background:linear-gradient(150deg,#1e4010,#2d5c1e);border-radius:3px 10px 10px 3px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:10px 10px 45px rgba(0,0,0,.65),-2px 0 8px rgba(0,0,0,.4);padding:2rem;position:relative;overflow:hidden;}
+.book-visual::before{content:'';position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(to right,#0d1f08,#1a3a0f);}
+.book-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse,rgba(74,122,48,.2),transparent 70%);pointer-events:none;}
+.book-visual-emoji{font-size:2.8rem;margin-bottom:1rem;}
+.book-visual-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--gold-light);text-align:center;line-height:1.6;}
+.book-visual-sub{font-family:'Cormorant Garamond',serif;font-size:.7rem;font-style:italic;color:rgba(240,237,228,.55);text-align:center;margin-top:.6rem;}
+.book-cover-img{width:min(520px,100%);border-radius:4px;box-shadow:0 24px 70px rgba(16,17,14,.18);display:block;margin:0 auto;}
+.book-info blockquote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;font-weight:300;color:var(--gold-light);line-height:1.55;border-left:2px solid var(--gold);padding-left:1.5rem;margin:2rem 0;}
+.book-info p{color:rgba(240,237,228,.72);margin-bottom:1rem;font-size:.87rem;}
+.book-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;}
+/* ABOUT */
+#about-section{background:var(--deep);padding:6rem 2rem;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{color:rgba(240,237,228,.72);margin-bottom:1rem;font-size:.87rem;}
+.locations{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem;}
+.location-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;border:1px solid rgba(201,168,76,.18);transition:border-color .3s;}
+.location-item:hover{border-color:rgba(201,168,76,.5);}
+.location-flag{font-size:1.4rem;}
+.location-info .city{font-family:'Cinzel',serif;font-size:.8rem;color:var(--gold);letter-spacing:.08em;}
+.location-info .detail{font-size:.72rem;color:var(--muted);margin-top:.2rem;}
+.about-values{display:flex;flex-direction:column;gap:2rem;}
+.value-item .value-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--white);margin-bottom:.3rem;}
+.value-item p{font-size:.78rem;color:var(--muted);line-height:1.7;}
+/* CONTACT */
+#contact-section{background:var(--black);padding:6rem 2rem;text-align:center;}
+.contact-inner{max-width:640px;margin:0 auto;}
+.contact-inner p{color:var(--muted);margin-bottom:2.5rem;font-size:.88rem;margin-top:1rem;}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.contact-link{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.5rem 1.6rem;min-width:110px;border:1px solid rgba(201,168,76,.2);text-decoration:none;transition:all .3s;}
+.contact-link:hover{border-color:var(--gold);background:rgba(201,168,76,.05);transform:translateY(-3px);}
+.contact-link-icon{font-size:1.4rem;}
+.contact-link-label{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.contact-link:hover .contact-link-label{color:var(--gold);}
+/* FOOTER */
+footer{background:var(--deep);padding:3rem 2rem;text-align:center;border-top:1px solid rgba(201,168,76,.1);}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.15em;margin-bottom:.5rem;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:.88rem;margin-bottom:2rem;}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.footer-links a{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .3s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:.62rem;color:rgba(138,138,122,.45);}
+/* SHOP PAGE */
+#page-shop{padding-top:80px;}
+.shop-page-header{padding:3rem 2rem;background:var(--deep);border-bottom:1px solid var(--gold-dim);}
+.shop-filters{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;}
+.filter-btn{background:transparent;border:1px solid var(--gold-dim);color:var(--muted);padding:.4rem 1rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
+.shop-page-grid{padding:3rem 2rem;}
+/* WISHLIST */
+#page-wishlist{padding-top:80px;}
+.wishlist-header{padding:3rem 2rem;background:var(--deep);border-bottom:1px solid var(--gold-dim);}
+.wishlist-grid{padding:3rem 2rem;}
+.empty-state{text-align:center;padding:5rem 2rem;color:var(--muted);}
+.empty-state .empty-icon{font-size:3.5rem;margin-bottom:1rem;}
+.empty-state p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;}
+/* CART */
+#page-cart{padding-top:80px;}
+.cart-header{padding:2rem 2rem 0;background:var(--deep);border-bottom:1px solid var(--gold-dim);}
+.cart-header h1{padding-bottom:2rem;}
+.cart-layout{display:grid;grid-template-columns:1fr 360px;gap:2rem;padding:3rem 2rem;align-items:start;}
+.cart-item{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,.1);align-items:center;}
+.cart-item-img{width:80px;height:65px;background:var(--panel);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2rem;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);}
+.cart-item-species{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;}
+.cart-item-price{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);}
+.cart-item-qty{display:flex;align-items:center;gap:.7rem;margin-top:.5rem;}
+.qty-btn{background:var(--deep);border:1px solid var(--gold-dim);color:var(--cream);width:26px;height:26px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+.qty-btn:hover{border-color:var(--gold);color:var(--gold);}
+.cart-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;transition:color .3s;margin-left:.3rem;}
+.cart-item-remove:hover{color:var(--red);}
+.cart-summary{background:var(--deep);border:1px solid var(--gold-dim);padding:2rem;position:sticky;top:100px;}
+.cart-summary h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);margin-bottom:1.5rem;}
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(201,168,76,.1);font-size:.82rem;color:var(--muted);}
+.summary-row.total{border-bottom:none;color:var(--white);font-family:'Cinzel',serif;font-size:1rem;margin-top:.5rem;padding-top:1rem;border-top:1px solid var(--gold-dim);}
+.summary-row.total span:last-child{color:var(--gold);}
+/* PROFILE */
+#page-profile{padding-top:80px;}
+.profile-layout{display:grid;grid-template-columns:240px 1fr;gap:2rem;padding:3rem 2rem;min-height:80vh;}
+.profile-sidebar{background:var(--deep);border:1px solid var(--gold-dim);padding:2rem;height:fit-content;}
+.profile-avatar{width:70px;height:70px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;}
+.profile-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);text-align:center;}
+.profile-email{font-size:.7rem;color:var(--muted);text-align:center;margin-bottom:1.5rem;}
+.profile-nav{display:flex;flex-direction:column;gap:.3rem;}
+.profile-nav button{background:none;border:none;color:var(--muted);font-family:'Inter',sans-serif;font-size:.75rem;text-align:left;padding:.7rem 1rem;cursor:pointer;transition:all .3s;border-left:2px solid transparent;}
+.profile-nav button.active,.profile-nav button:hover{color:var(--gold);border-left-color:var(--gold);}
+.profile-content{background:var(--deep);border:1px solid var(--gold-dim);padding:2.5rem;}
+.profile-tab{display:none;}
+.profile-tab.active{display:block;}
+.profile-tab h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);margin-bottom:2rem;}
+.order-card{border:1px solid var(--gold-dim);padding:1.5rem;margin-bottom:1rem;}
+.order-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem;}
+.order-id{font-family:'Cinzel',serif;font-size:.75rem;color:var(--gold);}
+.order-date{font-size:.7rem;color:var(--muted);}
+.order-status{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid var(--success);color:var(--success);}
+.order-items{font-size:.8rem;color:var(--muted);margin-bottom:.6rem;}
+.order-total{font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold);}
+/* ADMIN */
+#page-admin{padding-top:80px;}
+.admin-layout{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 80px);}
+.admin-sidebar{background:var(--deep);border-right:1px solid var(--gold-dim);padding:2rem 0;}
+.admin-sidebar h3{font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);letter-spacing:.2em;padding:0 1.5rem;margin-bottom:1rem;}
+.admin-nav button{display:block;width:100%;background:none;border:none;color:var(--muted);font-family:'Inter',sans-serif;font-size:.75rem;text-align:left;padding:.8rem 1.5rem;cursor:pointer;transition:all .3s;border-left:3px solid transparent;}
+.admin-nav button.active,.admin-nav button:hover{color:var(--gold);background:rgba(201,168,76,.05);border-left-color:var(--gold);}
+.admin-main{padding:2.5rem;}
+.admin-tab{display:none;}
+.admin-tab.active{display:block;}
+.admin-tab h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:.4rem;}
+.admin-tab .subtitle{color:var(--muted);font-size:.82rem;margin-bottom:2rem;}
+.admin-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;margin-bottom:2.5rem;}
+.admin-card{background:var(--panel);border:1px solid var(--gold-dim);padding:1.5rem;text-align:center;}
+.admin-card .num{font-family:'Cinzel',serif;font-size:2rem;color:var(--gold);}
+.admin-card .lbl{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;}
+.admin-table{width:100%;border-collapse:collapse;}
+.admin-table th{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:.8rem 1rem;text-align:left;border-bottom:1px solid var(--gold-dim);}
+.admin-table td{padding:.8rem 1rem;font-size:.82rem;border-bottom:1px solid rgba(201,168,76,.08);vertical-align:middle;}
+.admin-table tr:hover td{background:rgba(201,168,76,.03);}
+.table-actions{display:flex;gap:.5rem;}
+.admin-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
+/* PRODUCT DETAIL */
+.product-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.product-detail-img{width:100%;aspect-ratio:1;background:linear-gradient(145deg,#1a2e12,#0d1a09);display:flex;align-items:center;justify-content:center;font-size:6rem;}
+.product-detail-info h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:.4rem;}
+.product-detail-species{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;}
+.product-detail-price{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--gold);margin-bottom:1.5rem;}
+.spec-row{display:flex;gap:1rem;padding:.5rem 0;border-bottom:1px solid rgba(201,168,76,.1);font-size:.78rem;}
+.spec-label{color:var(--muted);min-width:100px;}
+.spec-value{color:var(--cream);}
+.product-detail-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes scrollPulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+@media(max-width:900px){.philosophy-grid,.book-grid,.about-grid,.cart-layout,.profile-layout{grid-template-columns:1fr;gap:2rem;}.admin-layout{grid-template-columns:1fr;}.product-detail-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){.content-showcase,.creator-grid{grid-template-columns:1fr;}.showcase-media{min-height:280px;}.book-gallery{grid-template-columns:1fr;max-width:560px;margin:0 auto;}}
+@media(max-width:600px){.topbar-nav{display:none;}#topbar{padding:.8rem 1rem;}}
+/* PROFESSIONAL SITE REFINEMENT */
+:root{--black:#10110E;--deep:#F7F3E9;--panel:#FFFFFF;--green:#244019;--green-light:#5B7F3C;--gold:#B88A2A;--gold-light:#D9B65F;--gold-dim:rgba(184,138,42,.18);--cream:#2B2B24;--muted:#746F62;--white:#11110E;}
+body{background:#F7F3E9;color:#2B2B24;font-weight:400;}
+#topbar{background:rgba(247,243,233,.94);border-bottom:1px solid rgba(36,64,25,.12);box-shadow:0 10px 30px rgba(16,17,14,.06);}
+.topbar-logo{color:#1D2D17;font-size:.78rem;}
+.topbar-nav a,.topbar-nav button{color:#343429;opacity:.75;font-weight:500;}
+.topbar-nav a:hover,.topbar-nav button:hover{color:var(--gold);opacity:1;}
+.icon-btn{color:#343429;}
+#lang-toggle{border-color:rgba(36,64,25,.18);}
+#lang-toggle button{background:#fff;color:#746F62;}
+.badge,#lang-toggle button.active{background:#1D2D17;color:#fff;}
+#hero{min-height:calc(100vh - 10px);padding-top:4.5rem;background:linear-gradient(105deg,#F7F3E9 0%,#EFE6D2 54%,#1B2417 54%,#0F150D 100%);}
+canvas#particles{opacity:.16;}
+.official-hero{width:min(1180px,100%);max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.82fr);align-items:center;gap:4rem;text-align:left;}
+.official-copy{position:relative;z-index:2;}
+.official-logo{width:116px;aspect-ratio:1;object-fit:cover;border-radius:50%;margin-bottom:1.7rem;filter:drop-shadow(0 12px 24px rgba(16,17,14,.12));opacity:0;animation:fadeUp 1s .2s forwards;}
+.official-logo[data-en]{width:128px;}
+.official-media{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;}
+.official-media::before{display:none;}
+.official-media img{position:relative;z-index:1;width:min(520px,100%);aspect-ratio:1;object-fit:cover;object-position:center;border-radius:2px;filter:drop-shadow(0 30px 60px rgba(0,0,0,.32));}
+.hero-eyebrow{color:#7C652D;letter-spacing:.22em;margin-bottom:1rem;}
+.hero-title{color:#1B1B16;font-size:clamp(3rem,7vw,6.7rem);letter-spacing:0;}
+.hero-title em{color:#1D2D17;}
+.hero-sub{max-width:560px;color:#5E594E;font-family:'Inter',sans-serif;font-style:normal;font-size:clamp(1rem,1.6vw,1.18rem);line-height:1.8;}
+.hero-cta{justify-content:flex-start;}
+.btn{border-radius:0;padding:.92rem 1.45rem;font-size:.66rem;letter-spacing:.12em;}
+.btn-gold{background:#1D2D17;color:#fff;}
+.btn-gold:hover{background:#2D4A1E;color:#fff;}
+.btn-ghost{color:#1D2D17;border-color:rgba(29,45,23,.35);background:rgba(255,255,255,.34);}
+.btn-ghost:hover{color:#B88A2A;border-color:#B88A2A;background:#fff;}
+.scroll-hint{display:none;}
+.section-label{color:#8D6C24;}
+.section-title{color:#1B1B16;}
+.section-title em{color:#385529;}
+.divider{background:#B88A2A;}
+#philosophy,#about-section,.content-band.alt,footer{background:#FFFFFF;}
+#shop-section,.content-band,#contact-section,#book-section{background:#F7F3E9;}
+#book-section::before{background:radial-gradient(circle,rgba(184,138,42,.12),transparent 70%);}
+.philosophy-text p,.book-info p,.about-text p,.section-intro p,.shop-intro p,.contact-inner p{color:#625D52;}
+.feature-grid,.content-list,.creator-grid,.products-grid{gap:1rem;background:transparent;border:0;}
+.content-band{padding:5rem 2rem;}
+.feature-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.feature-card{min-height:0;}
+#contents-section,#social-section,#events-section{display:none;}
+.material-note{margin-top:1.2rem;padding:1rem 1.2rem;background:#fff;border-left:3px solid #B88A2A;color:#625D52;font-size:.86rem;line-height:1.7;max-width:720px;}
+.material-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem;}
+.product-img-placeholder{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.4;text-align:center;padding:1.4rem;color:#385529;}
+.portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+.portfolio-shot:nth-child(n+4){display:none;}
+.portfolio-shot img{aspect-ratio:4/3;}
+@media(max-width:900px){.portfolio-grid{grid-template-columns:1fr;}.portfolio-shot:nth-child(n+4){display:block;}}
+.feature-card,.content-item,.creator-card,.product-card{background:#fff;border:1px solid rgba(36,64,25,.1);box-shadow:0 18px 46px rgba(16,17,14,.06);transition:transform .3s,border-color .3s,box-shadow .3s;}
+.alt .feature-card{background:#F7F3E9;}
+.alt .content-item,.alt .creator-card{background:#F7F3E9;}
+.feature-card:hover,.content-item:hover,.creator-card:hover,.product-card:hover{box-shadow:0 22px 54px rgba(16,17,14,.1);border-color:rgba(184,138,42,.32);}
+.feature-card h3,.content-item h3,.creator-card h3,.portfolio-shot strong,.product-name-card,.value-item .value-title{color:#1B1B16;}
+.feature-card p,.content-item p,.creator-card p,.portfolio-shot figcaption,.showcase-panel p,.product-desc-card,.value-item p{color:#6C665A;}
+.product-img-placeholder{background:linear-gradient(145deg,#EEE4D0,#FAF8F0);color:#385529;}
+.product-img-placeholder.has-image{padding:0;overflow:hidden;background:#EEE4D0;}
+.product-img-placeholder.has-image img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#EEE4D0;}
+.product-detail-img.has-image{font-size:0;background:#EEE4D0;overflow:hidden;}
+.product-detail-img.has-image img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#EEE4D0;}
+.product-price-card,.product-species,.tag,.location-info .city,.footer-logo{color:#8D6C24;}
+.tag{border-color:rgba(184,138,42,.24);background:rgba(184,138,42,.06);}
+.book-visual{background:#11110E;box-shadow:0 24px 60px rgba(16,17,14,.22);}
+.book-info blockquote{color:#385529;border-left-color:#B88A2A;}
+.location-item,.contact-link{border-color:rgba(36,64,25,.12);background:#fff;}
+.contact-link:hover{background:#fff;border-color:rgba(184,138,42,.55);}
+.contact-link-label,.footer-tagline,.footer-copy{color:#746F62;}
+.footer-links a{color:#625D52;}
+.modal,.cart-summary,.profile-sidebar,.admin-sidebar,.admin-card{background:#fff;color:#2B2B24;border-color:rgba(36,64,25,.14);}
+.form-group input,.form-group select,.form-group textarea{background:#fff;color:#2B2B24;border-color:rgba(36,64,25,.18);}
+#page-shop,#page-wishlist,#page-cart,#page-profile,#page-admin{background:#F7F3E9;color:#2B2B24;}
+.shop-page-header,.wishlist-header,.cart-header,.profile-header,.admin-header{background:#fff;border-bottom-color:rgba(36,64,25,.12);}
+@media(max-width:900px){.official-hero{grid-template-columns:1fr;text-align:center;gap:2rem;padding-top:3rem;}.official-logo{margin-left:auto;margin-right:auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-cta{justify-content:center}.official-media{min-height:320px}#hero{background:linear-gradient(180deg,#F7F3E9 0%,#EFE6D2 58%,#1B2417 58%,#0F150D 100%);}.official-media img{width:min(360px,90vw);}}
+@media(max-width:600px){.official-logo{width:88px}.hero-title{font-size:clamp(2.5rem,16vw,4rem)}.official-media{min-height:260px}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}}
+.menu-btn{display:none;background:#fff;border:1px solid rgba(36,64,25,.16);color:#244019;width:40px;height:40px;align-items:center;justify-content:center;font-size:1.15rem;line-height:1;cursor:pointer;box-shadow:0 8px 20px rgba(36,64,25,.08);}
+#courses-section,#contents-section,#social-section,#events-section{display:none;}
+@media(max-width:760px){
+  #topbar{padding:.72rem .9rem;gap:.55rem;align-items:center;}
+  .topbar-logo{font-size:.72rem;max-width:42vw;white-space:normal;line-height:1.2;}
+  .menu-btn{display:flex;}
+  .topbar-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;padding:.7rem .95rem 1rem;box-shadow:0 22px 45px rgba(36,64,25,.14);border-bottom:1px solid rgba(36,64,25,.1);flex-direction:column;align-items:stretch;gap:0;}
+  #topbar.nav-open .topbar-nav{display:flex;}
+  .topbar-nav a,.topbar-nav button{padding:.78rem .15rem;border-bottom:1px solid rgba(36,64,25,.08);font-size:.68rem;text-align:left;}
+  .topbar-icons{margin-left:auto;gap:.38rem;}
+  .icon-btn{width:34px;height:34px;font-size:.85rem;}
+  #lang-toggle button{padding:.25rem .5rem;font-size:.58rem;}
+}
+body.lang-en [data-pt]{display:none!important;}
+body.lang-pt [data-en]{display:none!important;}
+</style>
+</head>
+<body class="lang-pt">
+<div id="topbar">
+  <span class="topbar-logo" onclick="navigateHome('#hero')"><span data-pt>✦ Alquimia do Bonsai</span><span data-en>✦ Bonsai Alchemy</span></span>
+  <button class="menu-btn" onclick="toggleMobileNav()" aria-label="Abrir menu">☰</button>
+  <nav class="topbar-nav">
+    <a onclick="navigateHome('#hero')"><span data-pt>Início</span><span data-en>Home</span></a>
+    <a onclick="navigateHome('#book-section')"><span data-pt>Livro</span><span data-en>Book</span></a>
+    <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
+    <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
+    <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
+    <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
+  </nav>
+  <div class="topbar-icons">
+    <div id="lang-toggle"><button class="active" onclick="setLang('pt')">PT</button><button onclick="setLang('en')">EN</button></div>
+  </div>
+</div>
+<div id="toast"></div>
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section id="hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-content official-hero">
+      <div class="official-copy">
+        <img class="official-logo" data-pt src="assets/brand-alquimia-logo.jpg" alt="Alquimia do Bonsai"/>
+        <img class="official-logo" data-en src="assets/brand-bonsai-alchemy-logo.jpg" alt="Bonsai Alchemy"/>
+        <p class="hero-eyebrow" data-pt>Bonsai como arte, transformação e conexão com a natureza</p>
+        <p class="hero-eyebrow" data-en>Bonsai as art, transformation and connection with nature</p>
+        <h1 class="hero-title" data-pt>Alquimia<br/><em>do Bonsai</em></h1>
+        <h1 class="hero-title" data-en>Bonsai<br/><em>Alchemy</em></h1>
+        <p class="hero-sub" data-pt>Pré-bonsai, bonsai e educação para cultivar árvores vivas com técnica, presença e propósito.</p>
+        <p class="hero-sub" data-en>Pre-bonsai, bonsai and education to cultivate living trees with technique, presence and purpose.</p>
+        <div class="hero-cta">
+          <button class="btn btn-gold" onclick="navigateHome('#shop-section')"><span data-pt>Ver bonsai disponíveis</span><span data-en>See available bonsai</span></button>
+          <button class="btn btn-ghost" onclick="navigateHome('#learn-section')"><span data-pt>Conhecer a Escola</span><span data-en>Discover the School</span></button>
+          <button class="btn btn-ghost" onclick="navigateHome('#book-section')"><span data-pt>Comprar o livro</span><span data-en>Buy the book</span></button>
+        </div>
+      </div>
+      <div class="official-media" aria-hidden="true">
+        <img src="assets/alexandre-luane-bonsai.jpg" alt="Alexandre e Luane com bonsai"/>
+      </div>
+    </div>
+    <div class="scroll-hint"><span data-pt>Role</span><span data-en>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+  <section id="philosophy">
+    <div class="container">
+      <p class="section-label" data-pt>Início · Apresentação e Novidades</p><p class="section-label" data-en>Home · Introduction and News</p>
+      <h2 class="section-title" data-pt>O bonsai como<br/><em>espelho da alma</em></h2>
+      <h2 class="section-title" data-en>The bonsai as<br/><em>mirror of the soul</em></h2>
+      <div class="divider"></div>
+      <div class="philosophy-grid">
+        <div class="philosophy-text">
+          <p data-pt>Na Alquimia do Bonsai, acreditamos que cuidar de uma árvore é cuidar de si mesmo. Cada poda, cada rega, cada cuidado é um ato de autoconhecimento — um ritual de presença e transformação.</p>
+          <p data-en>At Bonsai Alchemy, we believe that caring for a tree is caring for yourself. Each pruning, each watering, each act of care is an act of self-knowledge — a ritual of presence and transformation.</p>
+          <p data-pt>Fundada por Alexandre &amp; Luane, nossa marca nasceu em Niterói e floresceu para os Estados Unidos e outros países, conectando pessoas à natureza, ao sagrado e a si mesmas através do Método das 7 Transformações.</p>
+          <p data-en>Founded by Alexandre &amp; Luane, our brand was born in Niterói and expanded to the United States and other countries, connecting people to nature, the sacred, and themselves through the 7 Transformations Method.</p>
+          <div class="seven-transform">
+            <div class="transform-step"><span class="step-num">01</span><span class="step-name" data-pt>Conectar</span><span class="step-name" data-en>Connect</span></div>
+            <div class="transform-step"><span class="step-num">02</span><span class="step-name" data-pt>Despertar</span><span class="step-name" data-en>Awaken</span></div>
+            <div class="transform-step"><span class="step-num">03</span><span class="step-name" data-pt>Cultivar</span><span class="step-name" data-en>Cultivate</span></div>
+            <div class="transform-step"><span class="step-num">04</span><span class="step-name" data-pt>Podar</span><span class="step-name" data-en>Prune</span></div>
+            <div class="transform-step"><span class="step-num">05</span><span class="step-name" data-pt>Fortalecer</span><span class="step-name" data-en>Strengthen</span></div>
+            <div class="transform-step"><span class="step-num">06</span><span class="step-name" data-pt>Florescer</span><span class="step-name" data-en>Flourish</span></div>
+            <div class="transform-step"><span class="step-num">07</span><span class="step-name" data-pt>Transbordar</span><span class="step-name" data-en>Overflow</span></div>
+          </div>
+        </div>
+        <div class="philosophy-visual">
+          <div class="alchemical-symbol">⚗️</div>
+          <p class="phil-quote" data-pt>"O que recebe cuidado, cresce."</p>
+          <p class="phil-quote" data-en>"What receives care, grows."</p>
+        </div>
+      </div>
+      <div class="feature-grid" style="margin-top:3.5rem;">
+        <div class="feature-card"><h3 data-pt>Comprar um bonsai</h3><h3 data-en>Buy a bonsai</h3><p data-pt>Peças reais do catálogo, com consulta direta pelo WhatsApp.</p><p data-en>Real catalog pieces, with direct WhatsApp inquiry.</p></div>
+        <div class="feature-card"><h3 data-pt>Conhecer a escola</h3><h3 data-en>Discover the school</h3><p data-pt>Cursos, mentorias e workshops para evoluir com técnica e acompanhamento.</p><p data-en>Courses, mentorships, and workshops to grow with technique and guidance.</p></div>
+        <div class="feature-card"><h3 data-pt>Conhecer o livro</h3><h3 data-en>Explore the book</h3><p data-pt>O Método das 7 Transformações em uma jornada de cuidado e presença.</p><p data-en>The 7 Transformations Method in a journey of care and presence.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="shop-section">
+    <div class="container">
+      <div class="shop-intro">
+        <p class="section-label" data-pt>Loja</p><p class="section-label" data-en>Shop</p>
+        <h2 class="section-title" data-pt>Bonsai &amp; <em>produtos</em></h2>
+        <h2 class="section-title" data-en>Bonsai &amp; <em>products</em></h2>
+        <p data-pt>Cada bonsai carrega sua história, sua energia, seu tempo.</p>
+        <p data-en>Each bonsai carries its story, its energy, its time.</p>
+        <div class="book-btns" style="margin-top:1.4rem;">
+          <a class="btn btn-gold" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20ver%20o%20cat%C3%A1logo%20de%20bonsai%20dispon%C3%ADveis." target="_blank">Ver bonsai disponíveis</a>
+          <a class="btn btn-gold" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20see%20the%20available%20bonsai%20catalog." target="_blank">Open WhatsApp catalog</a>
+          <a class="btn btn-ghost" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20ver%20os%20bonsai%20dispon%C3%ADveis%20no%20cat%C3%A1logo." target="_blank">Falar com a Alquimia</a>
+          <a class="btn btn-ghost" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20check%20the%20available%20bonsai%20catalog." target="_blank">Check availability</a>
+        </div>
+      </div>
+      <div class="products-grid" id="home-products-grid"></div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <button class="btn btn-ghost" onclick="showPage('shop')"><span data-pt>Ver catálogo completo →</span><span data-en>View full catalog →</span></button>
+      </div>
+    </div>
+  </section>
+  <section id="book-section">
+    <div class="container">
+      <div class="book-grid">
+        <div class="book-cover">
+          <div class="book-gallery">
+            <img class="book-cover-portrait" data-pt src="assets/book-cover-pt.png" alt="Capa do livro Cuide da sua Alma - Lições do Bonsai"/>
+            <img class="book-cover-portrait" data-en src="assets/book-en-3d.jpg" alt="Take Care of Your Soul book cover"/>
+            <img class="book-cover-wide" data-pt src="assets/cuide-da-sua-alma-clean.png" alt="Livro Cuide da sua Alma em versão física e digital"/>
+            <img class="book-cover-wide" data-en src="assets/book-en-lifestyle.jpg" alt="Take Care of Your Soul book in English"/>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="section-label" data-pt>Livro · Método · Exercícios</p><p class="section-label" data-en>Book · Method · Exercises</p>
+          <h2 class="section-title" data-pt>Cuide da<br/><em>sua alma</em></h2>
+          <h2 class="section-title" data-en>Take care of<br/><em>your soul</em></h2>
+          <blockquote data-pt>"O bonsai não é apenas uma árvore. É uma lição de vida, presença e transformação."</blockquote>
+          <blockquote data-en>"The bonsai is not just a tree. It is a lesson in life, presence, and transformation."</blockquote>
+          <p data-pt>Escrito por Luane Salles &amp; Alexandre Braga. Um convite para iniciar sua transformação pelo Método das 7 Transformações: Conectar, Despertar, Cultivar, Podar, Fortalecer, Florescer e Transbordar.</p>
+          <p data-en>Written by Luane Salles &amp; Alexandre Braga. An invitation to begin your transformation through the 7 Transformations Method: Connect, Awaken, Cultivate, Prune, Strengthen, Flourish, and Overflow.</p>
+          <div class="divider"></div>
+          <div class="book-btns">
+            <a href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20comprar%20o%20livro%20digital%20Cuide%20da%20Sua%20Alma." target="_blank" class="btn btn-gold" data-pt>Comprar livro digital</a>
+            <a href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20buy%20the%20digital%20book%20Take%20Care%20of%20Your%20Soul." target="_blank" class="btn btn-gold" data-en>Buy digital book</a>
+            <a href="https://a.co/d/0cbGUyqV" target="_blank" class="btn btn-ghost" data-pt>Comprar na Amazon</a>
+            <a href="https://a.co/d/092Vdt3q" target="_blank" class="btn btn-ghost" data-en>Buy on Amazon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="courses-section" class="content-band alt">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Cursos</p><p class="section-label" data-en>Courses</p>
+        <h2 class="section-title" data-pt>Aprendizado para cada<br/><em>momento da jornada</em></h2>
+        <h2 class="section-title" data-en>Learning for every<br/><em>stage of the journey</em></h2>
+        <p data-pt>Cursos, workshops e mentorias para quem quer começar, aprofundar a técnica ou transformar o bonsai em prática de vida.</p>
+        <p data-en>Courses, workshops, and mentorships for beginners, dedicated students, and anyone turning bonsai into a life practice.</p>
+      </div>
+      <div class="feature-grid">
+        <a class="feature-card link-card" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><div class="feature-icon">🎓</div><h3 data-pt>Escola de Bonsai</h3><h3 data-en>Bonsai School</h3><p data-pt>Inscrição para a Escola de Bonsai Brasil e Estados Unidos, com formação, prática e acompanhamento.</p><p data-en>Registration for the Brazil and United States Bonsai School, with training, practice, and guidance.</p><span class="tag" data-pt>Inscrições</span><span class="tag" data-en>Registration</span></a>
+        <a class="feature-card link-card" href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><div class="feature-icon">🌎</div><h3 data-pt>International Bonsai School</h3><h3 data-en>International Bonsai School</h3><p data-pt>Programa internacional para quem deseja estudar bonsai com Luane &amp; Alexandre.</p><p data-en>International program for students who want to study bonsai with Luane &amp; Alexandre.</p><span class="tag">USBR</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20mentorias%20e%20workshops%20de%20bonsai." target="_blank"><div class="feature-icon">💬</div><h3>Mentoria e Workshops</h3><p>Converse pelo WhatsApp para turmas, aulas práticas, workshops e orientação individual.</p><span class="tag">WhatsApp</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%20mentorships%20and%20workshops." target="_blank"><div class="feature-icon">💬</div><h3>Mentorship and Workshops</h3><p>Message us on WhatsApp for groups, practical classes, workshops, and individual guidance.</p><span class="tag">WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+  <section id="learn-section" class="content-band">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Cursos</p><p class="section-label" data-en>Courses</p>
+        <h2 class="section-title" data-pt>Formação em bonsai<br/><em>com técnica e presença</em></h2>
+        <h2 class="section-title" data-en>Bonsai education<br/><em>with technique and presence</em></h2>
+        <p data-pt>Conteúdos, cursos, mentorias e workshops para começar com base, evoluir a prática e cultivar com segurança.</p>
+        <p data-en>Guides, courses, mentorships, and workshops to build a clear foundation, improve your practice, and cultivate with confidence.</p>
+      </div>
+      <div class="feature-grid">
+        <a class="feature-card link-card" data-pt href="https://drive.google.com/file/d/1qJcL0qz7pL196-p5y7YhRTx7ajUK3KXn/view" target="_blank"><h3>Introdução ao Bonsai</h3><p>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p><span class="tag">Gratuito</span></a>
+        <a class="feature-card link-card" data-pt href="https://drive.google.com/file/d/1136an_sP33mbre7rVoVt_eHvvnpNK5PE/view" target="_blank"><h3>Guia de cuidados básicos</h3><p>Rotina simples para observar, regar e manter seu bonsai saudável.</p><span class="tag">Gratuito</span></a>
+        <a class="feature-card link-card" data-pt href="https://drive.google.com/file/d/1QPSmLMbAFO_Eg_LPwStvde9uvc5-aCYj/view" target="_blank"><h3>Método das 7 Transformações</h3><p>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p><span class="tag">Método</span></a>
+        <a class="feature-card link-card" data-pt href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><h3>Escola de Bonsai</h3><p>Formação, aulas, prática e acompanhamento com Luane &amp; Alexandre.</p><span class="tag">Inscrição / valor sob consulta</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Quero%20saber%20sobre%20mentorias%20e%20workshops%20de%20bonsai" target="_blank"><h3>Mentorias e workshops</h3><p>Aulas práticas, turmas e orientação individual pelo WhatsApp.</p><span class="tag">Valor sob consulta</span></a>
+        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1aXCLQfiTG8FE692-kJEXREBjligMUTDv/view" target="_blank"><h3>Bonsai introduction guide</h3><p>Origin, styles, sizes, and fertilization for a clear beginner foundation.</p><span class="tag">Free</span></a>
+        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1YXaixomSOkd7NKmW99gefqbHep8Kr6zq/view" target="_blank"><h3>Basic bonsai care guide</h3><p>A simple care routine for watering, observation, and healthy growth.</p><span class="tag">Free</span></a>
+        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1e6PpPd4RLmCI58QKSS1CcYfuBWlkd9Yh/view" target="_blank"><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p><span class="tag">Method</span></a>
+        <a class="feature-card link-card" data-en href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><h3>International Bonsai School</h3><p>Classes, practice, and guidance with Luane &amp; Alexandre.</p><span class="tag">Registration / ask for price</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745" target="_blank"><h3>Mentorships and workshops</h3><p>Practical classes, cohorts, and individual guidance through WhatsApp.</p><span class="tag">Ask for price</span></a>
+      </div>
+    </div>
+  </section>
+  <section id="contents-section" class="content-band alt">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Conteúdos oficiais</p><p class="section-label" data-en>Official Content</p>
+        <h2 class="section-title" data-pt>Conteúdos para acompanhar<br/><em>sua jornada</em></h2>
+        <h2 class="section-title" data-en>Resources to support<br/><em>your journey</em></h2>
+        <p data-pt>Materiais, vídeos, livro, escola e canais oficiais para aprender com clareza e continuar em contato com a Alquimia.</p>
+        <p data-en>Materials, videos, book, school, and official channels to learn clearly and stay connected with Bonsai Alchemy.</p>
+      </div>
+      <div class="content-showcase">
+        <div class="showcase-panel light">
+          <div>
+            <p class="section-label" data-pt>Cuide da sua Alma</p><p class="section-label" data-en>Take Care of Your Soul</p>
+            <h2 class="section-title" data-pt>Livro, método<br/><em>e prática diária</em></h2>
+            <h2 class="section-title" data-en>Book, method<br/><em>and daily practice</em></h2>
+            <p data-pt>O livro é o coração da experiência: lições do bonsai para transformar cuidado em presença, técnica em ritual e rotina em autoconhecimento.</p>
+            <p data-en>The book is the heart of the experience: bonsai lessons that turn care into presence, technique into ritual, and routine into self-knowledge.</p>
+          </div>
+          <div class="book-btns">
+            <a href="https://a.co/d/0cbGUyqV" target="_blank" class="btn btn-gold" data-pt>E-book PT</a>
+            <a href="https://a.co/d/092Vdt3q" target="_blank" class="btn btn-gold" data-en>English Book</a>
+            <a href="https://a.co/d/097Jza8C" target="_blank" class="btn btn-ghost" data-pt>Transformação PT</a>
+            <a href="https://a.co/d/02V0xGDl" target="_blank" class="btn btn-ghost" data-en>Transformation EN</a>
+          </div>
+        </div>
+        <div class="showcase-media">
+          <img src="assets/aprenda-bonsai-zero.jpg" alt="Aprenda Bonsai do Zero - material de avaliação"/>
+        </div>
+      </div>
+      <div class="content-list">
+        <a class="content-item" href="https://drive.google.com/file/d/1iAfwRfPNgylau0_ykWAH9CsC055O5DDg/view" target="_blank"><span class="mini-label" data-pt>PDF · Português</span><span class="mini-label" data-en>PDF · Portuguese</span><h3 data-pt>Cuide da Sua Alma</h3><h3 data-en>Take Care of Your Soul</h3><p data-pt>PDF do livro Cuide da Sua Alma – Lições do Bonsai.</p><p data-en>Portuguese PDF book: Cuide da Sua Alma – Lições do Bonsai.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1luxBjrKqmoVgaaHujAmFcenSxAlJAH3p/view" target="_blank"><span class="mini-label">PDF · English</span><h3>Take Care of Your Soul</h3><p data-pt>PDF do livro em inglês para o público da Bonsai Alchemy.</p><p data-en>PDF book: Take Care of Your Soul – Bonsai Lessons.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1qJcL0qz7pL196-p5y7YhRTx7ajUK3KXn/view" target="_blank"><span class="mini-label">PDF PT</span><h3 data-pt>Introdução ao Bonsai</h3><h3 data-en>Bonsai Introduction</h3><p data-pt>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p><p data-en>Portuguese guide covering bonsai origin, styles, sizes and fertilization.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1aXCLQfiTG8FE692-kJEXREBjligMUTDv/view" target="_blank"><span class="mini-label">PDF EN</span><h3>Introduction Guide</h3><p data-pt>Versão em inglês da apostila de introdução ao bonsai.</p><p data-en>English introduction guide to bonsai: origin, styles, sizes and fertilization.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1136an_sP33mbre7rVoVt_eHvvnpNK5PE/view" target="_blank"><span class="mini-label">PDF PT</span><h3 data-pt>Guia de Cuidados Básicos</h3><h3 data-en>Basic Care Guide</h3><p data-pt>Rotina simples de cuidado para observar, regar e manter seu bonsai saudável.</p><p data-en>Portuguese basic care guide for observation, watering and bonsai health.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1YXaixomSOkd7NKmW99gefqbHep8Kr6zq/view" target="_blank"><span class="mini-label">PDF EN</span><h3>Basic Bonsai Care</h3><p data-pt>Versão em inglês do guia de cuidados básicos.</p><p data-en>English PDF basic bonsai care guide.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1QPSmLMbAFO_Eg_LPwStvde9uvc5-aCYj/view" target="_blank"><span class="mini-label">Método PT</span><h3 data-pt>Método das 7 Transformações</h3><h3 data-en>7 Transformations Method</h3><p data-pt>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p><p data-en>Portuguese daily exercise with 7 simple actions to support focus, presence, and purpose.</p></a>
+        <a class="content-item" href="https://drive.google.com/file/d/1e6PpPd4RLmCI58QKSS1CcYfuBWlkd9Yh/view" target="_blank"><span class="mini-label">Method EN</span><h3>7 Transformations Method</h3><p data-pt>Versão em inglês do Método das 7 Transformações.</p><p data-en>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p></a>
+        <div class="content-item"><span class="mini-label" data-pt>Livro digital</span><span class="mini-label" data-en>Digital book</span><h3 data-pt>Cuide da Sua Alma</h3><h3 data-en>Take Care of Your Soul</h3><p data-pt>Valor do livro digital em português: R$ 9,90.</p><p data-en>English digital book price: US$ 9.90.</p></div>
+        <a class="content-item" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><span class="mini-label">Brasil · Estados Unidos</span><h3 data-pt>Escola de Bonsai</h3><h3 data-en>Bonsai School</h3><p data-pt>Inscrição para cursos, turmas, workshops e mentorias com Luane e Alexandre.</p><p data-en>Registration for courses, groups, workshops, and mentorships with Luane and Alexandre.</p></a>
+        <a class="content-item" href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><span class="mini-label">International</span><h3>International Bonsai School</h3><p data-pt>Formulário internacional para aulas e experiências em inglês.</p><p data-en>International form for English classes and experiences.</p></a>
+        <a class="content-item" href="https://forms.gle/G12JG8frqDtsR9yS9" target="_blank"><span class="mini-label">Contato</span><h3 data-pt>Dúvidas sobre materiais</h3><h3 data-en>Questions about materials</h3><p data-pt>Canal para pedir orientação sobre livro, guias, escola e aulas.</p><p data-en>Channel for guidance about the book, guides, school, and classes.</p></a>
+        <a class="content-item" href="https://storage.googleapis.com/eleven-public-cdn/share-link/cb6b8feb4d4c104c8ecdd2e0edae2cdef6006fdadabc4d4a187ce3702b4f7381/ElevenLabs_EeOiBJi8V4tTg64w3cIh_colour.mp4" target="_blank"><span class="mini-label">Audiobook · Part 1</span><h3 data-pt>Fundamentos do Bonsai</h3><h3 data-en>Bonsai Basics</h3><p data-pt>Primeiro áudio/vídeo da série internacional.</p><p data-en>First audio/video from the international series.</p></a>
+        <a class="content-item" href="https://storage.googleapis.com/eleven-public-cdn/share-link/cb6b8feb4d4c104c8ecdd2e0edae2cdef6006fdadabc4d4a187ce3702b4f7381/ElevenLabs_53YuCbjrM1NV3MF4pYTQ_colour.mp4" target="_blank"><span class="mini-label">Audiobook · Part 2</span><h3 data-pt>Cuidados e técnicas</h3><h3 data-en>Care &amp; Techniques</h3><p data-pt>Segundo áudio/vídeo com cuidados e técnicas essenciais.</p><p data-en>Second audio/video with essential care and techniques.</p></a>
+        <a class="content-item" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><span class="mini-label">YouTube</span><h3 data-pt>Podcast</h3><h3 data-en>Podcast</h3><p data-pt>Conteúdo em vídeo indicado no Linktree da Alquimia do Bonsai.</p><p data-en>Video content listed on the Alquimia do Bonsai Linktree.</p></a>
+        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank"><span class="mini-label">WhatsApp Brasil</span><h3>Fale conosco</h3><p>Canal direto para materiais, compras, aulas e dúvidas.</p></a>
+        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank"><span class="mini-label">WhatsApp United States</span><h3>Contact us</h3><p>Direct channel for materials, purchases, classes, and questions.</p></a>
+        <a class="content-item" href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank"><span class="mini-label">Facebook</span><h3 data-pt>Página no Facebook</h3><h3 data-en>Facebook Page</h3><p data-pt>Rede social oficial listada no site antigo.</p><p data-en>Official social network listed on the previous site.</p></a>
+        <a class="content-item" href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><span class="mini-label">Instagram BR</span><h3>@alquimiadobonsai</h3><p data-pt>Perfil brasileiro: arte, pré-bonsai, educação e transformação.</p><p data-en>Brazilian profile: art, pre-bonsai, education, and transformation.</p></a>
+        <a class="content-item" href="https://www.instagram.com/bonsaialchemy/" target="_blank"><span class="mini-label">Instagram EN</span><h3>@bonsaialchemy</h3><p data-pt>Perfil internacional em inglês da Bonsai Alchemy.</p><p data-en>International English profile for Bonsai Alchemy.</p></a>
+        <a class="content-item" href="https://tr.ee/nI-EFB2ixk" target="_blank"><span class="mini-label">Linktree Principal</span><h3 data-pt>Cuide da sua Alma Official</h3><h3 data-en>Take Care of Your Soul Official</h3><p data-pt>Link principal compartilhável com os acessos oficiais.</p><p data-en>Main shareable link with official access points.</p></a>
+      </div>
+    </div>
+  </section>
+  <section id="social-section" class="content-band alt">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Redes Sociais</p><p class="section-label" data-en>Social Media</p>
+        <h2 class="section-title" data-pt>Acompanhe a Alquimia<br/><em>todos os dias</em></h2>
+        <h2 class="section-title" data-en>Follow the Alchemy<br/><em>every day</em></h2>
+        <p data-pt>Vídeos, bastidores, aulas rápidas, antes e depois das árvores, lives e novidades da comunidade.</p>
+        <p data-en>Videos, behind the scenes, quick lessons, tree transformations, live sessions, and community updates.</p>
+      </div>
+      <div class="feature-grid">
+        <a class="feature-card link-card" href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><div class="feature-icon">📸</div><h3>@alquimiadobonsai</h3><p data-pt>Perfil Brasil com rotina, árvores, escola, bastidores e conteúdos em português.</p><p data-en>Brazil profile with daily rhythm, trees, school, behind the scenes and Portuguese content.</p></a>
+        <a class="feature-card link-card" href="https://www.instagram.com/bonsaialchemy/" target="_blank"><div class="feature-icon">📸</div><h3>@bonsaialchemy</h3><p data-pt>Perfil internacional da Bonsai Alchemy com conteúdos em inglês.</p><p data-en>International Bonsai Alchemy profile with English content.</p></a>
+        <a class="feature-card link-card" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><div class="feature-icon">▶️</div><h3>YouTube / Podcast BR</h3><p data-pt>Podcast indicado no Linktree da Alquimia do Bonsai, em português.</p><p data-en>Podcast listed on the Alquimia do Bonsai Linktree, in Portuguese.</p></a>
+        <a class="feature-card link-card" href="https://linktr.ee/bonsaialchemy" target="_blank"><div class="feature-icon">▶️</div><h3>YouTube EN</h3><p data-pt>Atalho funcional para os conteúdos internacionais da Bonsai Alchemy.</p><p data-en>Working shortcut to Bonsai Alchemy international content.</p></a>
+        <a class="feature-card link-card" href="https://linktr.ee/alquimiadobonsai" target="_blank"><div class="feature-icon">🌿</div><h3>Linktree BR</h3><p data-pt>Todos os links oficiais em português reunidos em um só lugar.</p><p data-en>All official Portuguese links gathered in one place.</p></a>
+        <a class="feature-card link-card" href="https://linktr.ee/bonsaialchemy" target="_blank"><div class="feature-icon">🌿</div><h3>Linktree EN</h3><p data-pt>Todos os links oficiais em inglês da Bonsai Alchemy.</p><p data-en>All official English links from Bonsai Alchemy.</p></a>
+        <a class="feature-card link-card" href="https://tr.ee/nI-EFB2ixk" target="_blank"><div class="feature-icon">🔗</div><h3>Linktree Principal</h3><p data-pt>Atalho compartilhável para o Linktree principal Cuide da sua Alma.</p><p data-en>Shareable shortcut to the main Take Care of Your Soul Linktree.</p></a>
+        <a class="feature-card link-card" href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank"><div class="feature-icon">f</div><h3>Facebook</h3><p data-pt>Rede social oficial encontrada no site atual da Alquimia do Bonsai.</p><p data-en>Official social channel found on the current Alquimia do Bonsai site.</p></a>
+      </div>
+    </div>
+  </section>
+  <section id="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label" data-pt>Sobre Nós</p><p class="section-label" data-en>About Us</p>
+          <h2 class="section-title" data-pt>Alexandre<br/>&amp; <em>Luane</em></h2>
+          <h2 class="section-title" data-en>Alexandre<br/>&amp; <em>Luane</em></h2>
+          <div class="divider"></div>
+          <p data-pt>Somos Alexandre Braga e Luane Salles — um casal que transformou a paixão pelo bonsai em missão: ajudar pessoas a se reconectarem com a natureza, o presente e si mesmas.</p>
+          <p data-en>We are Alexandre Braga and Luane Salles — a couple who turned a passion for bonsai into a mission: helping people reconnect with nature, the present, and themselves.</p>
+          <div class="locations">
+            <div class="location-item"><span class="location-flag">🇧🇷</span><div class="location-info"><div class="city">Niterói · Rio de Janeiro</div><div class="detail">WhatsApp: (21) 96410-9840</div></div></div>
+            <div class="location-item"><span class="location-flag">🇺🇸</span><div class="location-info"><div class="city">Estados Unidos · Outros países</div><div class="detail">WhatsApp: +1 (786) 978-0745</div></div></div>
+          </div>
+        </div>
+        <div class="about-values">
+          <p class="section-label" data-pt>O que acreditamos</p><p class="section-label" data-en>What we believe</p>
+          <div class="value-item"><div class="value-title" data-pt>Arte Viva</div><div class="value-title" data-en>Living Art</div><p data-pt>O bonsai é a única forma de arte que respira. Cresce, muda e te acompanha.</p><p data-en>Bonsai is the only art form that breathes. It grows, changes, and accompanies you.</p></div>
+          <div class="value-item"><div class="value-title" data-pt>Presença</div><div class="value-title" data-en>Presence</div><p data-pt>Cuidar de um bonsai exige atenção plena. Meditação com as mãos na terra.</p><p data-en>Caring for a bonsai demands full attention. Meditation with hands in the soil.</p></div>
+          <div class="value-item"><div class="value-title" data-pt>Transformação</div><div class="value-title" data-en>Transformation</div><p data-pt>Como a árvore moldada com paciência, nós também podemos nos reinventar.</p><p data-en>Like the tree shaped with patience, we too can reinvent ourselves.</p></div>
+          <div class="value-item"><div class="value-title" data-pt>Escola Internacional</div><div class="value-title" data-en>International School</div><p data-pt>A Escola de Bonsai conecta aprendizes no Brasil e no mundo.</p><p data-en>The Bonsai School connects learners in Brazil and worldwide.</p></div>
+        </div>
+      </div>
+      <div class="creator-grid">
+        <div class="creator-card">
+          <img src="assets/alexandre-braga.jpg" alt="Alexandre Braga trabalhando com bonsai" style="object-position:42% center;"/>
+          <h3>Alexandre Braga</h3>
+          <p data-pt>Arte, técnica, educação e cuidado com árvores vivas. Alexandre conduz a parte prática, estética e técnica da formação em bonsai.</p>
+          <p data-en>Art, technique, education, and care for living trees. Alexandre leads the practical, aesthetic, and technical side of bonsai training.</p>
+        </div>
+        <div class="creator-card">
+          <img src="assets/luane-salles.jpg" alt="Luane Salles ao lado de um bonsai" style="object-position:58% center;"/>
+          <h3>Luane Salles</h3>
+          <p data-pt>Transformação, comunicação e propósito para aproximar pessoas da natureza, do sagrado e de si mesmas.</p>
+          <p data-en>Transformation, communication, and purpose to connect people with nature, the sacred, and themselves.</p>
+        </div>
+        <div class="creator-card">
+          <img src="assets/catalogo-colecao-hero.jpg" alt="Coleção de bonsai e pré-bonsai da Alquimia do Bonsai"/>
+          <h3 data-pt>Catálogo vivo</h3><h3 data-en>Living Catalog</h3>
+          <p data-pt>Peças reais, pré-bonsai e árvores de coleção organizadas para consulta e venda.</p>
+          <p data-en>Real pieces, pre-bonsai, and collector trees organized for inquiry and sale.</p>
+        </div>
+      </div>
+      <div class="portfolio-grid">
+        <figure class="portfolio-shot">
+          <img src="assets/catalogo-colecao-vitrine.jpg" alt="Vitrine com bonsai e pré-bonsai"/>
+          <figcaption><strong>Vitrine do catálogo</strong><span data-pt>Seleção de bonsai e pré-bonsai para consulta pelo WhatsApp.</span><span data-en>Selection of bonsai and pre-bonsai for WhatsApp inquiry.</span></figcaption>
+        </figure>
+        <figure class="portfolio-shot">
+          <img src="assets/bonsai-catalogo-01.jpg" alt="Alexandre trabalhando em bonsai" style="object-position:42% center;"/>
+          <figcaption><strong>Alexandre em trabalho</strong><span data-pt>Registro de cuidado técnico, poda e condução de uma peça viva.</span><span data-en>Technical care, pruning and shaping of a living piece.</span></figcaption>
+        </figure>
+        <figure class="portfolio-shot">
+          <img src="assets/bonsai-catalogo-02.jpg" alt="Luane ao lado de bonsai" style="object-position:58% center;"/>
+          <figcaption><strong>Luane &amp; Bonsai</strong><span data-pt>Presença, escala e conexão com árvores de coleção.</span><span data-en>Presence, scale and connection with collector trees.</span></figcaption>
+        </figure>
+        <figure class="portfolio-shot">
+          <img src="assets/bonsai-catalogo-03.jpg" alt="Luane com bonsai em formação" style="object-position:55% center;"/>
+          <figcaption><strong>Portfólio vivo</strong><span data-pt>Exemplos de árvores trabalhadas pela Alquimia do Bonsai.</span><span data-en>Examples of trees shaped by Bonsai Alchemy.</span></figcaption>
+        </figure>
+        <figure class="portfolio-shot">
+          <img src="assets/bonsai-catalogo-04.jpg" alt="Alexandre com bonsai de madeira morta" style="object-position:45% center;"/>
+          <figcaption><strong>Madeira morta</strong><span data-pt>Textura, idade visual e composição escultórica.</span><span data-en>Texture, visual age and sculptural composition.</span></figcaption>
+        </figure>
+        <figure class="portfolio-shot">
+          <img src="assets/bonsai-catalogo-05.jpg" alt="Luane com bonsai de base larga" style="object-position:center;"/>
+          <figcaption><strong>Árvores de presença</strong><span data-pt>Registros para inspirar, apresentar o trabalho e fortalecer a marca.</span><span data-en>Records to inspire, present the work and strengthen the brand.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section id="events-section" class="content-band">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Eventos</p><p class="section-label" data-en>Events</p>
+        <h2 class="section-title" data-pt>Agenda, encontros<br/><em>e inscrições</em></h2>
+        <h2 class="section-title" data-en>Calendar, gatherings<br/><em>and registration</em></h2>
+        <p data-pt>Uma área para divulgar workshops, vivências, aulas abertas, feiras, lives e experiências presenciais no Brasil e nos Estados Unidos.</p>
+        <p data-en>A place for workshops, experiences, open classes, fairs, live sessions, and in-person events in Brazil and the United States.</p>
+      </div>
+      <div class="feature-grid">
+        <a class="feature-card link-card" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><div class="feature-icon">📅</div><h3 data-pt>Agenda Brasil</h3><h3 data-en>Brazil Calendar</h3><p data-pt>Inscrições e lista de interesse para aulas, escola, turmas e encontros no Brasil.</p><p data-en>Registration and interest list for classes, school, groups, and gatherings in Brazil.</p><span class="tag" data-pt>Inscrições</span><span class="tag" data-en>Registration</span></a>
+        <a class="feature-card link-card" href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><div class="feature-icon">🌎</div><h3 data-pt>Agenda Internacional</h3><h3 data-en>International Calendar</h3><p data-pt>Turmas e experiências em inglês pela International Bonsai School.</p><p data-en>English-speaking groups and experiences through the International Bonsai School.</p><span class="tag">International</span></a>
+        <a class="feature-card link-card" href="https://forms.gle/G12JG8frqDtsR9yS9" target="_blank"><div class="feature-icon">🤲</div><h3 data-pt>Dúvidas sobre materiais</h3><h3 data-en>Questions about materials</h3><p data-pt>Canal para orientação sobre livro, guias, escola e aulas.</p><p data-en>Channel for guidance about the book, guides, school, and classes.</p><span class="tag">Contato</span></a>
+      </div>
+    </div>
+  </section>
+  <section id="contact-section">
+    <div class="container">
+      <div class="contact-inner">
+        <p class="section-label" data-pt>Fale Conosco</p><p class="section-label" data-en>Get in Touch</p>
+        <h2 class="section-title" data-pt>Vamos <em>conversar</em></h2>
+        <h2 class="section-title" data-en>Let's <em>connect</em></h2>
+        <div class="divider" style="margin:1.5rem auto;"></div>
+        <p data-pt>Quer comprar um bonsai, saber mais sobre o livro ou trocar uma ideia?</p>
+        <p data-en>Want to buy a bonsai, learn about the book, or have a conversation?</p>
+        <div class="contact-links">
+          <a data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp Brasil</span></a>
+          <a data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp United States</span></a>
+          <a href="https://www.instagram.com/alquimiadobonsai/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram BR</span></a>
+          <a href="https://www.instagram.com/bonsaialchemy/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram EN</span></a>
+          <a href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank" class="contact-link"><span class="contact-link-icon">f</span><span class="contact-link-label">Facebook</span></a>
+          <a href="https://tr.ee/nI-EFB2ixk" target="_blank" class="contact-link"><span class="contact-link-icon">🌿</span><span class="contact-link-label">Linktree</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">✦ Alquimia do Bonsai · Bonsai Alchemy ✦</div>
+    <div class="footer-tagline" data-pt>Transformando árvores. Inspirando vidas.</div>
+    <div class="footer-tagline" data-en>Transforming trees. Inspiring lives.</div>
+    <div class="footer-links">
+      <a onclick="navigateHome('#hero')"><span data-pt>Início</span><span data-en>Home</span></a>
+      <a onclick="navigateHome('#book-section')"><span data-pt>Livro</span><span data-en>Book</span></a>
+      <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
+      <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
+      <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
+      <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
+    </div>
+    <div class="footer-copy">© 2026 Alquimia do Bonsai · Bonsai Alchemy — Brasil · Estados Unidos</div>
+  </footer>
+</div>
+<!-- SHOP -->
+<div id="page-shop" class="page">
+  <div class="shop-page-header">
+    <div class="container">
+      <p class="section-label" data-pt>Catálogo</p><p class="section-label" data-en>Catalog</p>
+      <h1 class="section-title" data-pt>Bonsai <em>disponíveis</em></h1><h1 class="section-title" data-en>Available <em>bonsai</em></h1>
+      <div class="shop-filters">
+        <button class="filter-btn active" onclick="filterShop('all',this)"><span data-pt>Todos</span><span data-en>All</span></button>
+        <button class="filter-btn" onclick="filterShop('prebonsai',this)"><span data-pt>Pré-Bonsai</span><span data-en>Pre-Bonsai</span></button>
+        <button class="filter-btn" onclick="filterShop('bonsai',this)"><span data-pt>Bonsai</span><span data-en>Bonsai</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="shop-page-grid"><div class="container"><div class="products-grid" id="shop-products-grid"></div><div id="shop-empty" class="empty-state hidden"><div class="empty-icon">🌿</div><p data-pt>Nenhum produto nesta categoria.</p><p data-en>No products in this category.</p></div></div></div>
+</div>
+<!-- WISHLIST -->
+<div id="page-wishlist" class="page">
+  <div class="wishlist-header"><div class="container"><p class="section-label" data-pt>Seus favoritos</p><p class="section-label" data-en>Your favorites</p><h1 class="section-title" data-pt>Lista de <em>desejos</em></h1><h1 class="section-title" data-en><em>Wish</em> list</h1></div></div>
+  <div class="wishlist-grid"><div class="container"><div class="products-grid" id="wish-products-grid"></div><div id="wish-empty" class="empty-state hidden"><div class="empty-icon">🤍</div><p data-pt>Sua lista está vazia.</p><p data-en>Your list is empty.</p><br/><button class="btn btn-ghost btn-sm" onclick="showPage('shop')"><span data-pt>Explorar loja</span><span data-en>Explore shop</span></button></div></div></div>
+</div>
+<!-- CART -->
+<div id="page-cart" class="page">
+  <div class="cart-header"><div class="container"><h1 class="section-title" data-pt>Seu <em>carrinho</em></h1><h1 class="section-title" data-en>Your <em>cart</em></h1></div></div>
+  <div class="container cart-layout">
+    <div>
+      <div id="cart-items-list"></div>
+      <div id="cart-empty" class="empty-state hidden"><div class="empty-icon">🛒</div><p data-pt>Seu carrinho está vazio.</p><p data-en>Your cart is empty.</p><br/><button class="btn btn-ghost btn-sm" onclick="showPage('shop')"><span data-pt>Explorar loja</span><span data-en>Explore shop</span></button></div>
+    </div>
+    <div id="cart-summary-box" class="cart-summary">
+      <h3 data-pt>Resumo do pedido</h3><h3 data-en>Order summary</h3>
+      <div class="summary-row"><span data-pt>Subtotal</span><span data-en>Subtotal</span><span id="cart-subtotal">R$ 0</span></div>
+      <div class="summary-row"><span data-pt>Frete</span><span data-en>Shipping</span><span data-pt>A calcular</span><span data-en>To calculate</span></div>
+      <div class="summary-row total"><span>Total</span><span id="cart-total">R$ 0</span></div>
+      <div style="margin-top:1.5rem;">
+        <div class="form-group"><label>CEP / ZIP</label><input type="text" id="cep-input" placeholder="00000-000"/></div>
+        <div class="form-group"><label><span data-pt>Rua</span><span data-en>Street</span></label><input type="text" id="rua-input"/></div>
+        <div class="form-row">
+          <div class="form-group"><label><span data-pt>Cidade</span><span data-en>City</span></label><input type="text" id="cidade-input"/></div>
+          <div class="form-group"><label><span data-pt>Estado</span><span data-en>State</span></label><input type="text" id="estado-input"/></div>
+        </div>
+        <button class="btn btn-gold" style="width:100%;margin-top:.5rem;" onclick="finalizarPedido()"><span data-pt>Finalizar pedido</span><span data-en>Place order</span></button>
+        <p style="font-size:.65rem;color:var(--muted);text-align:center;margin-top:.8rem;" data-pt>Pagamento confirmado via WhatsApp</p>
+        <p style="font-size:.65rem;color:var(--muted);text-align:center;margin-top:.8rem;" data-en>Payment confirmed via WhatsApp</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PROFILE -->
+<div id="page-profile" class="page">
+  <div class="container profile-layout">
+    <div class="profile-sidebar">
+      <div class="profile-avatar">👤</div>
+      <div class="profile-name" id="profile-display-name">—</div>
+      <div class="profile-email" id="profile-display-email">—</div>
+      <div class="profile-nav">
+        <button class="active" onclick="showProfileTab('orders',this)" data-pt>📦 Meus Pedidos</button>
+        <button onclick="showProfileTab('address',this)" data-pt>📍 Endereço</button>
+        <button onclick="showProfileTab('settings',this)" data-pt>⚙️ Configurações</button>
+        <button class="active" onclick="showProfileTab('orders',this)" data-en>📦 My Orders</button>
+        <button onclick="showProfileTab('address',this)" data-en>📍 Address</button>
+        <button onclick="showProfileTab('settings',this)" data-en>⚙️ Settings</button>
+        <button onclick="logout()" style="color:var(--red);margin-top:1rem;" data-pt>↩ Sair</button>
+        <button onclick="logout()" style="color:var(--red);margin-top:1rem;" data-en>↩ Logout</button>
+      </div>
+    </div>
+    <div class="profile-content">
+      <div class="profile-tab active" id="tab-orders">
+        <h2 data-pt>Meus Pedidos</h2><h2 data-en>My Orders</h2>
+        <div id="orders-list"></div>
+        <div id="orders-empty" class="empty-state hidden"><div class="empty-icon">📦</div><p data-pt>Você ainda não fez pedidos.</p><p data-en>No orders yet.</p></div>
+      </div>
+      <div class="profile-tab" id="tab-address">
+        <h2 data-pt>Meu Endereço</h2><h2 data-en>My Address</h2>
+        <div class="form-group"><label><span data-pt>Nome completo</span><span data-en>Full name</span></label><input type="text" id="addr-name"/></div>
+        <div class="form-group"><label>CEP / ZIP</label><input type="text" id="addr-cep"/></div>
+        <div class="form-group"><label><span data-pt>Rua</span><span data-en>Street</span></label><input type="text" id="addr-rua"/></div>
+        <div class="form-row">
+          <div class="form-group"><label><span data-pt>Número</span><span data-en>Number</span></label><input type="text" id="addr-num"/></div>
+          <div class="form-group"><label><span data-pt>Complemento</span><span data-en>Address line 2</span></label><input type="text" id="addr-comp"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label><span data-pt>Cidade</span><span data-en>City</span></label><input type="text" id="addr-cidade"/></div>
+          <div class="form-group"><label><span data-pt>Estado</span><span data-en>State</span></label><input type="text" id="addr-estado"/></div>
+        </div>
+        <div class="form-group"><label><span data-pt>País</span><span data-en>Country</span></label><input type="text" id="addr-pais" value="Brasil"/></div>
+        <button class="btn btn-gold" onclick="saveAddress()"><span data-pt>Salvar endereço</span><span data-en>Save address</span></button>
+      </div>
+      <div class="profile-tab" id="tab-settings">
+        <h2 data-pt>Configurações</h2><h2 data-en>Settings</h2>
+        <div class="form-group"><label><span data-pt>Nome</span><span data-en>Name</span></label><input type="text" id="settings-name"/></div>
+        <div class="form-group"><label>E-mail</label><input type="email" id="settings-email" readonly style="opacity:.5;cursor:not-allowed;"/></div>
+        <div class="form-group"><label><span data-pt>Nova senha</span><span data-en>New password</span></label><input type="password" id="settings-pass" placeholder="Deixe em branco para manter"/></div>
+        <button class="btn btn-gold" onclick="saveSettings()"><span data-pt>Salvar</span><span data-en>Save</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ADMIN -->
+<div id="page-admin" class="page">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <h3>ADMIN PANEL</h3>
+      <div class="admin-nav">
+        <button class="active" onclick="showAdminTab('dashboard',this)">📊 Dashboard</button>
+        <button onclick="showAdminTab('products',this)">🛒 Itens da loja</button>
+        <button onclick="showAdminTab('orders',this)">📦 Pedidos</button>
+        <button onclick="showAdminTab('users',this)">👥 Usuários</button>
+        <button onclick="showAdminTab('site',this)">✏️ Conteúdo</button>
+        <button onclick="logout()" style="color:var(--red);margin-top:2rem;">↩ Sair</button>
+      </div>
+    </div>
+    <div class="admin-main">
+      <div class="admin-tab active" id="atab-dashboard">
+        <h2>Dashboard</h2><p class="subtitle">Visão geral da loja</p>
+        <div class="admin-cards">
+          <div class="admin-card"><div class="num" id="dash-products">0</div><div class="lbl">Itens</div></div>
+          <div class="admin-card"><div class="num" id="dash-orders">0</div><div class="lbl">Pedidos</div></div>
+          <div class="admin-card"><div class="num" id="dash-users">0</div><div class="lbl">Usuários</div></div>
+          <div class="admin-card"><div class="num" id="dash-revenue">R$ 0</div><div class="lbl">Receita</div></div>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;">Últimos pedidos</h3>
+        <div id="dash-recent-orders"></div>
+      </div>
+      <div class="admin-tab" id="atab-products">
+        <h2>Gerenciar Loja</h2><p class="subtitle">Adicione livros, bonsai, cursos, materiais e produtos</p>
+        <div class="admin-toolbar">
+          <input type="text" placeholder="Buscar..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminProducts(this.value)"/>
+          <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Adicionar item</button>
+        </div>
+        <table class="admin-table"><thead><tr><th>Nome</th><th>Tipo</th><th>Cat.</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead><tbody id="admin-products-table"></tbody></table>
+      </div>
+      <div class="admin-tab" id="atab-orders">
+        <h2>Pedidos</h2><p class="subtitle">Gerencie os pedidos recebidos</p>
+        <table class="admin-table"><thead><tr><th>ID</th><th>Cliente</th><th>Itens</th><th>Total</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead><tbody id="admin-orders-table"></tbody></table>
+        <div id="admin-orders-empty" class="empty-state hidden"><div class="empty-icon">📦</div><p>Nenhum pedido ainda.</p></div>
+      </div>
+      <div class="admin-tab" id="atab-users">
+        <h2>Usuários</h2><p class="subtitle">Usuários cadastrados</p>
+        <table class="admin-table"><thead><tr><th>Nome</th><th>E-mail</th><th>Tipo</th><th>Cadastro</th><th>Pedidos</th></tr></thead><tbody id="admin-users-table"></tbody></table>
+      </div>
+      <div class="admin-tab" id="atab-site">
+        <h2>Conteúdo do Site</h2><p class="subtitle">Edite textos e informações exibidas no site</p>
+        <div style="display:grid;gap:1.5rem;max-width:600px;">
+          <div class="form-group"><label>Tagline PT</label><input type="text" id="site-tagline-pt"/></div>
+          <div class="form-group"><label>Tagline EN</label><input type="text" id="site-tagline-en"/></div>
+          <div class="form-group"><label>WhatsApp Brasil</label><input type="text" id="site-wabr"/></div>
+          <div class="form-group"><label>WhatsApp Estados Unidos</label><input type="text" id="site-wausa"/></div>
+          <div class="form-group"><label>Instagram BR</label><input type="text" id="site-igbr"/></div>
+          <div class="form-group"><label>Instagram EN</label><input type="text" id="site-igusa"/></div>
+          <div class="form-group"><label>Sobre - PT</label><textarea id="site-about-pt" rows="4"></textarea></div>
+          <div class="form-group"><label>Sobre - EN</label><textarea id="site-about-en" rows="4"></textarea></div>
+          <button class="btn btn-gold" onclick="saveSiteContent()">Salvar conteúdo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL: AUTH -->
+<div id="modal-auth" class="modal-overlay hidden">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-auth')">✕</button>
+    <div id="auth-login">
+      <h2 data-pt>Entrar</h2><h2 data-en>Sign In</h2>
+      <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com"/></div>
+      <div class="form-group"><label data-pt>Senha</label><input type="password" id="login-pass" placeholder="••••••"/></div>
+      <div id="login-error" class="form-error hidden"></div>
+      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doLogin()"><span data-pt>Entrar</span><span data-en>Sign In</span></button>
+      <p style="text-align:center;margin-top:1.2rem;font-size:.78rem;color:var(--muted);">
+        <span data-pt>Não tem conta?</span><span data-en>No account?</span>
+        <a style="color:var(--gold);cursor:pointer;margin-left:.3rem;" onclick="showAuthPanel('register')"><span data-pt>Criar conta</span><span data-en>Sign up</span></a>
+      </p>
+    </div>
+    <div id="auth-register" class="hidden">
+      <h2 data-pt>Criar conta</h2><h2 data-en>Create account</h2>
+      <div class="form-group"><label data-pt>Nome</label><input type="text" id="reg-name" placeholder="Seu nome"/></div>
+      <div class="form-group"><label>E-mail</label><input type="email" id="reg-email" placeholder="seu@email.com"/></div>
+      <div class="form-group"><label data-pt>Senha</label><input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres"/></div>
+      <div id="reg-error" class="form-error hidden"></div>
+      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doRegister()"><span data-pt>Criar conta</span><span data-en>Sign up</span></button>
+      <p style="text-align:center;margin-top:1.2rem;font-size:.78rem;"><a style="color:var(--gold);cursor:pointer;" onclick="showAuthPanel('login')"><span data-pt>← Voltar ao login</span><span data-en>← Back to login</span></a></p>
+    </div>
+  </div>
+</div>
+<!-- MODAL: PRODUCT DETAIL -->
+<div id="modal-product" class="modal-overlay hidden">
+  <div class="modal" style="max-width:680px;"><button class="modal-close" onclick="closeModal('modal-product')">✕</button><div class="product-detail-grid" id="product-detail-content"></div></div>
+</div>
+<!-- MODAL: ADMIN EDIT PRODUCT -->
+<div id="modal-product-edit" class="modal-overlay hidden">
+  <div class="modal" style="max-width:640px;">
+    <button class="modal-close" onclick="closeModal('modal-product-edit')">✕</button>
+    <h2 id="product-edit-title">Adicionar item</h2>
+    <input type="hidden" id="edit-product-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Nome PT</label><input type="text" id="ep-name-pt" placeholder="Nome em português"/></div>
+      <div class="form-group"><label>Nome EN</label><input type="text" id="ep-name-en" placeholder="Name in English"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Tipo / espécie</label><input type="text" id="ep-species" placeholder="ex: Livro, Ficus retusa, Curso"/></div>
+      <div class="form-group"><label>Categoria</label>
+        <select id="ep-category"><option value="livro">Livro</option><option value="curso">Curso</option><option value="prebonsai">Pré-Bonsai</option><option value="bonsai">Bonsai</option><option value="produto">Produto</option><option value="material">Material</option><option value="exclusivo">Exclusivo</option></select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Preço (R$)</label><input type="number" id="ep-price" placeholder="0.00" step="0.01" min="0"/></div>
+      <div class="form-group"><label>Estoque</label><input type="number" id="ep-stock" placeholder="1" min="0"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Altura (cm)</label><input type="text" id="ep-height" placeholder="ex: 25–30 cm"/></div>
+      <div class="form-group"><label>Idade</label><input type="text" id="ep-age" placeholder="ex: 5 anos"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Estilo</label><input type="text" id="ep-style" placeholder="ex: Informal upright"/></div>
+      <div class="form-group"><label>Vaso</label><input type="text" id="ep-pot" placeholder="ex: Cerâmica japonesa"/></div>
+    </div>
+    <div class="form-group"><label>Imagem do item</label><input type="text" id="ep-image" placeholder="assets/cuide-da-sua-alma.png ou URL da imagem"/></div>
+    <div class="form-group"><label>Link de compra/acesso</label><input type="text" id="ep-link" placeholder="Amazon, WhatsApp, formulário, Drive..."/></div>
+    <div class="form-group"><label>Emoji</label><input type="text" id="ep-emoji" placeholder="🌳" style="width:80px;font-size:1.5rem;"/></div>
+    <div class="form-group"><label>Descrição PT</label><textarea id="ep-desc-pt" rows="3" placeholder="Descrição em português..."></textarea></div>
+    <div class="form-group"><label>Descrição EN</label><textarea id="ep-desc-en" rows="3" placeholder="Description in English..."></textarea></div>
+    <div class="form-group"><label>Cuidados PT</label><textarea id="ep-care-pt" rows="2" placeholder="Instruções de cuidado..."></textarea></div>
+    <div class="form-group"><label>Cuidados EN</label><textarea id="ep-care-en" rows="2" placeholder="Care instructions..."></textarea></div>
+    <div style="display:flex;gap:1rem;margin-top:1rem;">
+      <button class="btn btn-gold" onclick="saveProduct()">Salvar item</button>
+      <button class="btn btn-ghost" onclick="closeModal('modal-product-edit')">Cancelar</button>
+    </div>
+  </div>
+</div>
+<script>
+const DB={get(k){try{return JSON.parse(localStorage.getItem('adb_'+k));}catch{return null;}},set(k,v){localStorage.setItem('adb_'+k,JSON.stringify(v));}};
+const SITE_VERSION='clean-real-names-catalog-2026-07-16';
+if(DB.get('siteVersion')!==SITE_VERSION){
+  localStorage.removeItem('adb_products');
+  const existingUsers=DB.get('users')||[];
+  DB.set('users',existingUsers.filter(u=>u&&u.role!=='admin'));
+  DB.set('siteVersion',SITE_VERSION);
+}
+function initDB(){
+  if(!DB.get('users')) DB.set('users',[]);
+  const catalogWhats='5521964109840';
+  const catalogImageByAge={
+    'Bonsai 2 anos':'',
+    'Bonsai 3 anos':'',
+    'Bonsai 4 anos':'',
+    'Bonsai 5 anos':'',
+    'Bonsai 6 anos':'',
+    'Bonsai 7 anos':'',
+    'Bonsai 10 anos':'',
+    'Bonsai 12 anos':'',
+    'Bonsai 15 anos':'',
+    'Bonsai 16 anos':'',
+    'Pré bonsai':''
+  };
+  const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  const speciesEn={
+    'Cerejeira':'Cherry blossom',
+    'Serissa Chinesa':'Chinese Serissa',
+    'Serissa Variagata':'Variegated Serissa',
+    'Amora':'Blackberry',
+    'Piracanta':'Firethorn',
+    'Buxinho':'Boxwood',
+    'Oliveira':'Olive tree',
+    'Caliandra':'Calliandra',
+    'Caliandra Vermelha':'Red Calliandra',
+    'Caliandra Rosa':'Pink Calliandra'
+  };
+  const ageEn=age=>age.replace('Bonsai 2 anos','2-year bonsai').replace('Bonsai 3 anos','3-year bonsai').replace('Bonsai 4 anos','4-year bonsai').replace('Bonsai 5 anos','5-year bonsai').replace('Bonsai 6 anos','6-year bonsai').replace('Bonsai 7 anos','7-year bonsai').replace('Bonsai 10 anos','10-year bonsai').replace('Bonsai 12 anos','12-year bonsai').replace('Bonsai 15 anos','15-year bonsai').replace('Bonsai 16 anos','16-year bonsai').replace('Pré bonsai','Pre-bonsai');
+  const catalogProduct=(id,name,age,price,category='bonsai')=>({
+    id,namePt:`${name} - ${age}`,nameEn:`${speciesEn[name]||name} - ${ageEn(age)}`,species:name,speciesEn:speciesEn[name]||name,category,price,stock:1,height:'Sob consulta',heightEn:'Ask for details',age,ageEn:ageEn(age),style:category==='prebonsai'?'Pré-bonsai':'Bonsai',styleEn:category==='prebonsai'?'Pre-bonsai':'Bonsai',pot:'Conforme disponibilidade',potEn:'Subject to availability',emoji:'🌳',
+    imageUrl:catalogImageByAge[age]||'',
+    buyUrl:`https://wa.me/${catalogWhats}?text=${encodeURIComponent('Olá! Tenho interesse em '+name+' ('+age+') do catálogo Alquimia do Bonsai.')}`,
+    buyUrlEn:`https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+(speciesEn[name]||name)+' ('+ageEn(age)+') from the Bonsai Alchemy catalog.')}`,
+    descPt:`${name} disponível no catálogo Alquimia do Bonsai. Valor: ${brl(price)}. Confirme foto atual e disponibilidade pelo WhatsApp.`,
+    descEn:`${speciesEn[name]||name} available in the Bonsai Alchemy catalog. Price: ${brl(price)}. Confirm current photo and availability through WhatsApp.`,
+    carePt:'Produto vivo. Valores, envio e disponibilidade podem variar conforme a peça.',
+    careEn:'Living product. Pricing, shipping and availability may vary by piece.',
+    created:new Date().toISOString()
+  });
+  const catalogInquiry=(namePt,nameEn)=>({
+    buyUrl:`https://wa.me/${catalogWhats}?text=${encodeURIComponent('Olá! Tenho interesse em '+namePt+' do catálogo Alquimia do Bonsai. Pode me passar disponibilidade, valor e envio?')}`,
+    buyUrlEn:`https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+nameEn+' from the Bonsai Alchemy catalog. Could you send availability, price, and shipping details?')}`
+  });
+  const realProduct=(id,item,namePt,nameEn,img,category='bonsai',price=0,ageLabel='Peça selecionada',ageLabelEn='Selected piece')=>{
+    const lote=item<=10?'Lote 1':'Lote 2';
+    const labelPt=namePt||`Bonsai ${lote} · Item ${String(item).padStart(2,'0')}`;
+    const labelEn=nameEn||`Bonsai ${lote} · Item ${String(item).padStart(2,'0')}`;
+    return {
+      id,namePt:labelPt,nameEn:labelEn,species:namePt||'Bonsai',speciesEn:nameEn||'Bonsai',category,price,stock:1,height:'Sob consulta',heightEn:'Ask for details',age:ageLabel,ageEn:ageLabelEn,style:category==='prebonsai'?'Pré-bonsai':'Peça única',styleEn:category==='prebonsai'?'Pre-bonsai':'One-of-a-kind piece',pot:'Conforme foto',potEn:'As pictured',emoji:'🌳',imageUrl:img,
+      ...catalogInquiry(labelPt,labelEn),
+      descPt:`Peça real do catálogo Alquimia do Bonsai: ${labelPt}. Consulte disponibilidade, valor atualizado e envio pelo WhatsApp.`,
+      descEn:`Real catalog piece from Bonsai Alchemy: ${labelEn}. Check availability, current price, and shipping through WhatsApp.`,
+      carePt:'Produto vivo. Envio, valor e disponibilidade são confirmados pelo WhatsApp.',
+      careEn:'Living product. Shipping, price, and availability are confirmed through WhatsApp.',
+      created:new Date().toISOString()
+    };
+  };
+  const catalogProducts=[
+    realProduct('real-01',1,'Procumbens Bonsai','Procumbens Bonsai','assets/catalogo-real-01.jpg','bonsai',149,'Bonsai 2 anos','2-year bonsai'),
+    realProduct('real-02',2,'Procumbens Bonsai','Procumbens Bonsai','assets/catalogo-real-02.jpg','bonsai',239,'Bonsai 3 anos','3-year bonsai'),
+    realProduct('real-03',3,'Serissa Chinesa Bonsai','Chinese Serissa Bonsai','assets/catalogo-real-03.jpg','bonsai',259,'Bonsai 4 anos','4-year bonsai'),
+    realProduct('real-04',4,'Serissa Variagata Bonsai','Variegated Serissa Bonsai','assets/catalogo-real-04.jpg','bonsai',259,'Bonsai 4 anos','4-year bonsai'),
+    realProduct('real-05',5,'Buxinho Bonsai','Boxwood Bonsai','assets/catalogo-real-05.jpg','bonsai',289,'Bonsai 5 anos','5-year bonsai'),
+    realProduct('real-06',6,'Procumbens Bonsai','Procumbens Bonsai','assets/catalogo-real-06.jpg','bonsai',329,'Bonsai 6 anos','6-year bonsai'),
+    realProduct('real-07',7,'Oliveira Bonsai','Olive Tree Bonsai','assets/catalogo-real-07.jpg','bonsai',389,'Bonsai 7 anos','7-year bonsai'),
+    realProduct('real-08',8,'Cerejeira Bonsai','Cherry Blossom Bonsai','assets/catalogo-real-08.jpg','bonsai',289,'Bonsai 5 anos','5-year bonsai'),
+    realProduct('real-09',9,'Procumbens Bonsai','Procumbens Bonsai','assets/catalogo-real-09.jpg','bonsai',429,'Bonsai 10 anos','10-year bonsai'),
+    realProduct('real-10',10,'Caliandra Bonsai','Calliandra Bonsai','assets/catalogo-real-10.jpg','bonsai',389,'Bonsai 7 anos','7-year bonsai'),
+    realProduct('real-11',11,'Jabuticabeira Bonsai','Jabuticaba Bonsai','assets/catalogo-real-11-jabuticabeira.jpg'),
+    realProduct('real-12',12,'Pinheiro Negro Bonsai','Black Pine Bonsai','assets/catalogo-real-12-pinheiro-negro.jpg'),
+    realProduct('real-13',13,'Ficus Bonsai','Ficus Bonsai','assets/catalogo-real-13-ficus.jpg','bonsai',629,'Bonsai 15 anos','15-year bonsai'),
+    realProduct('real-14',14,'Primavera Bonsai','Bougainvillea Bonsai','assets/catalogo-real-14-primavera.jpg','bonsai',629,'Bonsai 15 anos','15-year bonsai'),
+    realProduct('real-15',15,'Serissa Chinesa Bonsai','Chinese Serissa Bonsai','assets/catalogo-real-15-serissa.jpg','bonsai',389,'Bonsai 7 anos','7-year bonsai'),
+    realProduct('real-16',16,'Azaleia Bonsai','Azalea Bonsai','assets/catalogo-real-16-azaleia.jpg'),
+    realProduct('real-17',17,'Pitangueira Bonsai','Brazilian Cherry Bonsai','assets/catalogo-real-17-pitangueira.jpg'),
+    realProduct('real-18',18,'Romãzeira Bonsai','Pomegranate Bonsai','assets/catalogo-real-18-roma.jpg'),
+    realProduct('real-19',19,'Pau-brasil Pré-Bonsai','Brazilwood Pre-Bonsai','assets/catalogo-real-19-pau-brasil-pre.jpg','prebonsai'),
+    realProduct('real-20',20,'Ipê Amarelo Pré-Bonsai','Yellow Ipe Pre-Bonsai','assets/catalogo-real-20-ipe-amarelo-pre.jpg','prebonsai')
+  ];
+  const seedProducts=[
+    {id:'p1',namePt:'PDF Cuide da Sua Alma',nameEn:'Take Care of Your Soul PDF',species:'Lições do Bonsai',category:'livro',price:9.90,currency:'BRL',stock:999,height:'Digital',age:'Método das 7 Transformações',style:'Livro PT',pot:'Google Drive',emoji:'📖',imageUrl:'assets/book-pt-3d.jpg',buyUrl:'https://drive.google.com/file/d/1iAfwRfPNgylau0_ykWAH9CsC055O5DDg/view',descPt:'Livro digital oficial Cuide da Sua Alma - Lições do Bonsai.',descEn:'Official Portuguese digital book.',carePt:'Valor do livro digital: R$ 9,90.',careEn:'Digital book price: BRL 9.90.',created:new Date().toISOString()},
+    {id:'p2',namePt:'Materiais básicos de bonsai',nameEn:'Basic bonsai materials',species:'Guias de estudo',category:'material',price:0,stock:999,height:'PDF',age:'Iniciante',style:'Introdução + cuidados + método',pot:'Google Drive',emoji:'🌱',imageUrl:'assets/aprenda-bonsai-zero.jpg',buyUrl:'https://drive.google.com/file/d/1qJcL0qz7pL196-p5y7YhRTx7ajUK3KXn/view',descPt:'Apostila de introdução, guia de cuidados básicos e Método das 7 Transformações.',descEn:'Introduction guide, basic care guide, and 7 Transformations Method.',carePt:'Materiais disponíveis na seção Cursos.',careEn:'Materials available in the Courses section.',created:new Date().toISOString()},
+    {id:'p3',namePt:'Escola de Bonsai',nameEn:'International Bonsai School',species:'Brasil e Estados Unidos',category:'curso',price:0,stock:20,height:'Turmas',age:'Todos os níveis',style:'Formação',pot:'Online / Presencial',emoji:'🎓',imageUrl:'assets/alexandre-luane-bonsai.jpg',buyUrl:'https://forms.gle/pdd7E9Nx9yZcntEs5',descPt:'Inscrição para cursos, mentorias e encontros da Escola de Bonsai com Luane & Alexandre.',descEn:'Registration for courses, mentorships, and gatherings with Luane & Alexandre.',carePt:'Valor e disponibilidade sob consulta.',careEn:'Price and availability on request.',created:new Date().toISOString()},
+    {id:'p5',namePt:'Livro em inglês - Take Care of Your Soul',nameEn:'Take Care of Your Soul',species:'Lessons from the Bonsai',category:'livro',price:9.90,currency:'USD',stock:999,height:'Digital',age:'7 Transformations Method',style:'English PDF',pot:'Google Drive',emoji:'📘',imageUrl:'assets/book-en-3d.jpg',buyUrl:'https://drive.google.com/file/d/1luxBjrKqmoVgaaHujAmFcenSxAlJAH3p/view',descPt:'PDF em inglês do livro da Bonsai Alchemy para o público internacional.',descEn:'English PDF book for the Bonsai Alchemy international audience.',carePt:'Valor do livro digital: US$ 9.90.',careEn:'Digital book price: US$ 9.90.',created:new Date().toISOString()},
+    ...catalogProducts
+  ];
+  const currentProducts=DB.get('products');
+  if(!currentProducts) DB.set('products',seedProducts);
+  else{
+    const badCatalogIds=['p7','p8','p9','p10','p11'];
+    const merged=currentProducts.filter(p=>!badCatalogIds.includes(p.id));
+    seedProducts.forEach(seed=>{
+      const i=merged.findIndex(p=>p.id===seed.id);
+      if(i<0) merged.push(seed);
+      else merged[i]={...merged[i],...seed,created:merged[i].created||seed.created};
+    });
+    DB.set('products',merged);
+  }
+  if(!DB.get('cart')) DB.set('cart',[]);
+  if(!DB.get('wishlist')) DB.set('wishlist',[]);
+  if(!DB.get('orders')) DB.set('orders',[]);
+  if(!DB.get('siteContent')) DB.set('siteContent',{taglinePt:'Transformando árvores. Inspirando vidas.',taglineEn:'Transforming trees. Inspiring lives.',waBr:'5521964109840',waUsa:'17869780745',igBr:'alquimiadobonsai',igUsa:'bonsaialchemy',aboutPt:'Somos Alexandre Braga e Luane Salles.',aboutEn:'We are Alexandre Braga and Luane Salles.'});
+}
+initDB();
+function setLang(l){
+  document.body.className=document.body.className.replace(/lang-\w+/,'')+' lang-'+l;
+  document.documentElement.lang=l==='en'?'en':'pt';
+  document.title=l==='en'?'Bonsai Alchemy':'Alquimia do Bonsai';
+  document.querySelector("link[rel='icon']")?.setAttribute('href',l==='en'?'assets/brand-bonsai-alchemy-logo.jpg':'assets/brand-alquimia-logo.jpg');
+  document.querySelector("link[rel='apple-touch-icon']")?.setAttribute('href',l==='en'?'assets/brand-bonsai-alchemy-logo.jpg':'assets/brand-alquimia-logo.jpg');
+  document.querySelectorAll('#lang-toggle button').forEach((b,i)=>b.classList.toggle('active',(i===0&&l==='pt')||(i===1&&l==='en')));
+}
+let currentPage='home';
+function closeMobileNav(){document.getElementById('topbar')?.classList.remove('nav-open');}
+function toggleMobileNav(){document.getElementById('topbar')?.classList.toggle('nav-open');}
+function showPage(p){
+  closeMobileNav();
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  const el=document.getElementById('page-'+p);if(el){el.classList.add('active');window.scrollTo(0,0);}
+  currentPage=p;
+  if(p==='shop')renderShop();if(p==='cart')renderCart();if(p==='wishlist')renderWishlist();
+  if(p==='profile')renderProfile();if(p==='admin')renderAdmin();if(p==='home')renderHomeProducts();
+}
+function doScroll(sel){setTimeout(()=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth'});},100);}
+function navigateHome(sel){showPage('home');doScroll(sel||'#hero');}
+let toastT;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000);}
+function openModal(id){document.getElementById(id).classList.remove('hidden');}
+function closeModal(id){document.getElementById(id).classList.add('hidden');}
+document.querySelectorAll('.modal-overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.add('hidden');}));
+let currentUser=null;
+try{currentUser=JSON.parse(sessionStorage.getItem('adb_session'));}catch{}
+if(currentUser&&currentUser.role==='admin'){currentUser=null;sessionStorage.removeItem('adb_session');}
+function handleAccount(){if(currentUser){showPage('profile');}else{showAuthPanel('login');openModal('modal-auth');}}
+function showAuthPanel(p){document.getElementById('auth-login').classList.toggle('hidden',p!=='login');document.getElementById('auth-register').classList.toggle('hidden',p!=='register');}
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim(),pass=document.getElementById('login-pass').value;
+  const err=document.getElementById('login-error'),u=(DB.get('users')||[]).find(u=>u.email===email&&u.pass===pass);
+  if(!u){err.textContent='E-mail ou senha incorretos.';err.classList.remove('hidden');return;}
+  if(u.role==='admin'){err.textContent='Painel administrativo desativado nesta versão pública.';err.classList.remove('hidden');return;}
+  err.classList.add('hidden');currentUser=u;sessionStorage.setItem('adb_session',JSON.stringify(u));
+  closeModal('modal-auth');toast('Bem-vindo(a), '+u.name+'! 🌳');
+  showPage('profile');
+}
+function doRegister(){
+  const name=document.getElementById('reg-name').value.trim(),email=document.getElementById('reg-email').value.trim(),pass=document.getElementById('reg-pass').value;
+  const err=document.getElementById('reg-error');
+  if(!name||!email||!pass){err.textContent='Preencha todos os campos.';err.classList.remove('hidden');return;}
+  if(pass.length<6){err.textContent='Senha: mínimo 6 caracteres.';err.classList.remove('hidden');return;}
+  const users=DB.get('users')||[];
+  if(users.find(u=>u.email===email)){err.textContent='E-mail já cadastrado.';err.classList.remove('hidden');return;}
+  const u={id:'u'+Date.now(),name,email,pass,role:'user',created:new Date().toISOString(),address:{}};
+  users.push(u);DB.set('users',users);currentUser=u;sessionStorage.setItem('adb_session',JSON.stringify(u));
+  err.classList.add('hidden');closeModal('modal-auth');toast('Conta criada! Bem-vindo(a), '+name+' 🌿');showPage('profile');
+}
+function logout(){currentUser=null;sessionStorage.removeItem('adb_session');showPage('home');toast('Até logo! 🌳');}
+function getProducts(){return DB.get('products')||[];}
+const SHOP_CATEGORIES=['bonsai','prebonsai','produto'];
+function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category));}
+function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
+function productDetailImage(p){return p.imageUrl?`<div class="product-detail-img has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-detail-img">${p.emoji||'🌳'}</div>`;}
+function moneyLabel(p){
+  const value=Number(p.price||0).toLocaleString(p.currency==='USD'?'en-US':'pt-BR',{minimumFractionDigits:2});
+  return p.currency==='USD'?'US$ '+value:'R$ '+value;
+}
+function productPriceLabels(p){
+  if(p.category==='material') return {pt:'Gratuito',en:'Free'};
+  if(p.category==='curso') return {pt:'Valor sob consulta',en:'Ask for price'};
+  if(Number(p.price||0)===0) return {pt:'Sob consulta',en:'Ask for price'};
+  const label=moneyLabel(p);
+  return {pt:label,en:p.currency==='BRL'?'BRL '+Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2}):label};
+}
+function productPriceHtml(p,cls='product-price-card'){
+  const label=productPriceLabels(p);
+  return `<div class="${cls}"><span data-pt>${label.pt}</span><span data-en>${label.en}</span></div>`;
+}
+function productSpeciesHtml(p,cls='product-species'){
+  const pt=p.species&&p.species!=='—'?p.species:p.category;
+  const en=p.speciesEn||pt;
+  return `<p class="${cls}"><span data-pt>${pt}</span><span data-en>${en}</span></p>`;
+}
+function productAccessAction(p,small=true){
+  const btnClass=small?'btn btn-gold btn-sm':'btn btn-gold';
+  const label=small?'<span data-pt>Consultar</span><span data-en>Ask</span>':'<span data-pt>Consultar no WhatsApp</span><span data-en>Ask on WhatsApp</span> →';
+  if(!p.buyUrl) return p.price>0?`<button class="${btnClass}" onclick="addToCart('${p.id}')">${small?'🛒':'<span data-pt>Adicionar ao carrinho</span><span data-en>Add to cart</span> 🛒'}</button>`:'';
+  if(p.buyUrlEn&&p.buyUrlEn!==p.buyUrl){
+    return `<a class="${btnClass}" data-pt href="${p.buyUrl}" target="_blank" onclick="event.stopPropagation()">${small?'Consultar':'Consultar no WhatsApp →'}</a><a class="${btnClass}" data-en href="${p.buyUrlEn}" target="_blank" onclick="event.stopPropagation()">${small?'Ask':'Ask on WhatsApp →'}</a>`;
+  }
+  return `<a class="${btnClass}" href="${p.buyUrl}" target="_blank" onclick="event.stopPropagation()">${label}</a>`;
+}
+function productCard(p){
+  const wish=DB.get('wishlist')||[];const isW=wish.includes(p.id);
+  const price=productPriceHtml(p);
+  const mainAction=productAccessAction(p,true);
+  return`<div class="product-card" data-id="${p.id}" data-cat="${p.category}">
+    ${productImage(p)}
+    ${productSpeciesHtml(p)}
+    <h3 class="product-name-card"><span data-pt>${p.namePt}</span><span data-en>${p.nameEn||p.namePt}</span></h3>
+    <p class="product-desc-card"><span data-pt>${(p.descPt||'').substring(0,90)}...</span><span data-en>${(p.descEn||p.descPt||'').substring(0,90)}...</span></p>
+    ${price}
+    <div class="product-card-btns">
+      <button class="btn btn-ghost btn-sm" onclick="openProductDetail('${p.id}')"><span data-pt>Detalhes</span><span data-en>Details</span></button>
+      ${mainAction}
+    </div>
+  </div>`;
+}
+function renderHomeProducts(){const g=document.getElementById('home-products-grid');if(g)g.innerHTML=getShopProducts().slice(0,6).map(productCard).join('');}
+renderHomeProducts();
+let curFilter='all';
+function renderShop(f){if(f)curFilter=f;const base=getShopProducts();const prods=base.filter(p=>curFilter==='all'||p.category===curFilter);const g=document.getElementById('shop-products-grid');const e=document.getElementById('shop-empty');if(!g)return;if(prods.length===0){g.innerHTML='';e.classList.remove('hidden');}else{e.classList.add('hidden');g.innerHTML=prods.map(productCard).join('');}}
+function filterShop(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderShop(cat);}
+function openProductDetail(id){
+  const p=getProducts().find(x=>x.id===id);if(!p)return;
+  const price=productPriceHtml(p,'product-detail-price');
+  document.getElementById('product-detail-content').innerHTML=`
+    ${productDetailImage(p)}
+    <div class="product-detail-info">
+      ${productSpeciesHtml(p,'product-detail-species')}
+      <h2><span data-pt>${p.namePt}</span><span data-en>${p.nameEn||p.namePt}</span></h2>
+      ${price}
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;"><span data-pt>${p.descPt||''}</span><span data-en>${p.descEn||p.descPt||''}</span></p>
+      <div>
+        ${p.height!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Altura</span><span data-en>Height</span></span><span class="spec-value"><span data-pt>${p.height}</span><span data-en>${p.heightEn||p.height}</span></span></div>`:''}
+        ${p.age!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Idade</span><span data-en>Age</span></span><span class="spec-value"><span data-pt>${p.age}</span><span data-en>${p.ageEn||p.age}</span></span></div>`:''}
+        ${p.style!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Estilo</span><span data-en>Style</span></span><span class="spec-value"><span data-pt>${p.style}</span><span data-en>${p.styleEn||p.style}</span></span></div>`:''}
+        ${p.pot!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Vaso</span><span data-en>Pot</span></span><span class="spec-value"><span data-pt>${p.pot}</span><span data-en>${p.potEn||p.pot}</span></span></div>`:''}
+        ${p.stock?`<div class="spec-row"><span class="spec-label"><span data-pt>Disponível</span><span data-en>Available</span></span><span class="spec-value" style="color:var(--success)">${p.stock} <span data-pt>un.</span><span data-en>pc.</span></span></div>`:''}
+        ${p.carePt&&p.carePt!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Cuidados</span><span data-en>Care</span></span><span class="spec-value"><span data-pt>${p.carePt}</span><span data-en>${p.careEn||p.carePt}</span></span></div>`:''}
+      </div>
+      <div class="product-detail-btns">
+        ${p.buyUrl?productAccessAction(p,false):(p.price>0?`<button class="btn btn-gold" onclick="addToCart('${p.id}');closeModal('modal-product')"><span data-pt>Adicionar ao carrinho</span><span data-en>Add to cart</span> 🛒</button>`:`<a href="https://tr.ee/nI-EFB2ixk" target="_blank" class="btn btn-gold"><span data-pt>Acessar →</span><span data-en>Open →</span></a>`)}
+      </div>
+    </div>`;
+  openModal('modal-product');
+}
+function addToCart(id){const cart=DB.get('cart')||[];const i=cart.findIndex(x=>x.id===id);if(i>=0)cart[i].qty++;else cart.push({id,qty:1});DB.set('cart',cart);updateBadges();toast('Adicionado ao carrinho! 🛒');}
+function removeFromCart(id){DB.set('cart',(DB.get('cart')||[]).filter(x=>x.id!==id));updateBadges();renderCart();}
+function changeQty(id,d){const c=DB.get('cart')||[];const i=c.findIndex(x=>x.id===id);if(i<0)return;c[i].qty=Math.max(1,c[i].qty+d);DB.set('cart',c);renderCart();updateBadges();}
+function renderCart(){
+  const cart=DB.get('cart')||[];const prods=getProducts();
+  const list=document.getElementById('cart-items-list');const empty=document.getElementById('cart-empty');if(!list)return;
+  if(cart.length===0){list.innerHTML='';empty.classList.remove('hidden');document.getElementById('cart-summary-box').style.opacity='.4';document.getElementById('cart-summary-box').style.pointerEvents='none';return;}
+  empty.classList.add('hidden');document.getElementById('cart-summary-box').style.opacity='1';document.getElementById('cart-summary-box').style.pointerEvents='auto';
+  let total=0;
+  list.innerHTML=cart.map(item=>{const p=prods.find(x=>x.id===item.id);if(!p)return'';const sub=p.price*item.qty;total+=sub;
+    return`<div class="cart-item"><div class="cart-item-img">${p.emoji||'🌳'}</div><div class="cart-item-info"><p class="cart-item-species">${p.species!=='—'?p.species:''}</p><p class="cart-item-name">${p.namePt}</p><p class="cart-item-price">R$ ${Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2})}</p><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty('${p.id}',-1)">−</button><span>${item.qty}</span><button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button><button class="cart-item-remove" onclick="removeFromCart('${p.id}')">🗑️</button></div></div><div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;flex-shrink:0;">R$ ${Number(sub).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div></div>`;
+  }).join('');
+  const fmt=v=>'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
+  document.getElementById('cart-subtotal').textContent=fmt(total);document.getElementById('cart-total').textContent=fmt(total);
+}
+function finalizarPedido(){
+  if(!currentUser){toast('Faça login para finalizar.');openModal('modal-auth');return;}
+  const cart=DB.get('cart')||[];if(!cart.length){toast('Carrinho vazio!');return;}
+  const prods=getProducts();let total=0;
+  const items=cart.map(item=>{const p=prods.find(x=>x.id===item.id);if(!p)return null;total+=p.price*item.qty;return{id:p.id,name:p.namePt,qty:item.qty,price:p.price};}).filter(Boolean);
+  const order={id:'PED'+Date.now(),userId:currentUser.id,userName:currentUser.name,userEmail:currentUser.email,items,total,address:{cep:document.getElementById('cep-input').value,rua:document.getElementById('rua-input').value,cidade:document.getElementById('cidade-input').value,estado:document.getElementById('estado-input').value},status:'Aguardando confirmação',created:new Date().toISOString()};
+  const orders=DB.get('orders')||[];orders.unshift(order);DB.set('orders',orders);DB.set('cart',[]);updateBadges();
+  toast('Pedido '+order.id+' enviado! Entraremos em contato via WhatsApp 🌳');showPage('profile');
+}
+function toggleWish(id,btn){
+  let w=DB.get('wishlist')||[];const i=w.indexOf(id);
+  if(i>=0){w.splice(i,1);toast('Removido dos favoritos.');if(btn)btn.textContent='🤍';}
+  else{w.push(id);toast('Adicionado aos favoritos! ❤️');if(btn)btn.textContent='❤️';}
+  DB.set('wishlist',w);updateBadges();if(currentPage==='wishlist')renderWishlist();
+}
+function renderWishlist(){
+  const w=DB.get('wishlist')||[];const prods=getProducts().filter(p=>w.includes(p.id));
+  const g=document.getElementById('wish-products-grid');const e=document.getElementById('wish-empty');if(!g)return;
+  if(!prods.length){g.innerHTML='';e.classList.remove('hidden');}else{e.classList.add('hidden');g.innerHTML=prods.map(productCard).join('');}
+}
+function updateBadges(){
+  const c=(DB.get('cart')||[]).reduce((s,x)=>s+x.qty,0);
+  const cartBadge=document.getElementById('badge-cart');
+  const wishBadge=document.getElementById('badge-wish');
+  if(cartBadge)cartBadge.textContent=c;
+  if(wishBadge)wishBadge.textContent=(DB.get('wishlist')||[]).length;
+}
+updateBadges();
+function renderProfile(){
+  if(!currentUser){showPage('home');openModal('modal-auth');return;}
+  document.getElementById('profile-display-name').textContent=currentUser.name;
+  document.getElementById('profile-display-email').textContent=currentUser.email;
+  document.getElementById('settings-name').value=currentUser.name;
+  document.getElementById('settings-email').value=currentUser.email;
+  const u=(DB.get('users')||[]).find(x=>x.id===currentUser.id);
+  if(u&&u.address){['name','cep','rua','num','comp','cidade','estado','pais'].forEach(f=>{const el=document.getElementById('addr-'+f);if(el)el.value=u.address[f]||'';});}
+  const orders=(DB.get('orders')||[]).filter(o=>o.userId===currentUser.id);
+  const list=document.getElementById('orders-list');const empty=document.getElementById('orders-empty');
+  if(!orders.length){list.innerHTML='';empty.classList.remove('hidden');}
+  else{empty.classList.add('hidden');list.innerHTML=orders.map(o=>`<div class="order-card"><div class="order-card-header"><span class="order-id">${o.id}</span><span class="order-date">${new Date(o.created).toLocaleDateString('pt-BR')}</span><span class="order-status">${o.status}</span></div><div class="order-items">${o.items.map(i=>i.name+' x'+i.qty).join(', ')}</div><div class="order-total">Total: R$ ${Number(o.total).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div></div>`).join('');}
+}
+function showProfileTab(tab,btn){
+  document.querySelectorAll('.profile-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.querySelectorAll('.profile-nav button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+function saveAddress(){
+  const users=DB.get('users')||[];const idx=users.findIndex(u=>u.id===currentUser.id);if(idx<0)return;
+  users[idx].address={name:document.getElementById('addr-name').value,cep:document.getElementById('addr-cep').value,rua:document.getElementById('addr-rua').value,num:document.getElementById('addr-num').value,comp:document.getElementById('addr-comp').value,cidade:document.getElementById('addr-cidade').value,estado:document.getElementById('addr-estado').value,pais:document.getElementById('addr-pais').value};
+  DB.set('users',users);currentUser=users[idx];sessionStorage.setItem('adb_session',JSON.stringify(currentUser));toast('Endereço salvo! 📦');
+}
+function saveSettings(){
+  const name=document.getElementById('settings-name').value.trim(),pass=document.getElementById('settings-pass').value;
+  const users=DB.get('users')||[];const idx=users.findIndex(u=>u.id===currentUser.id);if(idx<0)return;
+  if(name)users[idx].name=name;if(pass.length>=6)users[idx].pass=pass;
+  DB.set('users',users);currentUser=users[idx];sessionStorage.setItem('adb_session',JSON.stringify(currentUser));
+  document.getElementById('profile-display-name').textContent=currentUser.name;toast('Configurações salvas!');
+}
+function renderAdmin(){
+  if(!currentUser||currentUser.role!=='admin'){showPage('home');return;}
+  renderDashboard();renderAdminProducts();renderAdminOrders();renderAdminUsers();loadSiteContent();
+}
+function showAdminTab(tab,btn){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('atab-'+tab).classList.add('active');
+  document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+function renderDashboard(){
+  const prods=getProducts(),orders=DB.get('orders')||[],users=(DB.get('users')||[]).filter(u=>u.role!=='admin');
+  const rev=orders.reduce((s,o)=>s+o.total,0);
+  document.getElementById('dash-products').textContent=prods.length;document.getElementById('dash-orders').textContent=orders.length;document.getElementById('dash-users').textContent=users.length;
+  document.getElementById('dash-revenue').textContent='R$ '+Number(rev).toLocaleString('pt-BR',{minimumFractionDigits:2});
+  document.getElementById('dash-recent-orders').innerHTML=orders.slice(0,5).length?
+    `<table class="admin-table"><thead><tr><th>ID</th><th>Cliente</th><th>Total</th><th>Status</th></tr></thead><tbody>${orders.slice(0,5).map(o=>`<tr><td style="color:var(--gold)">${o.id}</td><td>${o.userName}</td><td>R$ ${Number(o.total).toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td style="color:var(--success)">${o.status}</td></tr>`).join('')}</tbody></table>`:
+    '<p style="color:var(--muted);font-size:.82rem;">Nenhum pedido ainda.</p>';
+}
+let apf='';
+function filterAdminProducts(v){apf=v.toLowerCase();renderAdminProducts();}
+function renderAdminProducts(){
+  const prods=getProducts().filter(p=>!apf||p.namePt.toLowerCase().includes(apf)||p.species.toLowerCase().includes(apf));
+  const t=document.getElementById('admin-products-table');if(!t)return;
+  t.innerHTML=prods.map(p=>`<tr><td>${p.emoji||'🌳'} ${p.namePt}</td><td style="color:var(--muted);font-style:italic">${p.species}</td><td><span class="tag">${p.category}</span></td><td style="color:var(--gold)">R$ ${Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td>${p.stock}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openProductModal('${p.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button></div></td></tr>`).join('');
+}
+function openProductModal(id){
+  document.getElementById('product-edit-title').textContent=id?'Editar item':'Adicionar item';
+  document.getElementById('edit-product-id').value=id||'';
+  ['name-pt','name-en','species','price','stock','height','age','style','pot','image','link','desc-pt','desc-en','care-pt','care-en'].forEach(f=>{const el=document.getElementById('ep-'+f);if(el)el.value='';});
+  document.getElementById('ep-emoji').value='🌳';document.getElementById('ep-category').value='produto';
+  if(id){const p=getProducts().find(x=>x.id===id);if(p){document.getElementById('ep-name-pt').value=p.namePt||'';document.getElementById('ep-name-en').value=p.nameEn||'';document.getElementById('ep-species').value=p.species||'';document.getElementById('ep-category').value=p.category||'produto';document.getElementById('ep-price').value=p.price||0;document.getElementById('ep-stock').value=p.stock||0;document.getElementById('ep-height').value=p.height||'';document.getElementById('ep-age').value=p.age||'';document.getElementById('ep-style').value=p.style||'';document.getElementById('ep-pot').value=p.pot||'';document.getElementById('ep-image').value=p.imageUrl||'';document.getElementById('ep-link').value=p.buyUrl||'';document.getElementById('ep-emoji').value=p.emoji||'🌳';document.getElementById('ep-desc-pt').value=p.descPt||'';document.getElementById('ep-desc-en').value=p.descEn||'';document.getElementById('ep-care-pt').value=p.carePt||'';document.getElementById('ep-care-en').value=p.careEn||'';}}
+  openModal('modal-product-edit');
+}
+function saveProduct(){
+  const id=document.getElementById('edit-product-id').value;const prods=getProducts();
+  const p={id:id||'p'+Date.now(),namePt:document.getElementById('ep-name-pt').value,nameEn:document.getElementById('ep-name-en').value,species:document.getElementById('ep-species').value||'—',category:document.getElementById('ep-category').value,price:parseFloat(document.getElementById('ep-price').value)||0,stock:parseInt(document.getElementById('ep-stock').value)||0,height:document.getElementById('ep-height').value||'—',age:document.getElementById('ep-age').value||'—',style:document.getElementById('ep-style').value||'—',pot:document.getElementById('ep-pot').value||'—',imageUrl:document.getElementById('ep-image').value.trim(),buyUrl:document.getElementById('ep-link').value.trim(),emoji:document.getElementById('ep-emoji').value||'🌳',descPt:document.getElementById('ep-desc-pt').value,descEn:document.getElementById('ep-desc-en').value,carePt:document.getElementById('ep-care-pt').value,careEn:document.getElementById('ep-care-en').value,created:id?(prods.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()};
+  if(!p.namePt){toast('Nome é obrigatório!');return;}
+  if(id){const idx=prods.findIndex(x=>x.id===id);if(idx>=0)prods[idx]=p;else prods.unshift(p);}else prods.unshift(p);
+  DB.set('products',prods);closeModal('modal-product-edit');renderAdminProducts();renderHomeProducts();renderDashboard();toast(id?'Item atualizado! ✅':'Item adicionado! 🌳');
+}
+function deleteProduct(id){if(!confirm('Remover este item?'))return;DB.set('products',getProducts().filter(p=>p.id!==id));renderAdminProducts();renderHomeProducts();renderDashboard();toast('Item removido.');}
+function renderAdminOrders(){
+  const orders=DB.get('orders')||[];const t=document.getElementById('admin-orders-table');const e=document.getElementById('admin-orders-empty');if(!t)return;
+  if(!orders.length){t.innerHTML='';e.classList.remove('hidden');return;}e.classList.add('hidden');
+  t.innerHTML=orders.map(o=>`<tr><td style="color:var(--gold);font-family:'Cinzel',serif;font-size:.7rem">${o.id}</td><td>${o.userName}<br/><span style="font-size:.68rem;color:var(--muted)">${o.userEmail}</span></td><td style="font-size:.75rem">${o.items.map(i=>i.name+' x'+i.qty).join('<br/>')}</td><td style="color:var(--gold)">R$ ${Number(o.total).toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td style="font-size:.7rem;color:var(--muted)">${new Date(o.created).toLocaleDateString('pt-BR')}</td><td style="color:var(--success);font-size:.7rem">${o.status}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="updateOrderStatus('${o.id}')">Status</button><a href="https://wa.me/${(DB.get('siteContent')||{}).waBr||'5521964109840'}?text=Pedido+${o.id}" target="_blank" class="btn btn-gold btn-sm">WhatsApp</a></div></td></tr>`).join('');
+}
+function updateOrderStatus(id){const s=prompt('Novo status:','Confirmado');if(!s)return;const o=DB.get('orders')||[];const i=o.findIndex(x=>x.id===id);if(i>=0){o[i].status=s;DB.set('orders',o);renderAdminOrders();renderDashboard();toast('Status atualizado!');}}
+function renderAdminUsers(){
+  const users=DB.get('users')||[];const orders=DB.get('orders')||[];const t=document.getElementById('admin-users-table');if(!t)return;
+  t.innerHTML=users.map(u=>`<tr><td>${u.name}</td><td style="color:var(--muted)">${u.email}</td><td><span class="tag" style="${u.role==='admin'?'border-color:var(--gold);color:var(--gold)':''}">${u.role}</span></td><td style="font-size:.7rem;color:var(--muted)">${new Date(u.created).toLocaleDateString('pt-BR')}</td><td style="text-align:center">${orders.filter(o=>o.userId===u.id).length}</td></tr>`).join('');
+}
+function loadSiteContent(){const sc=DB.get('siteContent')||{};[['taglinePt','site-tagline-pt'],['taglineEn','site-tagline-en'],['waBr','site-wabr'],['waUsa','site-wausa'],['igBr','site-igbr'],['igUsa','site-igusa'],['aboutPt','site-about-pt'],['aboutEn','site-about-en']].forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.value=sc[k]||'';});}
+function saveSiteContent(){DB.set('siteContent',{taglinePt:document.getElementById('site-tagline-pt').value,taglineEn:document.getElementById('site-tagline-en').value,waBr:document.getElementById('site-wabr').value,waUsa:document.getElementById('site-wausa').value,igBr:document.getElementById('site-igbr').value,igUsa:document.getElementById('site-igusa').value,aboutPt:document.getElementById('site-about-pt').value,aboutEn:document.getElementById('site-about-en').value});toast('Conteúdo salvo! ✅');}
+// PARTICLES
+const cv=document.getElementById('particles');const cx=cv.getContext('2d');let W,H,pt=[];
+function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}rsz();window.addEventListener('resize',rsz);
+function mkP(){return{x:Math.random()*W,y:H+5,sz:Math.random()*1.8+.4,sx:(Math.random()-.5)*.35,sy:-(Math.random()*.6+.2),op:Math.random()*.5+.1,gold:Math.random()>.45};}
+for(let i=0;i<65;i++){const p=mkP();p.y=Math.random()*H;pt.push(p);}
+(function loop(){cx.clearRect(0,0,W,H);pt.forEach((p,i)=>{p.x+=p.sx;p.y+=p.sy;p.op-=.0007;if(p.y<-10||p.op<=0)pt[i]=mkP();cx.beginPath();cx.arc(p.x,p.y,p.sz,0,Math.PI*2);cx.fillStyle=p.gold?`rgba(201,168,76,${p.op})`:`rgba(74,122,48,${p.op})`;cx.fill();});requestAnimationFrame(loop);})();
+// SCROLL REVEAL
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)';}});},{threshold:.1});
+document.querySelectorAll('.transform-step,.value-item,.location-item,.contact-link,.feature-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity .6s ease,transform .6s ease';io.observe(el);});
+</script>
+</body>
+</html>
+
