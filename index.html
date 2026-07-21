@@ -133,7 +133,7 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;}
 .shop-intro p{color:var(--muted);margin-top:1rem;}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:2px;}
 .product-card{background:var(--deep);padding:1.8rem;position:relative;cursor:pointer;transition:transform .4s;overflow:hidden;}
-.product-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.05),transparent);opacity:0;transition:opacity .4s;}
+.product-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.05),transparent);opacity:0;transition:opacity .4s;pointer-events:none;}
 .product-card:hover::before{opacity:1;}
 .product-card:hover{transform:translateY(-4px);}
 .product-img-placeholder{width:100%;aspect-ratio:4/3;background:linear-gradient(145deg,#1a2e12,#0d1a09);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:1.2rem;}
@@ -142,6 +142,8 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;}
 .product-desc-card{font-size:.75rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
 .product-price-card{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);margin-bottom:1rem;}
 .product-card-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
+.product-card>*{position:relative;z-index:1;}
+.product-card-btns .btn{position:relative;z-index:2;}
 /* BOOK */
 #book-section{background:linear-gradient(145deg,#0D1A09 0%,#111410 60%,#0A0A08 100%);padding:6rem 2rem;position:relative;overflow:hidden;}
 #book-section::before{content:'';position:absolute;top:-40%;right:-5%;width:550px;height:550px;background:radial-gradient(circle,rgba(201,168,76,.07),transparent 70%);pointer-events:none;}
@@ -333,7 +335,7 @@ canvas#particles{opacity:.16;}
 .material-note{margin-top:1.2rem;padding:1rem 1.2rem;background:#fff;border-left:3px solid #B88A2A;color:#625D52;font-size:.86rem;line-height:1.7;max-width:720px;}
 .material-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem;}
 .product-img-placeholder{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.4;text-align:center;padding:1.4rem;color:#385529;}
-.portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+.portfolio-grid{display:none;}
 .portfolio-shot:nth-child(n+4){display:none;}
 .portfolio-shot img{aspect-ratio:4/3;}
 @media(max-width:900px){.portfolio-grid{grid-template-columns:1fr;}.portfolio-shot:nth-child(n+4){display:block;}}
@@ -361,7 +363,7 @@ canvas#particles{opacity:.16;}
 #page-shop,#page-wishlist,#page-cart,#page-profile,#page-admin{background:#F7F3E9;color:#2B2B24;}
 .shop-page-header,.wishlist-header,.cart-header,.profile-header,.admin-header{background:#fff;border-bottom-color:rgba(36,64,25,.12);}
 @media(max-width:900px){.official-hero{grid-template-columns:1fr;text-align:center;gap:2rem;padding-top:3rem;}.official-logo{margin-left:auto;margin-right:auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-cta{justify-content:center}.official-media{min-height:320px}#hero{background:linear-gradient(180deg,#F7F3E9 0%,#EFE6D2 58%,#1B2417 58%,#0F150D 100%);}.official-media img{width:min(360px,90vw);}}
-@media(max-width:600px){.official-logo{width:88px}.hero-title{font-size:clamp(2.5rem,16vw,4rem)}.official-media{min-height:260px}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}}
+@media(max-width:600px){.official-logo{width:88px}.hero-title{font-size:clamp(2.5rem,16vw,4rem)}.official-media{min-height:260px}.hero-cta{display:grid;grid-template-columns:1fr;gap:.75rem;width:min(370px,100%);margin-left:auto;margin-right:auto}.hero-cta .btn{width:100%;text-align:center;padding:.9rem 1rem;background:#fff;color:#1D2D17;border:1px solid rgba(29,45,23,.28);box-shadow:0 10px 22px rgba(16,17,14,.08)}.hero-cta .btn-gold{background:#1D2D17;color:#fff;border-color:#1D2D17}.book-btns{display:grid;grid-template-columns:1fr;width:100%;}.book-btns .btn{width:100%;text-align:center}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}}
 .menu-btn{display:none;background:#fff;border:1px solid rgba(36,64,25,.16);color:#244019;width:40px;height:40px;align-items:center;justify-content:center;font-size:1.15rem;line-height:1;cursor:pointer;box-shadow:0 8px 20px rgba(36,64,25,.08);}
 #courses-section,#contents-section,#social-section,#events-section{display:none;}
 @media(max-width:760px){
@@ -378,6 +380,7 @@ canvas#particles{opacity:.16;}
 body.lang-en [data-pt]{display:none!important;}
 body.lang-pt [data-en]{display:none!important;}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body class="lang-pt">
 <div id="topbar">
@@ -390,6 +393,7 @@ body.lang-pt [data-en]{display:none!important;}
     <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
     <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
     <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
+    <a onclick="openAdminLogin()"><span data-pt>Admin</span><span data-en>Admin</span></a>
   </nav>
   <div class="topbar-icons">
     <div id="lang-toggle"><button class="active" onclick="setLang('pt')">PT</button><button onclick="setLang('en')">EN</button></div>
@@ -460,11 +464,11 @@ body.lang-pt [data-en]{display:none!important;}
   <section id="shop-section">
     <div class="container">
       <div class="shop-intro">
-        <p class="section-label" data-pt>Loja</p><p class="section-label" data-en>Shop</p>
-        <h2 class="section-title" data-pt>Bonsai &amp; <em>produtos</em></h2>
-        <h2 class="section-title" data-en>Bonsai &amp; <em>products</em></h2>
-        <p data-pt>Cada bonsai carrega sua história, sua energia, seu tempo.</p>
-        <p data-en>Each bonsai carries its story, its energy, its time.</p>
+        <p class="section-label" data-pt>Catálogo real</p><p class="section-label" data-en>Live Catalog</p>
+        <h2 class="section-title" data-pt>Bonsai <em>disponíveis</em></h2>
+        <h2 class="section-title" data-en>Available <em>bonsai</em></h2>
+        <p data-pt>Peças reais do catálogo, com valor, descrição e consulta direta pelo WhatsApp.</p>
+        <p data-en>Real catalog pieces with price, description and direct WhatsApp inquiry.</p>
         <div class="book-btns" style="margin-top:1.4rem;">
           <a class="btn btn-gold" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20ver%20o%20cat%C3%A1logo%20de%20bonsai%20dispon%C3%ADveis." target="_blank">Ver bonsai disponíveis</a>
           <a class="btn btn-gold" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20see%20the%20available%20bonsai%20catalog." target="_blank">Open WhatsApp catalog</a>
@@ -535,14 +539,14 @@ body.lang-pt [data-en]{display:none!important;}
         <p data-en>Guides, courses, mentorships, and workshops to build a clear foundation, improve your practice, and cultivate with confidence.</p>
       </div>
       <div class="feature-grid">
-        <a class="feature-card link-card" data-pt href="https://drive.google.com/file/d/1qJcL0qz7pL196-p5y7YhRTx7ajUK3KXn/view" target="_blank"><h3>Introdução ao Bonsai</h3><p>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p><span class="tag">Gratuito</span></a>
-        <a class="feature-card link-card" data-pt href="https://drive.google.com/file/d/1136an_sP33mbre7rVoVt_eHvvnpNK5PE/view" target="_blank"><h3>Guia de cuidados básicos</h3><p>Rotina simples para observar, regar e manter seu bonsai saudável.</p><span class="tag">Gratuito</span></a>
-        <a class="feature-card link-card" data-pt href="https://drive.google.com/file/d/1QPSmLMbAFO_Eg_LPwStvde9uvc5-aCYj/view" target="_blank"><h3>Método das 7 Transformações</h3><p>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p><span class="tag">Método</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20material%20Introdu%C3%A7%C3%A3o%20ao%20Bonsai." target="_blank"><h3>Introdução ao Bonsai</h3><p>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p><span class="tag">Pedir no WhatsApp</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20Guia%20de%20Cuidados%20B%C3%A1sicos%20de%20Bonsai." target="_blank"><h3>Guia de cuidados básicos</h3><p>Rotina simples para observar, regar e manter seu bonsai saudável.</p><span class="tag">Pedir no WhatsApp</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20M%C3%A9todo%20das%207%20Transforma%C3%A7%C3%B5es." target="_blank"><h3>Método das 7 Transformações</h3><p>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p><span class="tag">Falar no WhatsApp</span></a>
         <a class="feature-card link-card" data-pt href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><h3>Escola de Bonsai</h3><p>Formação, aulas, prática e acompanhamento com Luane &amp; Alexandre.</p><span class="tag">Inscrição / valor sob consulta</span></a>
         <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Quero%20saber%20sobre%20mentorias%20e%20workshops%20de%20bonsai" target="_blank"><h3>Mentorias e workshops</h3><p>Aulas práticas, turmas e orientação individual pelo WhatsApp.</p><span class="tag">Valor sob consulta</span></a>
-        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1aXCLQfiTG8FE692-kJEXREBjligMUTDv/view" target="_blank"><h3>Bonsai introduction guide</h3><p>Origin, styles, sizes, and fertilization for a clear beginner foundation.</p><span class="tag">Free</span></a>
-        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1YXaixomSOkd7NKmW99gefqbHep8Kr6zq/view" target="_blank"><h3>Basic bonsai care guide</h3><p>A simple care routine for watering, observation, and healthy growth.</p><span class="tag">Free</span></a>
-        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1e6PpPd4RLmCI58QKSS1CcYfuBWlkd9Yh/view" target="_blank"><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p><span class="tag">Method</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Bonsai%20Introduction%20Guide." target="_blank"><h3>Bonsai introduction guide</h3><p>Origin, styles, sizes, and fertilization for a clear beginner foundation.</p><span class="tag">Request on WhatsApp</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Basic%20Bonsai%20Care%20Guide." target="_blank"><h3>Basic bonsai care guide</h3><p>A simple care routine for watering, observation, and healthy growth.</p><span class="tag">Request on WhatsApp</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%207%20Transformations%20Method." target="_blank"><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p><span class="tag">Ask on WhatsApp</span></a>
         <a class="feature-card link-card" data-en href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><h3>International Bonsai School</h3><p>Classes, practice, and guidance with Luane &amp; Alexandre.</p><span class="tag">Registration / ask for price</span></a>
         <a class="feature-card link-card" data-en href="https://wa.me/17869780745" target="_blank"><h3>Mentorships and workshops</h3><p>Practical classes, cohorts, and individual guidance through WhatsApp.</p><span class="tag">Ask for price</span></a>
       </div>
@@ -578,27 +582,26 @@ body.lang-pt [data-en]{display:none!important;}
         </div>
       </div>
       <div class="content-list">
-        <a class="content-item" href="https://drive.google.com/file/d/1iAfwRfPNgylau0_ykWAH9CsC055O5DDg/view" target="_blank"><span class="mini-label" data-pt>PDF · Português</span><span class="mini-label" data-en>PDF · Portuguese</span><h3 data-pt>Cuide da Sua Alma</h3><h3 data-en>Take Care of Your Soul</h3><p data-pt>PDF do livro Cuide da Sua Alma – Lições do Bonsai.</p><p data-en>Portuguese PDF book: Cuide da Sua Alma – Lições do Bonsai.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1luxBjrKqmoVgaaHujAmFcenSxAlJAH3p/view" target="_blank"><span class="mini-label">PDF · English</span><h3>Take Care of Your Soul</h3><p data-pt>PDF do livro em inglês para o público da Bonsai Alchemy.</p><p data-en>PDF book: Take Care of Your Soul – Bonsai Lessons.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1qJcL0qz7pL196-p5y7YhRTx7ajUK3KXn/view" target="_blank"><span class="mini-label">PDF PT</span><h3 data-pt>Introdução ao Bonsai</h3><h3 data-en>Bonsai Introduction</h3><p data-pt>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p><p data-en>Portuguese guide covering bonsai origin, styles, sizes and fertilization.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1aXCLQfiTG8FE692-kJEXREBjligMUTDv/view" target="_blank"><span class="mini-label">PDF EN</span><h3>Introduction Guide</h3><p data-pt>Versão em inglês da apostila de introdução ao bonsai.</p><p data-en>English introduction guide to bonsai: origin, styles, sizes and fertilization.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1136an_sP33mbre7rVoVt_eHvvnpNK5PE/view" target="_blank"><span class="mini-label">PDF PT</span><h3 data-pt>Guia de Cuidados Básicos</h3><h3 data-en>Basic Care Guide</h3><p data-pt>Rotina simples de cuidado para observar, regar e manter seu bonsai saudável.</p><p data-en>Portuguese basic care guide for observation, watering and bonsai health.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1YXaixomSOkd7NKmW99gefqbHep8Kr6zq/view" target="_blank"><span class="mini-label">PDF EN</span><h3>Basic Bonsai Care</h3><p data-pt>Versão em inglês do guia de cuidados básicos.</p><p data-en>English PDF basic bonsai care guide.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1QPSmLMbAFO_Eg_LPwStvde9uvc5-aCYj/view" target="_blank"><span class="mini-label">Método PT</span><h3 data-pt>Método das 7 Transformações</h3><h3 data-en>7 Transformations Method</h3><p data-pt>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p><p data-en>Portuguese daily exercise with 7 simple actions to support focus, presence, and purpose.</p></a>
-        <a class="content-item" href="https://drive.google.com/file/d/1e6PpPd4RLmCI58QKSS1CcYfuBWlkd9Yh/view" target="_blank"><span class="mini-label">Method EN</span><h3>7 Transformations Method</h3><p data-pt>Versão em inglês do Método das 7 Transformações.</p><p data-en>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p></a>
+        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20como%20receber%20o%20livro%20digital%20Cuide%20da%20Sua%20Alma." target="_blank"><span class="mini-label">WhatsApp</span><h3>Cuide da Sua Alma</h3><p>Converse para receber orientações sobre o livro digital.</p></a>
+        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20how%20to%20receive%20the%20digital%20book%20Take%20Care%20of%20Your%20Soul." target="_blank"><span class="mini-label">WhatsApp</span><h3>Take Care of Your Soul</h3><p>Message us to receive guidance about the digital book.</p></a>
+        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20material%20Introdu%C3%A7%C3%A3o%20ao%20Bonsai." target="_blank"><span class="mini-label">WhatsApp</span><h3>Introdução ao Bonsai</h3><p>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p></a>
+        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Bonsai%20Introduction%20Guide." target="_blank"><span class="mini-label">WhatsApp</span><h3>Introduction Guide</h3><p>Origin, styles, sizes, and fertilization for a clear beginner foundation.</p></a>
+        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20Guia%20de%20Cuidados%20B%C3%A1sicos%20de%20Bonsai." target="_blank"><span class="mini-label">WhatsApp</span><h3>Guia de Cuidados Básicos</h3><p>Rotina simples para observar, regar e manter seu bonsai saudável.</p></a>
+        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Basic%20Bonsai%20Care%20Guide." target="_blank"><span class="mini-label">WhatsApp</span><h3>Basic Bonsai Care</h3><p>A simple care routine for watering, observation, and healthy growth.</p></a>
+        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20M%C3%A9todo%20das%207%20Transforma%C3%A7%C3%B5es." target="_blank"><span class="mini-label">WhatsApp</span><h3>Método das 7 Transformações</h3><p>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p></a>
+        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%207%20Transformations%20Method." target="_blank"><span class="mini-label">WhatsApp</span><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p></a>
         <div class="content-item"><span class="mini-label" data-pt>Livro digital</span><span class="mini-label" data-en>Digital book</span><h3 data-pt>Cuide da Sua Alma</h3><h3 data-en>Take Care of Your Soul</h3><p data-pt>Valor do livro digital em português: R$ 9,90.</p><p data-en>English digital book price: US$ 9.90.</p></div>
-        <a class="content-item" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><span class="mini-label">Brasil · Estados Unidos</span><h3 data-pt>Escola de Bonsai</h3><h3 data-en>Bonsai School</h3><p data-pt>Inscrição para cursos, turmas, workshops e mentorias com Luane e Alexandre.</p><p data-en>Registration for courses, groups, workshops, and mentorships with Luane and Alexandre.</p></a>
+        <a class="content-item" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><span class="mini-label" data-pt>Escola</span><span class="mini-label" data-en>School</span><h3 data-pt>Escola de Bonsai</h3><h3 data-en>Bonsai School</h3><p data-pt>Inscrição para cursos, turmas, workshops e mentorias com Luane e Alexandre.</p><p data-en>Registration for courses, groups, workshops, and mentorships with Luane and Alexandre.</p></a>
         <a class="content-item" href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><span class="mini-label">International</span><h3>International Bonsai School</h3><p data-pt>Formulário internacional para aulas e experiências em inglês.</p><p data-en>International form for English classes and experiences.</p></a>
         <a class="content-item" href="https://forms.gle/G12JG8frqDtsR9yS9" target="_blank"><span class="mini-label">Contato</span><h3 data-pt>Dúvidas sobre materiais</h3><h3 data-en>Questions about materials</h3><p data-pt>Canal para pedir orientação sobre livro, guias, escola e aulas.</p><p data-en>Channel for guidance about the book, guides, school, and classes.</p></a>
         <a class="content-item" href="https://storage.googleapis.com/eleven-public-cdn/share-link/cb6b8feb4d4c104c8ecdd2e0edae2cdef6006fdadabc4d4a187ce3702b4f7381/ElevenLabs_EeOiBJi8V4tTg64w3cIh_colour.mp4" target="_blank"><span class="mini-label">Audiobook · Part 1</span><h3 data-pt>Fundamentos do Bonsai</h3><h3 data-en>Bonsai Basics</h3><p data-pt>Primeiro áudio/vídeo da série internacional.</p><p data-en>First audio/video from the international series.</p></a>
         <a class="content-item" href="https://storage.googleapis.com/eleven-public-cdn/share-link/cb6b8feb4d4c104c8ecdd2e0edae2cdef6006fdadabc4d4a187ce3702b4f7381/ElevenLabs_53YuCbjrM1NV3MF4pYTQ_colour.mp4" target="_blank"><span class="mini-label">Audiobook · Part 2</span><h3 data-pt>Cuidados e técnicas</h3><h3 data-en>Care &amp; Techniques</h3><p data-pt>Segundo áudio/vídeo com cuidados e técnicas essenciais.</p><p data-en>Second audio/video with essential care and techniques.</p></a>
-        <a class="content-item" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><span class="mini-label">YouTube</span><h3 data-pt>Podcast</h3><h3 data-en>Podcast</h3><p data-pt>Conteúdo em vídeo indicado no Linktree da Alquimia do Bonsai.</p><p data-en>Video content listed on the Alquimia do Bonsai Linktree.</p></a>
-        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank"><span class="mini-label">WhatsApp Brasil</span><h3>Fale conosco</h3><p>Canal direto para materiais, compras, aulas e dúvidas.</p></a>
-        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank"><span class="mini-label">WhatsApp United States</span><h3>Contact us</h3><p>Direct channel for materials, purchases, classes, and questions.</p></a>
+        <a class="content-item" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><span class="mini-label">YouTube</span><h3 data-pt>Podcast</h3><h3 data-en>Podcast</h3><p data-pt>Conteúdo oficial em vídeo da Alquimia do Bonsai.</p><p data-en>Official video content from Bonsai Alchemy.</p></a>
+        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank"><span class="mini-label">WhatsApp</span><h3>Fale conosco</h3><p>Canal direto para materiais, compras, aulas e dúvidas.</p></a>
+        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank"><span class="mini-label">WhatsApp</span><h3>Contact us</h3><p>Direct channel for materials, purchases, classes, and questions.</p></a>
         <a class="content-item" href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank"><span class="mini-label">Facebook</span><h3 data-pt>Página no Facebook</h3><h3 data-en>Facebook Page</h3><p data-pt>Rede social oficial listada no site antigo.</p><p data-en>Official social network listed on the previous site.</p></a>
-        <a class="content-item" href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><span class="mini-label">Instagram BR</span><h3>@alquimiadobonsai</h3><p data-pt>Perfil brasileiro: arte, pré-bonsai, educação e transformação.</p><p data-en>Brazilian profile: art, pre-bonsai, education, and transformation.</p></a>
-        <a class="content-item" href="https://www.instagram.com/bonsaialchemy/" target="_blank"><span class="mini-label">Instagram EN</span><h3>@bonsaialchemy</h3><p data-pt>Perfil internacional em inglês da Bonsai Alchemy.</p><p data-en>International English profile for Bonsai Alchemy.</p></a>
-        <a class="content-item" href="https://tr.ee/nI-EFB2ixk" target="_blank"><span class="mini-label">Linktree Principal</span><h3 data-pt>Cuide da sua Alma Official</h3><h3 data-en>Take Care of Your Soul Official</h3><p data-pt>Link principal compartilhável com os acessos oficiais.</p><p data-en>Main shareable link with official access points.</p></a>
+        <a class="content-item" data-pt href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><span class="mini-label">Instagram</span><h3>@alquimiadobonsai</h3><p>Perfil com arte, pré-bonsai, educação e transformação.</p></a>
+        <a class="content-item" data-en href="https://www.instagram.com/bonsaialchemy/" target="_blank"><span class="mini-label">Instagram</span><h3>@bonsaialchemy</h3><p>International English profile for Bonsai Alchemy.</p></a>
       </div>
     </div>
   </section>
@@ -612,13 +615,9 @@ body.lang-pt [data-en]{display:none!important;}
         <p data-en>Videos, behind the scenes, quick lessons, tree transformations, live sessions, and community updates.</p>
       </div>
       <div class="feature-grid">
-        <a class="feature-card link-card" href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><div class="feature-icon">📸</div><h3>@alquimiadobonsai</h3><p data-pt>Perfil Brasil com rotina, árvores, escola, bastidores e conteúdos em português.</p><p data-en>Brazil profile with daily rhythm, trees, school, behind the scenes and Portuguese content.</p></a>
-        <a class="feature-card link-card" href="https://www.instagram.com/bonsaialchemy/" target="_blank"><div class="feature-icon">📸</div><h3>@bonsaialchemy</h3><p data-pt>Perfil internacional da Bonsai Alchemy com conteúdos em inglês.</p><p data-en>International Bonsai Alchemy profile with English content.</p></a>
-        <a class="feature-card link-card" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><div class="feature-icon">▶️</div><h3>YouTube / Podcast BR</h3><p data-pt>Podcast indicado no Linktree da Alquimia do Bonsai, em português.</p><p data-en>Podcast listed on the Alquimia do Bonsai Linktree, in Portuguese.</p></a>
-        <a class="feature-card link-card" href="https://linktr.ee/bonsaialchemy" target="_blank"><div class="feature-icon">▶️</div><h3>YouTube EN</h3><p data-pt>Atalho funcional para os conteúdos internacionais da Bonsai Alchemy.</p><p data-en>Working shortcut to Bonsai Alchemy international content.</p></a>
-        <a class="feature-card link-card" href="https://linktr.ee/alquimiadobonsai" target="_blank"><div class="feature-icon">🌿</div><h3>Linktree BR</h3><p data-pt>Todos os links oficiais em português reunidos em um só lugar.</p><p data-en>All official Portuguese links gathered in one place.</p></a>
-        <a class="feature-card link-card" href="https://linktr.ee/bonsaialchemy" target="_blank"><div class="feature-icon">🌿</div><h3>Linktree EN</h3><p data-pt>Todos os links oficiais em inglês da Bonsai Alchemy.</p><p data-en>All official English links from Bonsai Alchemy.</p></a>
-        <a class="feature-card link-card" href="https://tr.ee/nI-EFB2ixk" target="_blank"><div class="feature-icon">🔗</div><h3>Linktree Principal</h3><p data-pt>Atalho compartilhável para o Linktree principal Cuide da sua Alma.</p><p data-en>Shareable shortcut to the main Take Care of Your Soul Linktree.</p></a>
+        <a class="feature-card link-card" data-pt href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><div class="feature-icon">📸</div><h3>@alquimiadobonsai</h3><p>Rotina, árvores, escola, bastidores e conteúdos em português.</p></a>
+        <a class="feature-card link-card" data-en href="https://www.instagram.com/bonsaialchemy/" target="_blank"><div class="feature-icon">📸</div><h3>@bonsaialchemy</h3><p>International Bonsai Alchemy profile with English content.</p></a>
+        <a class="feature-card link-card" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><div class="feature-icon">▶️</div><h3>YouTube / Podcast</h3><p data-pt>Conteúdo oficial em português da Alquimia do Bonsai.</p><p data-en>Official Portuguese content from Alquimia do Bonsai.</p></a>
         <a class="feature-card link-card" href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank"><div class="feature-icon">f</div><h3>Facebook</h3><p data-pt>Rede social oficial encontrada no site atual da Alquimia do Bonsai.</p><p data-en>Official social channel found on the current Alquimia do Bonsai site.</p></a>
       </div>
     </div>
@@ -720,12 +719,11 @@ body.lang-pt [data-en]{display:none!important;}
         <p data-pt>Quer comprar um bonsai, saber mais sobre o livro ou trocar uma ideia?</p>
         <p data-en>Want to buy a bonsai, learn about the book, or have a conversation?</p>
         <div class="contact-links">
-          <a data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp Brasil</span></a>
-          <a data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp United States</span></a>
-          <a href="https://www.instagram.com/alquimiadobonsai/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram BR</span></a>
-          <a href="https://www.instagram.com/bonsaialchemy/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram EN</span></a>
+          <a data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp</span></a>
+          <a data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp</span></a>
+          <a data-pt href="https://www.instagram.com/alquimiadobonsai/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram</span></a>
+          <a data-en href="https://www.instagram.com/bonsaialchemy/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram</span></a>
           <a href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank" class="contact-link"><span class="contact-link-icon">f</span><span class="contact-link-label">Facebook</span></a>
-          <a href="https://tr.ee/nI-EFB2ixk" target="_blank" class="contact-link"><span class="contact-link-icon">🌿</span><span class="contact-link-label">Linktree</span></a>
         </div>
       </div>
     </div>
@@ -742,7 +740,7 @@ body.lang-pt [data-en]{display:none!important;}
       <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
       <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
     </div>
-    <div class="footer-copy">© 2026 Alquimia do Bonsai · Bonsai Alchemy — Brasil · Estados Unidos</div>
+    <div class="footer-copy">© 2026 Alquimia do Bonsai · Bonsai Alchemy — Todos os direitos reservados.</div>
   </footer>
 </div>
 <!-- SHOP -->
@@ -750,7 +748,7 @@ body.lang-pt [data-en]{display:none!important;}
   <div class="shop-page-header">
     <div class="container">
       <p class="section-label" data-pt>Catálogo</p><p class="section-label" data-en>Catalog</p>
-      <h1 class="section-title" data-pt>Bonsai <em>disponíveis</em></h1><h1 class="section-title" data-en>Available <em>bonsai</em></h1>
+      <h1 class="section-title" data-pt>Catálogo real de <em>bonsai</em></h1><h1 class="section-title" data-en>Live bonsai <em>catalog</em></h1>
       <div class="shop-filters">
         <button class="filter-btn active" onclick="filterShop('all',this)"><span data-pt>Todos</span><span data-en>All</span></button>
         <button class="filter-btn" onclick="filterShop('prebonsai',this)"><span data-pt>Pré-Bonsai</span><span data-en>Pre-Bonsai</span></button>
@@ -869,7 +867,7 @@ body.lang-pt [data-en]{display:none!important;}
         <div id="dash-recent-orders"></div>
       </div>
       <div class="admin-tab" id="atab-products">
-        <h2>Gerenciar Loja</h2><p class="subtitle">Adicione livros, bonsai, cursos, materiais e produtos</p>
+        <h2>Gerenciar Catálogo</h2><p class="subtitle">Adicione bonsai, pré-bonsai e produtos de bonsai</p>
         <div class="admin-toolbar">
           <input type="text" placeholder="Buscar..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminProducts(this.value)"/>
           <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Adicionar item</button>
@@ -890,9 +888,9 @@ body.lang-pt [data-en]{display:none!important;}
         <div style="display:grid;gap:1.5rem;max-width:600px;">
           <div class="form-group"><label>Tagline PT</label><input type="text" id="site-tagline-pt"/></div>
           <div class="form-group"><label>Tagline EN</label><input type="text" id="site-tagline-en"/></div>
-          <div class="form-group"><label>WhatsApp Brasil</label><input type="text" id="site-wabr"/></div>
-          <div class="form-group"><label>WhatsApp Estados Unidos</label><input type="text" id="site-wausa"/></div>
-          <div class="form-group"><label>Instagram BR</label><input type="text" id="site-igbr"/></div>
+          <div class="form-group"><label>WhatsApp PT</label><input type="text" id="site-wabr"/></div>
+          <div class="form-group"><label>WhatsApp EN</label><input type="text" id="site-wausa"/></div>
+          <div class="form-group"><label>Instagram PT</label><input type="text" id="site-igbr"/></div>
           <div class="form-group"><label>Instagram EN</label><input type="text" id="site-igusa"/></div>
           <div class="form-group"><label>Sobre - PT</label><textarea id="site-about-pt" rows="4"></textarea></div>
           <div class="form-group"><label>Sobre - EN</label><textarea id="site-about-en" rows="4"></textarea></div>
@@ -945,7 +943,7 @@ body.lang-pt [data-en]{display:none!important;}
     <div class="form-row">
       <div class="form-group"><label>Tipo / espécie</label><input type="text" id="ep-species" placeholder="ex: Livro, Ficus retusa, Curso"/></div>
       <div class="form-group"><label>Categoria</label>
-        <select id="ep-category"><option value="livro">Livro</option><option value="curso">Curso</option><option value="prebonsai">Pré-Bonsai</option><option value="bonsai">Bonsai</option><option value="produto">Produto</option><option value="material">Material</option><option value="exclusivo">Exclusivo</option></select>
+        <select id="ep-category"><option value="bonsai">Bonsai</option><option value="prebonsai">Pré-Bonsai</option><option value="produto">Produto de bonsai</option></select>
       </div>
     </div>
     <div class="form-row">
@@ -960,7 +958,8 @@ body.lang-pt [data-en]{display:none!important;}
       <div class="form-group"><label>Estilo</label><input type="text" id="ep-style" placeholder="ex: Informal upright"/></div>
       <div class="form-group"><label>Vaso</label><input type="text" id="ep-pot" placeholder="ex: Cerâmica japonesa"/></div>
     </div>
-    <div class="form-group"><label>Imagem do item</label><input type="text" id="ep-image" placeholder="assets/cuide-da-sua-alma.png ou URL da imagem"/></div>
+    <div class="form-group"><label>Imagem do item</label><input type="text" id="ep-image" placeholder="URL da imagem ou caminho em assets"/></div>
+    <div class="form-group"><label>Enviar nova imagem</label><input type="file" id="ep-file" accept="image/png,image/jpeg,image/webp,image/gif"/></div>
     <div class="form-group"><label>Link de compra/acesso</label><input type="text" id="ep-link" placeholder="Amazon, WhatsApp, formulário, Drive..."/></div>
     <div class="form-group"><label>Emoji</label><input type="text" id="ep-emoji" placeholder="🌳" style="width:80px;font-size:1.5rem;"/></div>
     <div class="form-group"><label>Descrição PT</label><textarea id="ep-desc-pt" rows="3" placeholder="Descrição em português..."></textarea></div>
@@ -975,7 +974,69 @@ body.lang-pt [data-en]{display:none!important;}
 </div>
 <script>
 const DB={get(k){try{return JSON.parse(localStorage.getItem('adb_'+k));}catch{return null;}},set(k,v){localStorage.setItem('adb_'+k,JSON.stringify(v));}};
-const SITE_VERSION='clean-real-names-catalog-2026-07-16';
+const SUPABASE_URL='https://fmerpowodhrgfdzjcckm.supabase.co';
+const SUPABASE_KEY='sb_publishable_IgkFCy47fAKzZ-EjaR_flg_sqEqnyHL';
+const supabaseClient=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let remoteProducts=null;
+function rowToProduct(row){
+  const fallbackPt=`https://wa.me/5521964109840?text=${encodeURIComponent('Olá! Tenho interesse em '+row.name_pt+' do catálogo Alquimia do Bonsai. Pode me passar disponibilidade, valor e envio?')}`;
+  const fallbackEn=`https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+(row.name_en||row.name_pt)+' from the Bonsai Alchemy catalog. Could you send availability, price, and shipping details?')}`;
+  return {
+    id:row.id,
+    namePt:row.name_pt,
+    nameEn:row.name_en||row.name_pt,
+    species:row.species_pt||'—',
+    speciesEn:row.species_en||row.species_pt||'—',
+    category:row.category||'bonsai',
+    price:Number(row.price_brl||0),
+    stock:Number(row.stock||0),
+    height:row.height_pt||'—',
+    heightEn:row.height_en||row.height_pt||'—',
+    age:row.age_pt||'—',
+    ageEn:row.age_en||row.age_pt||'—',
+    style:row.style_pt||'—',
+    styleEn:row.style_en||row.style_pt||'—',
+    pot:row.pot_pt||'—',
+    potEn:row.pot_en||row.pot_pt||'—',
+    imageUrl:row.image_url||'',
+    buyUrl:row.whatsapp_pt||fallbackPt,
+    buyUrlEn:row.whatsapp_en||fallbackEn,
+    emoji:'🌳',
+    descPt:row.description_pt||'',
+    descEn:row.description_en||row.description_pt||'',
+    carePt:row.care_pt||'',
+    careEn:row.care_en||row.care_pt||'',
+    created:row.created_at||new Date().toISOString()
+  };
+}
+function productToRow(p){
+  return {
+    active:true,
+    category:p.category||'bonsai',
+    name_pt:p.namePt,
+    name_en:p.nameEn||p.namePt,
+    species_pt:p.species||null,
+    species_en:p.speciesEn||p.species||null,
+    description_pt:p.descPt||null,
+    description_en:p.descEn||null,
+    care_pt:p.carePt||null,
+    care_en:p.careEn||null,
+    price_brl:Number(p.price||0),
+    stock:Number(p.stock||0),
+    height_pt:p.height||null,
+    height_en:p.heightEn||p.height||null,
+    age_pt:p.age||null,
+    age_en:p.ageEn||p.age||null,
+    style_pt:p.style||null,
+    style_en:p.styleEn||p.style||null,
+    pot_pt:p.pot||null,
+    pot_en:p.potEn||p.pot||null,
+    image_url:p.imageUrl||null,
+    whatsapp_pt:p.buyUrl||null,
+    whatsapp_en:p.buyUrlEn||null
+  };
+}
+const SITE_VERSION='real-catalog-work-copy-2026-07-21';
 if(DB.get('siteVersion')!==SITE_VERSION){
   localStorage.removeItem('adb_products');
   const existingUsers=DB.get('users')||[];
@@ -1063,13 +1124,7 @@ function initDB(){
     realProduct('real-19',19,'Pau-brasil Pré-Bonsai','Brazilwood Pre-Bonsai','assets/catalogo-real-19-pau-brasil-pre.jpg','prebonsai'),
     realProduct('real-20',20,'Ipê Amarelo Pré-Bonsai','Yellow Ipe Pre-Bonsai','assets/catalogo-real-20-ipe-amarelo-pre.jpg','prebonsai')
   ];
-  const seedProducts=[
-    {id:'p1',namePt:'PDF Cuide da Sua Alma',nameEn:'Take Care of Your Soul PDF',species:'Lições do Bonsai',category:'livro',price:9.90,currency:'BRL',stock:999,height:'Digital',age:'Método das 7 Transformações',style:'Livro PT',pot:'Google Drive',emoji:'📖',imageUrl:'assets/book-pt-3d.jpg',buyUrl:'https://drive.google.com/file/d/1iAfwRfPNgylau0_ykWAH9CsC055O5DDg/view',descPt:'Livro digital oficial Cuide da Sua Alma - Lições do Bonsai.',descEn:'Official Portuguese digital book.',carePt:'Valor do livro digital: R$ 9,90.',careEn:'Digital book price: BRL 9.90.',created:new Date().toISOString()},
-    {id:'p2',namePt:'Materiais básicos de bonsai',nameEn:'Basic bonsai materials',species:'Guias de estudo',category:'material',price:0,stock:999,height:'PDF',age:'Iniciante',style:'Introdução + cuidados + método',pot:'Google Drive',emoji:'🌱',imageUrl:'assets/aprenda-bonsai-zero.jpg',buyUrl:'https://drive.google.com/file/d/1qJcL0qz7pL196-p5y7YhRTx7ajUK3KXn/view',descPt:'Apostila de introdução, guia de cuidados básicos e Método das 7 Transformações.',descEn:'Introduction guide, basic care guide, and 7 Transformations Method.',carePt:'Materiais disponíveis na seção Cursos.',careEn:'Materials available in the Courses section.',created:new Date().toISOString()},
-    {id:'p3',namePt:'Escola de Bonsai',nameEn:'International Bonsai School',species:'Brasil e Estados Unidos',category:'curso',price:0,stock:20,height:'Turmas',age:'Todos os níveis',style:'Formação',pot:'Online / Presencial',emoji:'🎓',imageUrl:'assets/alexandre-luane-bonsai.jpg',buyUrl:'https://forms.gle/pdd7E9Nx9yZcntEs5',descPt:'Inscrição para cursos, mentorias e encontros da Escola de Bonsai com Luane & Alexandre.',descEn:'Registration for courses, mentorships, and gatherings with Luane & Alexandre.',carePt:'Valor e disponibilidade sob consulta.',careEn:'Price and availability on request.',created:new Date().toISOString()},
-    {id:'p5',namePt:'Livro em inglês - Take Care of Your Soul',nameEn:'Take Care of Your Soul',species:'Lessons from the Bonsai',category:'livro',price:9.90,currency:'USD',stock:999,height:'Digital',age:'7 Transformations Method',style:'English PDF',pot:'Google Drive',emoji:'📘',imageUrl:'assets/book-en-3d.jpg',buyUrl:'https://drive.google.com/file/d/1luxBjrKqmoVgaaHujAmFcenSxAlJAH3p/view',descPt:'PDF em inglês do livro da Bonsai Alchemy para o público internacional.',descEn:'English PDF book for the Bonsai Alchemy international audience.',carePt:'Valor do livro digital: US$ 9.90.',careEn:'Digital book price: US$ 9.90.',created:new Date().toISOString()},
-    ...catalogProducts
-  ];
+  const seedProducts=[...catalogProducts];
   const currentProducts=DB.get('products');
   if(!currentProducts) DB.set('products',seedProducts);
   else{
@@ -1116,14 +1171,26 @@ function closeModal(id){document.getElementById(id).classList.add('hidden');}
 document.querySelectorAll('.modal-overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.add('hidden');}));
 let currentUser=null;
 try{currentUser=JSON.parse(sessionStorage.getItem('adb_session'));}catch{}
-if(currentUser&&currentUser.role==='admin'){currentUser=null;sessionStorage.removeItem('adb_session');}
 function handleAccount(){if(currentUser){showPage('profile');}else{showAuthPanel('login');openModal('modal-auth');}}
+function openAdminLogin(){if(currentUser&&currentUser.role==='admin'){showPage('admin');return;}showAuthPanel('login');openModal('modal-auth');}
 function showAuthPanel(p){document.getElementById('auth-login').classList.toggle('hidden',p!=='login');document.getElementById('auth-register').classList.toggle('hidden',p!=='register');}
-function doLogin(){
+async function doLogin(){
   const email=document.getElementById('login-email').value.trim(),pass=document.getElementById('login-pass').value;
-  const err=document.getElementById('login-error'),u=(DB.get('users')||[]).find(u=>u.email===email&&u.pass===pass);
+  const err=document.getElementById('login-error');
+  if(supabaseClient&&email&&pass){
+    const {data,error}=await supabaseClient.auth.signInWithPassword({email,password:pass});
+    if(!error&&data.user){
+      const {data:profile}=await supabaseClient.from('admin_profiles').select('role,email').eq('user_id',data.user.id).maybeSingle();
+      if(profile&&profile.role==='admin'){
+        currentUser={id:data.user.id,name:data.user.user_metadata?.name||profile.email||email,email:profile.email||email,role:'admin',created:data.user.created_at,address:{}};
+        sessionStorage.setItem('adb_session',JSON.stringify(currentUser));
+        err.classList.add('hidden');closeModal('modal-auth');toast('Painel administrativo liberado.');showPage('admin');return;
+      }
+      await supabaseClient.auth.signOut();
+    }
+  }
+  const u=(DB.get('users')||[]).find(u=>u.email===email&&u.pass===pass);
   if(!u){err.textContent='E-mail ou senha incorretos.';err.classList.remove('hidden');return;}
-  if(u.role==='admin'){err.textContent='Painel administrativo desativado nesta versão pública.';err.classList.remove('hidden');return;}
   err.classList.add('hidden');currentUser=u;sessionStorage.setItem('adb_session',JSON.stringify(u));
   closeModal('modal-auth');toast('Bem-vindo(a), '+u.name+'! 🌳');
   showPage('profile');
@@ -1139,8 +1206,8 @@ function doRegister(){
   users.push(u);DB.set('users',users);currentUser=u;sessionStorage.setItem('adb_session',JSON.stringify(u));
   err.classList.add('hidden');closeModal('modal-auth');toast('Conta criada! Bem-vindo(a), '+name+' 🌿');showPage('profile');
 }
-function logout(){currentUser=null;sessionStorage.removeItem('adb_session');showPage('home');toast('Até logo! 🌳');}
-function getProducts(){return DB.get('products')||[];}
+async function logout(){if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;sessionStorage.removeItem('adb_session');showPage('home');toast('Até logo! 🌳');}
+function getProducts(){return remoteProducts||DB.get('products')||[];}
 const SHOP_CATEGORIES=['bonsai','prebonsai','produto'];
 function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category));}
 function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
@@ -1150,7 +1217,7 @@ function moneyLabel(p){
   return p.currency==='USD'?'US$ '+value:'R$ '+value;
 }
 function productPriceLabels(p){
-  if(p.category==='material') return {pt:'Gratuito',en:'Free'};
+  if(p.category==='material') return {pt:'Pedir no WhatsApp',en:'Request on WhatsApp'};
   if(p.category==='curso') return {pt:'Valor sob consulta',en:'Ask for price'};
   if(Number(p.price||0)===0) return {pt:'Sob consulta',en:'Ask for price'};
   const label=moneyLabel(p);
@@ -1192,6 +1259,16 @@ function productCard(p){
 }
 function renderHomeProducts(){const g=document.getElementById('home-products-grid');if(g)g.innerHTML=getShopProducts().slice(0,6).map(productCard).join('');}
 renderHomeProducts();
+async function loadRemoteCatalog(){
+  if(!supabaseClient)return false;
+  const {data,error}=await supabaseClient.from('catalog_items').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
+  if(error){console.warn('Catalogo Supabase indisponivel:',error.message);return false;}
+  remoteProducts=(data||[]).map(rowToProduct);
+  renderHomeProducts();
+  if(currentPage==='shop')renderShop();
+  if(currentUser&&currentUser.role==='admin'){renderAdminProducts();renderDashboard();}
+  return true;
+}
 let curFilter='all';
 function renderShop(f){if(f)curFilter=f;const base=getShopProducts();const prods=base.filter(p=>curFilter==='all'||p.category===curFilter);const g=document.getElementById('shop-products-grid');const e=document.getElementById('shop-empty');if(!g)return;if(prods.length===0){g.innerHTML='';e.classList.remove('hidden');}else{e.classList.add('hidden');g.innerHTML=prods.map(productCard).join('');}}
 function filterShop(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderShop(cat);}
@@ -1214,7 +1291,7 @@ function openProductDetail(id){
         ${p.carePt&&p.carePt!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Cuidados</span><span data-en>Care</span></span><span class="spec-value"><span data-pt>${p.carePt}</span><span data-en>${p.careEn||p.carePt}</span></span></div>`:''}
       </div>
       <div class="product-detail-btns">
-        ${p.buyUrl?productAccessAction(p,false):(p.price>0?`<button class="btn btn-gold" onclick="addToCart('${p.id}');closeModal('modal-product')"><span data-pt>Adicionar ao carrinho</span><span data-en>Add to cart</span> 🛒</button>`:`<a href="https://tr.ee/nI-EFB2ixk" target="_blank" class="btn btn-gold"><span data-pt>Acessar →</span><span data-en>Open →</span></a>`)}
+        ${p.buyUrl?productAccessAction(p,false):(p.price>0?`<button class="btn btn-gold" onclick="addToCart('${p.id}');closeModal('modal-product')"><span data-pt>Adicionar ao carrinho</span><span data-en>Add to cart</span> 🛒</button>`:`<a href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20este%20item%20da%20Alquimia%20do%20Bonsai." target="_blank" class="btn btn-gold" data-pt>Falar no WhatsApp →</a><a href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20this%20Bonsai%20Alchemy%20item." target="_blank" class="btn btn-gold" data-en>Ask on WhatsApp →</a>`)}
       </div>
     </div>`;
   openModal('modal-product');
@@ -1323,18 +1400,52 @@ function openProductModal(id){
   document.getElementById('product-edit-title').textContent=id?'Editar item':'Adicionar item';
   document.getElementById('edit-product-id').value=id||'';
   ['name-pt','name-en','species','price','stock','height','age','style','pot','image','link','desc-pt','desc-en','care-pt','care-en'].forEach(f=>{const el=document.getElementById('ep-'+f);if(el)el.value='';});
-  document.getElementById('ep-emoji').value='🌳';document.getElementById('ep-category').value='produto';
+  const file=document.getElementById('ep-file');if(file)file.value='';
+  document.getElementById('ep-emoji').value='🌳';document.getElementById('ep-category').value='bonsai';
   if(id){const p=getProducts().find(x=>x.id===id);if(p){document.getElementById('ep-name-pt').value=p.namePt||'';document.getElementById('ep-name-en').value=p.nameEn||'';document.getElementById('ep-species').value=p.species||'';document.getElementById('ep-category').value=p.category||'produto';document.getElementById('ep-price').value=p.price||0;document.getElementById('ep-stock').value=p.stock||0;document.getElementById('ep-height').value=p.height||'';document.getElementById('ep-age').value=p.age||'';document.getElementById('ep-style').value=p.style||'';document.getElementById('ep-pot').value=p.pot||'';document.getElementById('ep-image').value=p.imageUrl||'';document.getElementById('ep-link').value=p.buyUrl||'';document.getElementById('ep-emoji').value=p.emoji||'🌳';document.getElementById('ep-desc-pt').value=p.descPt||'';document.getElementById('ep-desc-en').value=p.descEn||'';document.getElementById('ep-care-pt').value=p.carePt||'';document.getElementById('ep-care-en').value=p.careEn||'';}}
   openModal('modal-product-edit');
 }
-function saveProduct(){
+async function uploadCatalogImage(){
+  const fileInput=document.getElementById('ep-file');
+  const file=fileInput&&fileInput.files?fileInput.files[0]:null;
+  if(!file||!supabaseClient)return document.getElementById('ep-image').value.trim();
+  const safeName=file.name.toLowerCase().replace(/[^a-z0-9._-]+/g,'-');
+  const path=`catalog/${Date.now()}-${safeName}`;
+  const {error}=await supabaseClient.storage.from('catalog-images').upload(path,file,{cacheControl:'3600',upsert:false});
+  if(error)throw error;
+  const {data}=supabaseClient.storage.from('catalog-images').getPublicUrl(path);
+  return data.publicUrl;
+}
+function productWhatsappPt(p){return `https://wa.me/5521964109840?text=${encodeURIComponent('Olá! Tenho interesse em '+p.namePt+' do catálogo Alquimia do Bonsai. Pode me passar disponibilidade, valor e envio?')}`;}
+function productWhatsappEn(p){return `https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+(p.nameEn||p.namePt)+' from the Bonsai Alchemy catalog. Could you send availability, price, and shipping details?')}`;}
+async function saveProduct(){
   const id=document.getElementById('edit-product-id').value;const prods=getProducts();
-  const p={id:id||'p'+Date.now(),namePt:document.getElementById('ep-name-pt').value,nameEn:document.getElementById('ep-name-en').value,species:document.getElementById('ep-species').value||'—',category:document.getElementById('ep-category').value,price:parseFloat(document.getElementById('ep-price').value)||0,stock:parseInt(document.getElementById('ep-stock').value)||0,height:document.getElementById('ep-height').value||'—',age:document.getElementById('ep-age').value||'—',style:document.getElementById('ep-style').value||'—',pot:document.getElementById('ep-pot').value||'—',imageUrl:document.getElementById('ep-image').value.trim(),buyUrl:document.getElementById('ep-link').value.trim(),emoji:document.getElementById('ep-emoji').value||'🌳',descPt:document.getElementById('ep-desc-pt').value,descEn:document.getElementById('ep-desc-en').value,carePt:document.getElementById('ep-care-pt').value,careEn:document.getElementById('ep-care-en').value,created:id?(prods.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()};
+  let imageUrl;
+  try{imageUrl=await uploadCatalogImage();}catch(error){toast('Erro ao enviar imagem: '+error.message);return;}
+  const p={id:id||'p'+Date.now(),namePt:document.getElementById('ep-name-pt').value.trim(),nameEn:document.getElementById('ep-name-en').value.trim(),species:document.getElementById('ep-species').value||'—',category:document.getElementById('ep-category').value,price:parseFloat(document.getElementById('ep-price').value)||0,stock:parseInt(document.getElementById('ep-stock').value)||0,height:document.getElementById('ep-height').value||'—',age:document.getElementById('ep-age').value||'—',style:document.getElementById('ep-style').value||'—',pot:document.getElementById('ep-pot').value||'—',imageUrl,emoji:document.getElementById('ep-emoji').value||'🌳',descPt:document.getElementById('ep-desc-pt').value,descEn:document.getElementById('ep-desc-en').value,carePt:document.getElementById('ep-care-pt').value,careEn:document.getElementById('ep-care-en').value,created:id?(prods.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()};
+  p.buyUrl=document.getElementById('ep-link').value.trim()||productWhatsappPt(p);
+  p.buyUrlEn=productWhatsappEn(p);
   if(!p.namePt){toast('Nome é obrigatório!');return;}
+  if(currentUser&&currentUser.role==='admin'&&supabaseClient){
+    const payload=productToRow(p);
+    let result;
+    if(id&&/^[0-9a-f-]{36}$/i.test(id)) result=await supabaseClient.from('catalog_items').update(payload).eq('id',id);
+    else result=await supabaseClient.from('catalog_items').insert(payload);
+    if(result.error){toast('Erro ao salvar no Supabase: '+result.error.message);return;}
+    closeModal('modal-product-edit');await loadRemoteCatalog();toast(id?'Item atualizado! ✅':'Item adicionado! 🌳');return;
+  }
   if(id){const idx=prods.findIndex(x=>x.id===id);if(idx>=0)prods[idx]=p;else prods.unshift(p);}else prods.unshift(p);
   DB.set('products',prods);closeModal('modal-product-edit');renderAdminProducts();renderHomeProducts();renderDashboard();toast(id?'Item atualizado! ✅':'Item adicionado! 🌳');
 }
-function deleteProduct(id){if(!confirm('Remover este item?'))return;DB.set('products',getProducts().filter(p=>p.id!==id));renderAdminProducts();renderHomeProducts();renderDashboard();toast('Item removido.');}
+async function deleteProduct(id){
+  if(!confirm('Remover este item?'))return;
+  if(currentUser&&currentUser.role==='admin'&&supabaseClient&&/^[0-9a-f-]{36}$/i.test(id)){
+    const {error}=await supabaseClient.from('catalog_items').delete().eq('id',id);
+    if(error){toast('Erro ao remover: '+error.message);return;}
+    await loadRemoteCatalog();toast('Item removido.');return;
+  }
+  DB.set('products',getProducts().filter(p=>p.id!==id));renderAdminProducts();renderHomeProducts();renderDashboard();toast('Item removido.');
+}
 function renderAdminOrders(){
   const orders=DB.get('orders')||[];const t=document.getElementById('admin-orders-table');const e=document.getElementById('admin-orders-empty');if(!t)return;
   if(!orders.length){t.innerHTML='';e.classList.remove('hidden');return;}e.classList.add('hidden');
@@ -1356,6 +1467,20 @@ for(let i=0;i<65;i++){const p=mkP();p.y=Math.random()*H;pt.push(p);}
 // SCROLL REVEAL
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)';}});},{threshold:.1});
 document.querySelectorAll('.transform-step,.value-item,.location-item,.contact-link,.feature-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity .6s ease,transform .6s ease';io.observe(el);});
+async function bootSupabase(){
+  if(!supabaseClient)return;
+  const {data}=await supabaseClient.auth.getSession();
+  const user=data&&data.session&&data.session.user;
+  if(user&&!currentUser){
+    const {data:profile}=await supabaseClient.from('admin_profiles').select('role,email').eq('user_id',user.id).maybeSingle();
+    if(profile&&profile.role==='admin'){
+      currentUser={id:user.id,name:user.user_metadata?.name||profile.email||user.email,email:profile.email||user.email,role:'admin',created:user.created_at,address:{}};
+      sessionStorage.setItem('adb_session',JSON.stringify(currentUser));
+    }
+  }
+  await loadRemoteCatalog();
+}
+bootSupabase();
 </script>
 </body>
 </html>
