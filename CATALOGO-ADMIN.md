@@ -37,17 +37,36 @@ Projeto Supabase configurado no HTML:
 2. Clique em **Add user**.
 3. Crie o e-mail e a senha da administradora.
 4. Volte em **SQL Editor**.
-5. Rode este comando trocando o e-mail:
+5. Primeiro confira se o e-mail existe no Supabase:
+
+```sql
+select id, email
+from auth.users
+where lower(email) = lower('EMAIL_DA_ADMIN_AQUI');
+```
+
+Se nao aparecer nenhuma linha, o usuario ainda nao foi criado em **Authentication > Users**.
+
+6. Depois rode este comando trocando o e-mail:
 
 ```sql
 insert into public.admin_profiles (user_id, email, role)
 select id, email, 'admin'
 from auth.users
-where email = 'EMAIL_DA_ADMIN_AQUI'
+where lower(email) = lower('EMAIL_DA_ADMIN_AQUI')
 on conflict (user_id) do update
 set email = excluded.email,
     role = 'admin';
 ```
+
+Se aparecer erro de e-mail duplicado, rode primeiro:
+
+```sql
+delete from public.admin_profiles
+where lower(email) = lower('EMAIL_DA_ADMIN_AQUI');
+```
+
+E depois rode o comando de admin novamente.
 
 Depois disso, esse e-mail consegue entrar no painel administrativo pelo proprio site.
 
@@ -57,6 +76,7 @@ Tabela sugerida: `catalog_items`
 
 - `id`
 - `active`
+- `locale` (`pt`, `en` ou `both`)
 - `category`
 - `name_pt`
 - `name_en`
@@ -85,9 +105,13 @@ Tabela sugerida: `catalog_items`
 
 1. A administradora entra no painel.
 2. Adiciona foto, nome, descricao, valor e categoria.
-3. O sistema cria ou salva o link de WhatsApp com mensagem pronta.
-4. O produto aparece automaticamente no catalogo publico.
-5. Ao trocar PT/EN, o site mostra os textos e WhatsApp corretos.
+3. Define onde o item aparece:
+   - **Portugues / Brasil** para fotos e precos do Brasil.
+   - **Ingles / EUA** para fotos e precos dos EUA.
+   - **PT e EN** somente se o mesmo item realmente servir para os dois publicos.
+4. O sistema cria ou salva o link de WhatsApp com mensagem pronta.
+5. O produto aparece automaticamente no catalogo publico correto.
+6. Ao trocar PT/EN, o site mostra catalogos diferentes, com fotos, precos e WhatsApp do mercado certo.
 
 ## Como testar
 

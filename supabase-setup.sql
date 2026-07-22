@@ -13,6 +13,7 @@ create table if not exists public.admin_profiles (
 create table if not exists public.catalog_items (
   id uuid primary key default gen_random_uuid(),
   active boolean not null default true,
+  locale text not null default 'pt' check (locale in ('pt','en','both')),
   category text not null default 'bonsai' check (category in ('bonsai','prebonsai','produto')),
   name_pt text not null,
   name_en text,
@@ -23,6 +24,7 @@ create table if not exists public.catalog_items (
   care_pt text,
   care_en text,
   price_brl numeric(10,2) not null default 0,
+  price_usd numeric(10,2) not null default 0,
   stock integer not null default 1,
   height_pt text,
   height_en text,
@@ -39,6 +41,25 @@ create table if not exists public.catalog_items (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.catalog_items
+add column if not exists locale text not null default 'pt';
+
+alter table public.catalog_items
+add column if not exists price_usd numeric(10,2) not null default 0;
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_constraint
+    where conname = 'catalog_items_locale_check'
+      and conrelid = 'public.catalog_items'::regclass
+  ) then
+    alter table public.catalog_items
+    add constraint catalog_items_locale_check check (locale in ('pt','en','both'));
+  end if;
+end $$;
 
 create or replace function public.touch_updated_at()
 returns trigger
@@ -163,5 +184,5 @@ using (bucket_id = 'catalog-images' and public.is_admin());
 -- insert into public.admin_profiles (user_id, email, role)
 -- select id, email, 'admin'
 -- from auth.users
--- where email = 'EMAIL_DA_SUA_MAE_AQUI'
+-- where lower(email) = lower('EMAIL_DA_SUA_MAE_AQUI')
 -- on conflict (user_id) do update set email = excluded.email, role = 'admin';

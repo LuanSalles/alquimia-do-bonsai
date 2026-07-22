@@ -947,8 +947,14 @@ body.lang-pt [data-en]{display:none!important;}
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>Preço (R$)</label><input type="number" id="ep-price" placeholder="0.00" step="0.01" min="0"/></div>
+      <div class="form-group"><label>Mostrar em</label>
+        <select id="ep-market"><option value="pt">Português / Brasil</option><option value="en">Inglês / EUA</option><option value="both">PT e EN</option></select>
+      </div>
       <div class="form-group"><label>Estoque</label><input type="number" id="ep-stock" placeholder="1" min="0"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Preço Brasil (R$)</label><input type="number" id="ep-price" placeholder="0.00" step="0.01" min="0"/></div>
+      <div class="form-group"><label>Preço EUA (US$)</label><input type="number" id="ep-price-usd" placeholder="0.00" step="0.01" min="0"/></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>Altura (cm)</label><input type="text" id="ep-height" placeholder="ex: 25–30 cm"/></div>
@@ -988,7 +994,9 @@ function rowToProduct(row){
     species:row.species_pt||'—',
     speciesEn:row.species_en||row.species_pt||'—',
     category:row.category||'bonsai',
+    market:row.locale||row.market||'pt',
     price:Number(row.price_brl||0),
+    priceUsd:Number(row.price_usd||0),
     stock:Number(row.stock||0),
     height:row.height_pt||'—',
     heightEn:row.height_en||row.height_pt||'—',
@@ -1012,6 +1020,7 @@ function rowToProduct(row){
 function productToRow(p){
   return {
     active:true,
+    locale:p.market||'pt',
     category:p.category||'bonsai',
     name_pt:p.namePt,
     name_en:p.nameEn||p.namePt,
@@ -1022,6 +1031,7 @@ function productToRow(p){
     care_pt:p.carePt||null,
     care_en:p.careEn||null,
     price_brl:Number(p.price||0),
+    price_usd:Number(p.priceUsd||0),
     stock:Number(p.stock||0),
     height_pt:p.height||null,
     height_en:p.heightEn||p.height||null,
@@ -1036,7 +1046,7 @@ function productToRow(p){
     whatsapp_en:p.buyUrlEn||null
   };
 }
-const SITE_VERSION='real-catalog-work-copy-2026-07-21';
+const SITE_VERSION='real-catalog-work-copy-2026-07-22-market-catalog';
 if(DB.get('siteVersion')!==SITE_VERSION){
   localStorage.removeItem('adb_products');
   const existingUsers=DB.get('users')||[];
@@ -1088,12 +1098,12 @@ function initDB(){
     buyUrl:`https://wa.me/${catalogWhats}?text=${encodeURIComponent('Olá! Tenho interesse em '+namePt+' do catálogo Alquimia do Bonsai. Pode me passar disponibilidade, valor e envio?')}`,
     buyUrlEn:`https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+nameEn+' from the Bonsai Alchemy catalog. Could you send availability, price, and shipping details?')}`
   });
-  const realProduct=(id,item,namePt,nameEn,img,category='bonsai',price=0,ageLabel='Peça selecionada',ageLabelEn='Selected piece')=>{
+  const realProduct=(id,item,namePt,nameEn,img,category='bonsai',price=0,ageLabel='Peça selecionada',ageLabelEn='Selected piece',market='pt',priceUsd=0)=>{
     const lote=item<=10?'Lote 1':'Lote 2';
     const labelPt=namePt||`Bonsai ${lote} · Item ${String(item).padStart(2,'0')}`;
     const labelEn=nameEn||`Bonsai ${lote} · Item ${String(item).padStart(2,'0')}`;
     return {
-      id,namePt:labelPt,nameEn:labelEn,species:namePt||'Bonsai',speciesEn:nameEn||'Bonsai',category,price,stock:1,height:'Sob consulta',heightEn:'Ask for details',age:ageLabel,ageEn:ageLabelEn,style:category==='prebonsai'?'Pré-bonsai':'Peça única',styleEn:category==='prebonsai'?'Pre-bonsai':'One-of-a-kind piece',pot:'Conforme foto',potEn:'As pictured',emoji:'🌳',imageUrl:img,
+      id,namePt:labelPt,nameEn:labelEn,species:namePt||'Bonsai',speciesEn:nameEn||'Bonsai',category,market,price,priceUsd,stock:1,height:'Sob consulta',heightEn:'Ask for details',age:ageLabel,ageEn:ageLabelEn,style:category==='prebonsai'?'Pré-bonsai':'Peça única',styleEn:category==='prebonsai'?'Pre-bonsai':'One-of-a-kind piece',pot:'Conforme foto',potEn:'As pictured',emoji:'🌳',imageUrl:img,
       ...catalogInquiry(labelPt,labelEn),
       descPt:`Peça real do catálogo Alquimia do Bonsai: ${labelPt}. Consulte disponibilidade, valor atualizado e envio pelo WhatsApp.`,
       descEn:`Real catalog piece from Bonsai Alchemy: ${labelEn}. Check availability, current price, and shipping through WhatsApp.`,
@@ -1143,13 +1153,17 @@ function initDB(){
   if(!DB.get('siteContent')) DB.set('siteContent',{taglinePt:'Transformando árvores. Inspirando vidas.',taglineEn:'Transforming trees. Inspiring lives.',waBr:'5521964109840',waUsa:'17869780745',igBr:'alquimiadobonsai',igUsa:'bonsaialchemy',aboutPt:'Somos Alexandre Braga e Luane Salles.',aboutEn:'We are Alexandre Braga and Luane Salles.'});
 }
 initDB();
+let currentLang='pt';
 function setLang(l){
+  currentLang=l;
   document.body.className=document.body.className.replace(/lang-\w+/,'')+' lang-'+l;
   document.documentElement.lang=l==='en'?'en':'pt';
   document.title=l==='en'?'Bonsai Alchemy':'Alquimia do Bonsai';
   document.querySelector("link[rel='icon']")?.setAttribute('href',l==='en'?'assets/brand-bonsai-alchemy-logo.jpg':'assets/brand-alquimia-logo.jpg');
   document.querySelector("link[rel='apple-touch-icon']")?.setAttribute('href',l==='en'?'assets/brand-bonsai-alchemy-logo.jpg':'assets/brand-alquimia-logo.jpg');
   document.querySelectorAll('#lang-toggle button').forEach((b,i)=>b.classList.toggle('active',(i===0&&l==='pt')||(i===1&&l==='en')));
+  renderHomeProducts();
+  if(currentPage==='shop')renderShop();
 }
 let currentPage='home';
 function closeMobileNav(){document.getElementById('topbar')?.classList.remove('nav-open');}
@@ -1209,19 +1223,28 @@ function doRegister(){
 async function logout(){if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;sessionStorage.removeItem('adb_session');showPage('home');toast('Até logo! 🌳');}
 function getProducts(){return remoteProducts||DB.get('products')||[];}
 const SHOP_CATEGORIES=['bonsai','prebonsai','produto'];
-function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category));}
+function productVisibleForLang(p){
+  const market=p.market||'pt';
+  return market==='both'||market===currentLang;
+}
+function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category)&&productVisibleForLang(p));}
 function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
 function productDetailImage(p){return p.imageUrl?`<div class="product-detail-img has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-detail-img">${p.emoji||'🌳'}</div>`;}
 function moneyLabel(p){
   const value=Number(p.price||0).toLocaleString(p.currency==='USD'?'en-US':'pt-BR',{minimumFractionDigits:2});
   return p.currency==='USD'?'US$ '+value:'R$ '+value;
 }
+function brlLabel(value){return 'R$ '+Number(value||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function usdLabel(value){return 'US$ '+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2});}
 function productPriceLabels(p){
   if(p.category==='material') return {pt:'Pedir no WhatsApp',en:'Request on WhatsApp'};
   if(p.category==='curso') return {pt:'Valor sob consulta',en:'Ask for price'};
-  if(Number(p.price||0)===0) return {pt:'Sob consulta',en:'Ask for price'};
-  const label=moneyLabel(p);
-  return {pt:label,en:p.currency==='BRL'?'BRL '+Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2}):label};
+  const ptPrice=Number(p.price||0);
+  const enPrice=Number(p.priceUsd||0);
+  return {
+    pt:ptPrice>0?brlLabel(ptPrice):'Sob consulta',
+    en:enPrice>0?usdLabel(enPrice):(ptPrice>0&&p.market==='both'?'Ask current US price':'Ask for price')
+  };
 }
 function productPriceHtml(p,cls='product-price-card'){
   const label=productPriceLabels(p);
@@ -1273,7 +1296,7 @@ let curFilter='all';
 function renderShop(f){if(f)curFilter=f;const base=getShopProducts();const prods=base.filter(p=>curFilter==='all'||p.category===curFilter);const g=document.getElementById('shop-products-grid');const e=document.getElementById('shop-empty');if(!g)return;if(prods.length===0){g.innerHTML='';e.classList.remove('hidden');}else{e.classList.add('hidden');g.innerHTML=prods.map(productCard).join('');}}
 function filterShop(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderShop(cat);}
 function openProductDetail(id){
-  const p=getProducts().find(x=>x.id===id);if(!p)return;
+  const p=getShopProducts().find(x=>x.id===id);if(!p)return;
   const price=productPriceHtml(p,'product-detail-price');
   document.getElementById('product-detail-content').innerHTML=`
     ${productDetailImage(p)}
@@ -1392,17 +1415,17 @@ function renderDashboard(){
 let apf='';
 function filterAdminProducts(v){apf=v.toLowerCase();renderAdminProducts();}
 function renderAdminProducts(){
-  const prods=getProducts().filter(p=>!apf||p.namePt.toLowerCase().includes(apf)||p.species.toLowerCase().includes(apf));
+  const prods=getProducts().filter(p=>!apf||p.namePt.toLowerCase().includes(apf)||(p.nameEn||'').toLowerCase().includes(apf)||p.species.toLowerCase().includes(apf));
   const t=document.getElementById('admin-products-table');if(!t)return;
-  t.innerHTML=prods.map(p=>`<tr><td>${p.emoji||'🌳'} ${p.namePt}</td><td style="color:var(--muted);font-style:italic">${p.species}</td><td><span class="tag">${p.category}</span></td><td style="color:var(--gold)">R$ ${Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td>${p.stock}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openProductModal('${p.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button></div></td></tr>`).join('');
+  t.innerHTML=prods.map(p=>`<tr><td>${p.emoji||'🌳'} ${p.namePt||p.nameEn}</td><td style="color:var(--muted);font-style:italic">${p.species}</td><td><span class="tag">${p.category}</span> <span class="tag">${p.market==='en'?'EUA/EN':p.market==='both'?'PT+EN':'BR/PT'}</span></td><td style="color:var(--gold)">${p.market==='en'?usdLabel(p.priceUsd):brlLabel(p.price)}${p.market==='both'&&p.priceUsd?` / ${usdLabel(p.priceUsd)}`:''}</td><td>${p.stock}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openProductModal('${p.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button></div></td></tr>`).join('');
 }
 function openProductModal(id){
   document.getElementById('product-edit-title').textContent=id?'Editar item':'Adicionar item';
   document.getElementById('edit-product-id').value=id||'';
-  ['name-pt','name-en','species','price','stock','height','age','style','pot','image','link','desc-pt','desc-en','care-pt','care-en'].forEach(f=>{const el=document.getElementById('ep-'+f);if(el)el.value='';});
+  ['name-pt','name-en','species','price','price-usd','stock','height','age','style','pot','image','link','desc-pt','desc-en','care-pt','care-en'].forEach(f=>{const el=document.getElementById('ep-'+f);if(el)el.value='';});
   const file=document.getElementById('ep-file');if(file)file.value='';
-  document.getElementById('ep-emoji').value='🌳';document.getElementById('ep-category').value='bonsai';
-  if(id){const p=getProducts().find(x=>x.id===id);if(p){document.getElementById('ep-name-pt').value=p.namePt||'';document.getElementById('ep-name-en').value=p.nameEn||'';document.getElementById('ep-species').value=p.species||'';document.getElementById('ep-category').value=p.category||'produto';document.getElementById('ep-price').value=p.price||0;document.getElementById('ep-stock').value=p.stock||0;document.getElementById('ep-height').value=p.height||'';document.getElementById('ep-age').value=p.age||'';document.getElementById('ep-style').value=p.style||'';document.getElementById('ep-pot').value=p.pot||'';document.getElementById('ep-image').value=p.imageUrl||'';document.getElementById('ep-link').value=p.buyUrl||'';document.getElementById('ep-emoji').value=p.emoji||'🌳';document.getElementById('ep-desc-pt').value=p.descPt||'';document.getElementById('ep-desc-en').value=p.descEn||'';document.getElementById('ep-care-pt').value=p.carePt||'';document.getElementById('ep-care-en').value=p.careEn||'';}}
+  document.getElementById('ep-emoji').value='🌳';document.getElementById('ep-category').value='bonsai';document.getElementById('ep-market').value='pt';
+  if(id){const p=getProducts().find(x=>x.id===id);if(p){document.getElementById('ep-name-pt').value=p.namePt||'';document.getElementById('ep-name-en').value=p.nameEn||'';document.getElementById('ep-species').value=p.species||'';document.getElementById('ep-category').value=p.category||'produto';document.getElementById('ep-market').value=p.market||'pt';document.getElementById('ep-price').value=p.price||0;document.getElementById('ep-price-usd').value=p.priceUsd||0;document.getElementById('ep-stock').value=p.stock||0;document.getElementById('ep-height').value=p.height||'';document.getElementById('ep-age').value=p.age||'';document.getElementById('ep-style').value=p.style||'';document.getElementById('ep-pot').value=p.pot||'';document.getElementById('ep-image').value=p.imageUrl||'';document.getElementById('ep-link').value=p.buyUrl||'';document.getElementById('ep-emoji').value=p.emoji||'🌳';document.getElementById('ep-desc-pt').value=p.descPt||'';document.getElementById('ep-desc-en').value=p.descEn||'';document.getElementById('ep-care-pt').value=p.carePt||'';document.getElementById('ep-care-en').value=p.careEn||'';}}
   openModal('modal-product-edit');
 }
 async function uploadCatalogImage(){
@@ -1422,10 +1445,11 @@ async function saveProduct(){
   const id=document.getElementById('edit-product-id').value;const prods=getProducts();
   let imageUrl;
   try{imageUrl=await uploadCatalogImage();}catch(error){toast('Erro ao enviar imagem: '+error.message);return;}
-  const p={id:id||'p'+Date.now(),namePt:document.getElementById('ep-name-pt').value.trim(),nameEn:document.getElementById('ep-name-en').value.trim(),species:document.getElementById('ep-species').value||'—',category:document.getElementById('ep-category').value,price:parseFloat(document.getElementById('ep-price').value)||0,stock:parseInt(document.getElementById('ep-stock').value)||0,height:document.getElementById('ep-height').value||'—',age:document.getElementById('ep-age').value||'—',style:document.getElementById('ep-style').value||'—',pot:document.getElementById('ep-pot').value||'—',imageUrl,emoji:document.getElementById('ep-emoji').value||'🌳',descPt:document.getElementById('ep-desc-pt').value,descEn:document.getElementById('ep-desc-en').value,carePt:document.getElementById('ep-care-pt').value,careEn:document.getElementById('ep-care-en').value,created:id?(prods.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()};
+  const p={id:id||'p'+Date.now(),namePt:document.getElementById('ep-name-pt').value.trim(),nameEn:document.getElementById('ep-name-en').value.trim(),species:document.getElementById('ep-species').value||'—',category:document.getElementById('ep-category').value,market:document.getElementById('ep-market').value,price:parseFloat(document.getElementById('ep-price').value)||0,priceUsd:parseFloat(document.getElementById('ep-price-usd').value)||0,stock:parseInt(document.getElementById('ep-stock').value)||0,height:document.getElementById('ep-height').value||'—',age:document.getElementById('ep-age').value||'—',style:document.getElementById('ep-style').value||'—',pot:document.getElementById('ep-pot').value||'—',imageUrl,emoji:document.getElementById('ep-emoji').value||'🌳',descPt:document.getElementById('ep-desc-pt').value,descEn:document.getElementById('ep-desc-en').value,carePt:document.getElementById('ep-care-pt').value,careEn:document.getElementById('ep-care-en').value,created:id?(prods.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()};
   p.buyUrl=document.getElementById('ep-link').value.trim()||productWhatsappPt(p);
   p.buyUrlEn=productWhatsappEn(p);
-  if(!p.namePt){toast('Nome é obrigatório!');return;}
+  if((p.market==='pt'||p.market==='both')&&!p.namePt){toast('Nome PT é obrigatório para itens do Brasil.');return;}
+  if((p.market==='en'||p.market==='both')&&!p.nameEn){toast('Nome EN é obrigatório para itens dos EUA.');return;}
   if(currentUser&&currentUser.role==='admin'&&supabaseClient){
     const payload=productToRow(p);
     let result;
