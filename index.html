@@ -62,16 +62,11 @@ img,video,canvas,svg{max-width:100%;}
 .content-item h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--white);line-height:1.2;}
 .content-item p{font-size:.76rem;color:var(--muted);line-height:1.65;}
 .content-item .mini-label{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
-.creator-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.12);margin-top:3.5rem;}
+.creator-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.12);margin-top:3.5rem;}
 .creator-card{background:var(--deep);padding:1.6rem;text-decoration:none;color:inherit;min-height:220px;}
 .creator-card img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;background:#EEE4D0;margin-bottom:1rem;}
 .creator-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--white);margin-bottom:.45rem;}
 .creator-card p{font-size:.78rem;color:var(--muted);line-height:1.65;}
-.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:3.5rem;}
-.portfolio-shot{background:#fff;border:1px solid rgba(36,64,25,.1);box-shadow:0 18px 46px rgba(16,17,14,.06);overflow:hidden;}
-.portfolio-shot img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center;display:block;background:#EEE4D0;}
-.portfolio-shot figcaption{padding:1rem;font-size:.72rem;color:var(--muted);line-height:1.55;}
-.portfolio-shot strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--white);margin-bottom:.25rem;}
 /* TOPBAR */
 #topbar{position:fixed;top:0;left:0;right:0;width:100%;max-width:100%;z-index:900;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(10,10,8,.97),rgba(10,10,8,.7));backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,168,76,.1);}
 .topbar-logo{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.18em;color:var(--gold);cursor:pointer;}
@@ -121,13 +116,15 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;}
 .philosophy-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem;}
 .philosophy-text p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;line-height:1.85;color:rgba(240,237,228,.82);margin-bottom:1.4rem;}
 .philosophy-visual{text-align:center;}
+.method-visual-img{display:block;width:min(360px,100%);margin:0 auto;border:1px solid rgba(201,168,76,.18);box-shadow:0 28px 70px rgba(16,17,14,.16);background:#050505;}
 .alchemical-symbol{font-size:6rem;filter:drop-shadow(0 0 28px rgba(201,168,76,.3));}
 .phil-quote{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);margin-top:1.5rem;font-size:1.1rem;}
 .seven-transform{margin-top:2.5rem;display:flex;flex-direction:column;gap:.6rem;}
-.transform-step{display:flex;align-items:center;gap:1rem;padding:.7rem 1.2rem;border-left:1px solid rgba(201,168,76,.22);transition:border-color .3s,background .3s;}
+.transform-step{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:1rem;padding:.85rem 1.2rem;border-left:1px solid rgba(201,168,76,.22);transition:border-color .3s,background .3s;}
 .transform-step:hover{border-color:var(--gold);background:rgba(201,168,76,.03);}
 .step-num{font-family:'Cinzel',serif;font-size:.62rem;color:var(--gold);min-width:1.5rem;}
 .step-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--cream);}
+.step-desc{display:block;font-size:.78rem;line-height:1.55;color:var(--muted);margin-top:.1rem;}
 /* PRODUCTS */
 #shop-section{background:var(--black);padding:6rem 2rem;}
 .shop-intro{max-width:600px;margin-bottom:3.5rem;}
@@ -337,16 +334,12 @@ canvas#particles{opacity:.16;}
 .material-note{margin-top:1.2rem;padding:1rem 1.2rem;background:#fff;border-left:3px solid #B88A2A;color:#625D52;font-size:.86rem;line-height:1.7;max-width:720px;}
 .material-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem;}
 .product-img-placeholder{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.4;text-align:center;padding:1.4rem;color:#385529;}
-.portfolio-grid{display:none;}
-.portfolio-shot:nth-child(n+4){display:none;}
-.portfolio-shot img{aspect-ratio:4/3;}
-@media(max-width:900px){.portfolio-grid{grid-template-columns:1fr;}.portfolio-shot:nth-child(n+4){display:block;}}
 .feature-card,.content-item,.creator-card,.product-card{background:#fff;border:1px solid rgba(36,64,25,.1);box-shadow:0 18px 46px rgba(16,17,14,.06);transition:transform .3s,border-color .3s,box-shadow .3s;}
 .alt .feature-card{background:#F7F3E9;}
 .alt .content-item,.alt .creator-card{background:#F7F3E9;}
 .feature-card:hover,.content-item:hover,.creator-card:hover,.product-card:hover{box-shadow:0 22px 54px rgba(16,17,14,.1);border-color:rgba(184,138,42,.32);}
-.feature-card h3,.content-item h3,.creator-card h3,.portfolio-shot strong,.product-name-card,.value-item .value-title{color:#1B1B16;}
-.feature-card p,.content-item p,.creator-card p,.portfolio-shot figcaption,.showcase-panel p,.product-desc-card,.value-item p{color:#6C665A;}
+.feature-card h3,.content-item h3,.creator-card h3,.product-name-card,.value-item .value-title{color:#1B1B16;}
+.feature-card p,.content-item p,.creator-card p,.showcase-panel p,.product-desc-card,.value-item p{color:#6C665A;}
 .product-img-placeholder{background:linear-gradient(145deg,#EEE4D0,#FAF8F0);color:#385529;}
 .product-img-placeholder.has-image{padding:0;overflow:hidden;background:#EEE4D0;}
 .product-img-placeholder.has-image img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#EEE4D0;}
@@ -365,7 +358,7 @@ canvas#particles{opacity:.16;}
 #page-shop,#page-wishlist,#page-cart,#page-profile,#page-admin{background:#F7F3E9;color:#2B2B24;}
 .shop-page-header,.wishlist-header,.cart-header,.profile-header,.admin-header{background:#fff;border-bottom-color:rgba(36,64,25,.12);}
 @media(max-width:900px){.official-hero{grid-template-columns:1fr;text-align:center;gap:2rem;padding:3rem 1rem 0;width:100%;}.official-logo{margin-left:auto;margin-right:auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-cta{justify-content:center}.official-media{min-height:320px;width:100%;}#hero{background:linear-gradient(180deg,#F7F3E9 0%,#EFE6D2 58%,#1B2417 58%,#0F150D 100%);}.official-media img{width:min(360px,90vw);}}
-@media(max-width:600px){#hero{align-items:flex-start;padding-top:5.6rem;min-height:auto;}.official-logo{width:88px}.official-logo[data-en]{width:98px}.hero-title{font-size:clamp(2.5rem,15vw,3.9rem);max-width:100%;overflow-wrap:break-word}.hero-sub{max-width:min(340px,100%);}.official-media{min-height:260px}.hero-cta{display:grid;grid-template-columns:minmax(0,1fr);gap:.75rem;width:100%;max-width:370px;margin-left:auto;margin-right:auto}.hero-cta .btn{width:100%;max-width:100%;text-align:center;padding:.9rem .75rem;background:#fff;color:#1D2D17;border:1px solid rgba(29,45,23,.28);box-shadow:0 10px 22px rgba(16,17,14,.08);white-space:normal}.hero-cta .btn-gold{background:#1D2D17;color:#fff;border-color:#1D2D17}.book-btns{display:grid;grid-template-columns:minmax(0,1fr);width:100%;}.book-btns .btn{width:100%;max-width:100%;text-align:center;white-space:normal}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}.portfolio-grid,.products-grid,.feature-grid,.content-list,.creator-grid{grid-template-columns:1fr!important;width:100%;}.portfolio-shot,.product-card,.feature-card,.content-item,.creator-card{width:100%;max-width:100%;}}
+@media(max-width:600px){#hero{align-items:flex-start;padding-top:5.6rem;min-height:auto;}.official-logo{width:88px}.official-logo[data-en]{width:98px}.hero-title{font-size:clamp(2.5rem,15vw,3.9rem);max-width:100%;overflow-wrap:break-word}.hero-sub{max-width:min(340px,100%);}.official-media{min-height:260px}.hero-cta{display:grid;grid-template-columns:minmax(0,1fr);gap:.75rem;width:100%;max-width:370px;margin-left:auto;margin-right:auto}.hero-cta .btn{width:100%;max-width:100%;text-align:center;padding:.9rem .75rem;background:#fff;color:#1D2D17;border:1px solid rgba(29,45,23,.28);box-shadow:0 10px 22px rgba(16,17,14,.08);white-space:normal}.hero-cta .btn-gold{background:#1D2D17;color:#fff;border-color:#1D2D17}.book-btns{display:grid;grid-template-columns:minmax(0,1fr);width:100%;}.book-btns .btn{width:100%;max-width:100%;text-align:center;white-space:normal}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}.products-grid,.feature-grid,.content-list,.creator-grid{grid-template-columns:1fr!important;width:100%;}.product-card,.feature-card,.content-item,.creator-card{width:100%;max-width:100%;}}
 .menu-btn{display:none;background:#fff;border:1px solid rgba(36,64,25,.16);color:#244019;width:40px;height:40px;align-items:center;justify-content:center;font-size:1.15rem;line-height:1;cursor:pointer;box-shadow:0 8px 20px rgba(36,64,25,.08);}
 #courses-section,#contents-section,#social-section,#events-section{display:none;}
 @media(max-width:760px){
@@ -424,7 +417,7 @@ body.lang-pt [data-en]{display:none!important;}
         </div>
       </div>
       <div class="official-media" aria-hidden="true">
-        <img src="assets/alexandre-luane-bonsai.jpg" alt="Alexandre e Luane com bonsai"/>
+        <img src="assets/hero-alexandre-luane-grande-bonsai.jpg" alt="Alexandre e Luane com um grande bonsai"/>
       </div>
     </div>
     <div class="scroll-hint"><span data-pt>Role</span><span data-en>Scroll</span><div class="scroll-line"></div></div>
@@ -442,25 +435,20 @@ body.lang-pt [data-en]{display:none!important;}
           <p data-pt>Fundada por Alexandre &amp; Luane, nossa marca nasceu em Niterói e floresceu para os Estados Unidos e outros países, conectando pessoas à natureza, ao sagrado e a si mesmas através do Método das 7 Transformações.</p>
           <p data-en>Founded by Alexandre &amp; Luane, our brand was born in Niterói and expanded to the United States and other countries, connecting people to nature, the sacred, and themselves through the 7 Transformations Method.</p>
           <div class="seven-transform">
-            <div class="transform-step"><span class="step-num">01</span><span class="step-name" data-pt>Conectar</span><span class="step-name" data-en>Connect</span></div>
-            <div class="transform-step"><span class="step-num">02</span><span class="step-name" data-pt>Despertar</span><span class="step-name" data-en>Awaken</span></div>
-            <div class="transform-step"><span class="step-num">03</span><span class="step-name" data-pt>Cultivar</span><span class="step-name" data-en>Cultivate</span></div>
-            <div class="transform-step"><span class="step-num">04</span><span class="step-name" data-pt>Podar</span><span class="step-name" data-en>Prune</span></div>
-            <div class="transform-step"><span class="step-num">05</span><span class="step-name" data-pt>Fortalecer</span><span class="step-name" data-en>Strengthen</span></div>
-            <div class="transform-step"><span class="step-num">06</span><span class="step-name" data-pt>Florescer</span><span class="step-name" data-en>Flourish</span></div>
-            <div class="transform-step"><span class="step-num">07</span><span class="step-name" data-pt>Transbordar</span><span class="step-name" data-en>Overflow</span></div>
+            <div class="transform-step"><span class="step-num">01</span><span><span class="step-name" data-pt>Conectar</span><span class="step-name" data-en>Connect</span><span class="step-desc" data-pt>Reconectar-se com Deus, consigo mesmo e com a natureza.</span><span class="step-desc" data-en>Reconnect with God, yourself, and nature.</span></span></div>
+            <div class="transform-step"><span class="step-num">02</span><span><span class="step-name" data-pt>Despertar</span><span class="step-name" data-en>Awaken</span><span class="step-desc" data-pt>Perceber o que precisa ser transformado.</span><span class="step-desc" data-en>Notice what needs to be transformed.</span></span></div>
+            <div class="transform-step"><span class="step-num">03</span><span><span class="step-name" data-pt>Cultivar</span><span class="step-name" data-en>Cultivate</span><span class="step-desc" data-pt>Criar hábitos que fortalecem uma nova vida.</span><span class="step-desc" data-en>Create habits that strengthen a new life.</span></span></div>
+            <div class="transform-step"><span class="step-num">04</span><span><span class="step-name" data-pt>Podar</span><span class="step-name" data-en>Prune</span><span class="step-desc" data-pt>Deixar para trás o que impede seu crescimento.</span><span class="step-desc" data-en>Leave behind what prevents your growth.</span></span></div>
+            <div class="transform-step"><span class="step-num">05</span><span><span class="step-name" data-pt>Fortalecer</span><span class="step-name" data-en>Strengthen</span><span class="step-desc" data-pt>Desenvolver raízes profundas e uma base sólida.</span><span class="step-desc" data-en>Develop deep roots and a solid foundation.</span></span></div>
+            <div class="transform-step"><span class="step-num">06</span><span><span class="step-name" data-pt>Florescer</span><span class="step-name" data-en>Flourish</span><span class="step-desc" data-pt>Expressar o seu potencial com equilíbrio.</span><span class="step-desc" data-en>Express your potential with balance.</span></span></div>
+            <div class="transform-step"><span class="step-num">07</span><span><span class="step-name" data-pt>Transbordar</span><span class="step-name" data-en>Overflow</span><span class="step-desc" data-pt>Compartilhar sua transformação e inspirar outras pessoas.</span><span class="step-desc" data-en>Share your transformation and inspire other people.</span></span></div>
           </div>
         </div>
         <div class="philosophy-visual">
-          <div class="alchemical-symbol">⚗️</div>
+          <img class="method-visual-img" src="assets/method-fingerprint-tree.jpg" alt="Árvore, raízes e digital representando transformação"/>
           <p class="phil-quote" data-pt>"O que recebe cuidado, cresce."</p>
           <p class="phil-quote" data-en>"What receives care, grows."</p>
         </div>
-      </div>
-      <div class="feature-grid" style="margin-top:3.5rem;">
-        <div class="feature-card"><h3 data-pt>Comprar um bonsai</h3><h3 data-en>Buy a bonsai</h3><p data-pt>Peças reais do catálogo, com consulta direta pelo WhatsApp.</p><p data-en>Real catalog pieces, with direct WhatsApp inquiry.</p></div>
-        <div class="feature-card"><h3 data-pt>Conhecer a escola</h3><h3 data-en>Discover the school</h3><p data-pt>Cursos, mentorias e workshops para evoluir com técnica e acompanhamento.</p><p data-en>Courses, mentorships, and workshops to grow with technique and guidance.</p></div>
-        <div class="feature-card"><h3 data-pt>Conhecer o livro</h3><h3 data-en>Explore the book</h3><p data-pt>O Método das 7 Transformações em uma jornada de cuidado e presença.</p><p data-en>The 7 Transformations Method in a journey of care and presence.</p></div>
       </div>
     </div>
   </section>
@@ -656,43 +644,11 @@ body.lang-pt [data-en]{display:none!important;}
           <p data-en>Art, technique, education, and care for living trees. Alexandre leads the practical, aesthetic, and technical side of bonsai training.</p>
         </div>
         <div class="creator-card">
-          <img src="assets/luane-salles.jpg" alt="Luane Salles ao lado de um bonsai" style="object-position:58% center;"/>
+          <img src="assets/luane-salles-bonsai-cinza.jpg" alt="Luane Salles ao lado de um bonsai" style="object-position:center;"/>
           <h3>Luane Salles</h3>
           <p data-pt>Transformação, comunicação e propósito para aproximar pessoas da natureza, do sagrado e de si mesmas.</p>
           <p data-en>Transformation, communication, and purpose to connect people with nature, the sacred, and themselves.</p>
         </div>
-        <div class="creator-card">
-          <img src="assets/catalogo-colecao-hero.jpg" alt="Coleção de bonsai e pré-bonsai da Alquimia do Bonsai"/>
-          <h3 data-pt>Catálogo vivo</h3><h3 data-en>Living Catalog</h3>
-          <p data-pt>Peças reais, pré-bonsai e árvores de coleção organizadas para consulta e venda.</p>
-          <p data-en>Real pieces, pre-bonsai, and collector trees organized for inquiry and sale.</p>
-        </div>
-      </div>
-      <div class="portfolio-grid">
-        <figure class="portfolio-shot">
-          <img src="assets/catalogo-colecao-vitrine.jpg" alt="Vitrine com bonsai e pré-bonsai"/>
-          <figcaption><strong>Vitrine do catálogo</strong><span data-pt>Seleção de bonsai e pré-bonsai para consulta pelo WhatsApp.</span><span data-en>Selection of bonsai and pre-bonsai for WhatsApp inquiry.</span></figcaption>
-        </figure>
-        <figure class="portfolio-shot">
-          <img src="assets/bonsai-catalogo-01.jpg" alt="Alexandre trabalhando em bonsai" style="object-position:42% center;"/>
-          <figcaption><strong>Alexandre em trabalho</strong><span data-pt>Registro de cuidado técnico, poda e condução de uma peça viva.</span><span data-en>Technical care, pruning and shaping of a living piece.</span></figcaption>
-        </figure>
-        <figure class="portfolio-shot">
-          <img src="assets/bonsai-catalogo-02.jpg" alt="Luane ao lado de bonsai" style="object-position:58% center;"/>
-          <figcaption><strong>Luane &amp; Bonsai</strong><span data-pt>Presença, escala e conexão com árvores de coleção.</span><span data-en>Presence, scale and connection with collector trees.</span></figcaption>
-        </figure>
-        <figure class="portfolio-shot">
-          <img src="assets/bonsai-catalogo-03.jpg" alt="Luane com bonsai em formação" style="object-position:55% center;"/>
-          <figcaption><strong>Portfólio vivo</strong><span data-pt>Exemplos de árvores trabalhadas pela Alquimia do Bonsai.</span><span data-en>Examples of trees shaped by Bonsai Alchemy.</span></figcaption>
-        </figure>
-        <figure class="portfolio-shot">
-          <img src="assets/bonsai-catalogo-04.jpg" alt="Alexandre com bonsai de madeira morta" style="object-position:45% center;"/>
-          <figcaption><strong>Madeira morta</strong><span data-pt>Textura, idade visual e composição escultórica.</span><span data-en>Texture, visual age and sculptural composition.</span></figcaption>
-        </figure>
-        <figure class="portfolio-shot">
-          <img src="assets/bonsai-catalogo-05.jpg" alt="Luane com bonsai de base larga" style="object-position:center;"/>
-          <figcaption><strong>Árvores de presença</strong><span data-pt>Registros para inspirar, apresentar o trabalho e fortalecer a marca.</span><span data-en>Records to inspire, present the work and strengthen the brand.</span></figcaption>
-        </figure>
       </div>
     </div>
   </section>
