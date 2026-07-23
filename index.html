@@ -153,10 +153,9 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;}
 #book-section::before{content:'';position:absolute;top:-40%;right:-5%;width:550px;height:550px;background:radial-gradient(circle,rgba(201,168,76,.07),transparent 70%);pointer-events:none;}
 .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 .book-cover{text-align:center;}
-.book-gallery{display:grid;gap:1rem;grid-template-columns:.7fr 1fr;align-items:center;}
-.book-gallery img{width:100%;display:block;border-radius:4px;box-shadow:0 24px 70px rgba(16,17,14,.16);background:#EEE4D0;}
-.book-gallery .book-cover-portrait{max-height:620px;object-fit:contain;}
-.book-gallery .book-cover-wide{object-fit:contain;max-height:520px;}
+.book-gallery{display:grid;gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;}
+.book-gallery img{width:100%;height:420px;display:block;border-radius:4px;box-shadow:0 24px 70px rgba(16,17,14,.16);background:#EEE4D0;object-fit:contain;object-position:center;}
+.book-gallery .book-cover-portrait,.book-gallery .book-cover-wide{max-height:none;}
 .book-visual{width:240px;height:340px;background:linear-gradient(150deg,#1e4010,#2d5c1e);border-radius:3px 10px 10px 3px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:10px 10px 45px rgba(0,0,0,.65),-2px 0 8px rgba(0,0,0,.4);padding:2rem;position:relative;overflow:hidden;}
 .book-visual::before{content:'';position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(to right,#0d1f08,#1a3a0f);}
 .book-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse,rgba(74,122,48,.2),transparent 70%);pointer-events:none;}
@@ -244,7 +243,7 @@ footer{background:var(--deep);padding:3rem 2rem;text-align:center;border-top:1px
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes scrollPulse{0%,100%{opacity:.4;}50%{opacity:1;}}
 @media(max-width:900px){.philosophy-grid,.book-grid,.about-grid{grid-template-columns:1fr;gap:2rem;}.admin-layout{grid-template-columns:1fr;}.product-detail-grid{grid-template-columns:1fr;}}
-@media(max-width:900px){.content-showcase,.creator-grid{grid-template-columns:1fr;}.showcase-media{min-height:280px;}.book-gallery{grid-template-columns:1fr;max-width:560px;margin:0 auto;}}
+@media(max-width:900px){.content-showcase,.creator-grid{grid-template-columns:1fr;}.showcase-media{min-height:280px;}.book-gallery{grid-template-columns:1fr;max-width:560px;margin:0 auto;}.book-gallery img{height:360px;}}
 @media(max-width:600px){.topbar-nav{display:none;}#topbar{padding:.8rem 1rem;}}
 /* PROFESSIONAL SITE REFINEMENT */
 :root{--black:#10110E;--deep:#F7F3E9;--panel:#FFFFFF;--green:#244019;--green-light:#5B7F3C;--gold:#B88A2A;--gold-light:#D9B65F;--gold-dim:rgba(184,138,42,.18);--cream:#2B2B24;--muted:#746F62;--white:#11110E;}
@@ -437,10 +436,10 @@ body.lang-pt [data-en]{display:none!important;}
       <div class="book-grid">
         <div class="book-cover">
           <div class="book-gallery">
-            <img class="book-cover-portrait" data-pt src="assets/book-cover-pt.png" alt="Capa do livro Cuide da sua Alma - Lições do Bonsai"/>
+            <img class="book-cover-portrait" data-pt src="assets/book-cover-pt-new.jpg" alt="Capa do livro Cuide da sua Alma - Lições do Bonsai"/>
             <img class="book-cover-portrait" data-en src="assets/book-en-3d.jpg" alt="Take Care of Your Soul book cover"/>
-            <img class="book-cover-wide" data-pt src="assets/cuide-da-sua-alma-clean.png" alt="Livro Cuide da sua Alma em versão física e digital"/>
-            <img class="book-cover-wide" data-en src="assets/book-en-lifestyle.jpg" alt="Take Care of Your Soul book in English"/>
+            <img class="book-cover-wide" data-pt src="assets/book-open-pt.jpg" alt="Livro Cuide da sua Alma aberto em português"/>
+            <img class="book-cover-wide" data-en src="assets/book-open-en.jpg" alt="Take Care of Your Soul open book in English"/>
           </div>
         </div>
         <div class="book-info">
