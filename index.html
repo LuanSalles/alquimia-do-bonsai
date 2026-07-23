@@ -4,6 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Bonsai Alchemy</title>
+<meta name="description" content="Bonsai Alchemy / Alquimia do Bonsai: live bonsai catalog, bonsai education, courses, and the book Take Care of Your Soul."/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Bonsai Alchemy · Alquimia do Bonsai"/>
+<meta property="og:description" content="Pre-bonsai, bonsai and education to cultivate living trees with technique, presence and purpose."/>
+<meta property="og:image" content="https://alquimiadobonsai.vercel.app/assets/hero-alexandre-luane-grande-bonsai.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" type="image/jpeg" href="assets/brand-bonsai-alchemy-logo.jpg"/>
 <link rel="apple-touch-icon" href="assets/brand-bonsai-alchemy-logo.jpg"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
@@ -199,55 +205,9 @@ footer{background:var(--deep);padding:3rem 2rem;text-align:center;border-top:1px
 .filter-btn{background:transparent;border:1px solid var(--gold-dim);color:var(--muted);padding:.4rem 1rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
 .filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
 .shop-page-grid{padding:3rem 2rem;}
-/* WISHLIST */
-#page-wishlist{padding-top:80px;}
-.wishlist-header{padding:3rem 2rem;background:var(--deep);border-bottom:1px solid var(--gold-dim);}
-.wishlist-grid{padding:3rem 2rem;}
 .empty-state{text-align:center;padding:5rem 2rem;color:var(--muted);}
 .empty-state .empty-icon{font-size:3.5rem;margin-bottom:1rem;}
 .empty-state p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;}
-/* CART */
-#page-cart{padding-top:80px;}
-.cart-header{padding:2rem 2rem 0;background:var(--deep);border-bottom:1px solid var(--gold-dim);}
-.cart-header h1{padding-bottom:2rem;}
-.cart-layout{display:grid;grid-template-columns:1fr 360px;gap:2rem;padding:3rem 2rem;align-items:start;}
-.cart-item{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,.1);align-items:center;}
-.cart-item-img{width:80px;height:65px;background:var(--panel);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2rem;}
-.cart-item-info{flex:1;}
-.cart-item-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);}
-.cart-item-species{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;}
-.cart-item-price{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);}
-.cart-item-qty{display:flex;align-items:center;gap:.7rem;margin-top:.5rem;}
-.qty-btn{background:var(--deep);border:1px solid var(--gold-dim);color:var(--cream);width:26px;height:26px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .3s;}
-.qty-btn:hover{border-color:var(--gold);color:var(--gold);}
-.cart-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;transition:color .3s;margin-left:.3rem;}
-.cart-item-remove:hover{color:var(--red);}
-.cart-summary{background:var(--deep);border:1px solid var(--gold-dim);padding:2rem;position:sticky;top:100px;}
-.cart-summary h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);margin-bottom:1.5rem;}
-.summary-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(201,168,76,.1);font-size:.82rem;color:var(--muted);}
-.summary-row.total{border-bottom:none;color:var(--white);font-family:'Cinzel',serif;font-size:1rem;margin-top:.5rem;padding-top:1rem;border-top:1px solid var(--gold-dim);}
-.summary-row.total span:last-child{color:var(--gold);}
-/* PROFILE */
-#page-profile{padding-top:80px;}
-.profile-layout{display:grid;grid-template-columns:240px 1fr;gap:2rem;padding:3rem 2rem;min-height:80vh;}
-.profile-sidebar{background:var(--deep);border:1px solid var(--gold-dim);padding:2rem;height:fit-content;}
-.profile-avatar{width:70px;height:70px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;}
-.profile-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);text-align:center;}
-.profile-email{font-size:.7rem;color:var(--muted);text-align:center;margin-bottom:1.5rem;}
-.profile-nav{display:flex;flex-direction:column;gap:.3rem;}
-.profile-nav button{background:none;border:none;color:var(--muted);font-family:'Inter',sans-serif;font-size:.75rem;text-align:left;padding:.7rem 1rem;cursor:pointer;transition:all .3s;border-left:2px solid transparent;}
-.profile-nav button.active,.profile-nav button:hover{color:var(--gold);border-left-color:var(--gold);}
-.profile-content{background:var(--deep);border:1px solid var(--gold-dim);padding:2.5rem;}
-.profile-tab{display:none;}
-.profile-tab.active{display:block;}
-.profile-tab h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);margin-bottom:2rem;}
-.order-card{border:1px solid var(--gold-dim);padding:1.5rem;margin-bottom:1rem;}
-.order-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem;}
-.order-id{font-family:'Cinzel',serif;font-size:.75rem;color:var(--gold);}
-.order-date{font-size:.7rem;color:var(--muted);}
-.order-status{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid var(--success);color:var(--success);}
-.order-items{font-size:.8rem;color:var(--muted);margin-bottom:.6rem;}
-.order-total{font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold);}
 /* ADMIN */
 #page-admin{padding-top:80px;}
 .admin-layout{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 80px);}
@@ -283,7 +243,7 @@ footer{background:var(--deep);padding:3rem 2rem;text-align:center;border-top:1px
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes scrollPulse{0%,100%{opacity:.4;}50%{opacity:1;}}
-@media(max-width:900px){.philosophy-grid,.book-grid,.about-grid,.cart-layout,.profile-layout{grid-template-columns:1fr;gap:2rem;}.admin-layout{grid-template-columns:1fr;}.product-detail-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){.philosophy-grid,.book-grid,.about-grid{grid-template-columns:1fr;gap:2rem;}.admin-layout{grid-template-columns:1fr;}.product-detail-grid{grid-template-columns:1fr;}}
 @media(max-width:900px){.content-showcase,.creator-grid{grid-template-columns:1fr;}.showcase-media{min-height:280px;}.book-gallery{grid-template-columns:1fr;max-width:560px;margin:0 auto;}}
 @media(max-width:600px){.topbar-nav{display:none;}#topbar{padding:.8rem 1rem;}}
 /* PROFESSIONAL SITE REFINEMENT */
@@ -330,7 +290,7 @@ canvas#particles{opacity:.16;}
 .content-band{padding:5rem 2rem;}
 .feature-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
 .feature-card{min-height:0;}
-#contents-section,#social-section,#events-section{display:none;}
+
 .material-note{margin-top:1.2rem;padding:1rem 1.2rem;background:#fff;border-left:3px solid #B88A2A;color:#625D52;font-size:.86rem;line-height:1.7;max-width:720px;}
 .material-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem;}
 .product-img-placeholder{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.4;text-align:center;padding:1.4rem;color:#385529;}
@@ -353,14 +313,13 @@ canvas#particles{opacity:.16;}
 .contact-link:hover{background:#fff;border-color:rgba(184,138,42,.55);}
 .contact-link-label,.footer-tagline,.footer-copy{color:#746F62;}
 .footer-links a{color:#625D52;}
-.modal,.cart-summary,.profile-sidebar,.admin-sidebar,.admin-card{background:#fff;color:#2B2B24;border-color:rgba(36,64,25,.14);}
+.modal,.admin-sidebar,.admin-card{background:#fff;color:#2B2B24;border-color:rgba(36,64,25,.14);}
 .form-group input,.form-group select,.form-group textarea{background:#fff;color:#2B2B24;border-color:rgba(36,64,25,.18);}
-#page-shop,#page-wishlist,#page-cart,#page-profile,#page-admin{background:#F7F3E9;color:#2B2B24;}
-.shop-page-header,.wishlist-header,.cart-header,.profile-header,.admin-header{background:#fff;border-bottom-color:rgba(36,64,25,.12);}
+#page-shop,#page-admin{background:#F7F3E9;color:#2B2B24;}
+.shop-page-header,.admin-header{background:#fff;border-bottom-color:rgba(36,64,25,.12);}
 @media(max-width:900px){.official-hero{grid-template-columns:1fr;text-align:center;gap:0;padding:3rem 0 0;width:100%;}.official-copy{padding:0 1rem 1.5rem;}.official-logo{margin-left:auto;margin-right:auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-cta{justify-content:center}.official-media{min-height:320px;width:100vw;margin-left:calc(50% - 50vw);padding:2rem 1rem 0;background:#0F150D;}#hero{background:linear-gradient(180deg,#F7F3E9 0%,#EFE6D2 100%);}.official-media img{width:min(420px,90vw);height:min(520px,106vw);object-position:center 34%;}}
 @media(max-width:600px){#hero{align-items:flex-start;padding-top:5.6rem;min-height:auto;}.official-logo{width:88px}.official-logo[data-en]{width:98px}.hero-title{font-size:clamp(2.5rem,15vw,3.9rem);max-width:100%;overflow-wrap:break-word}.hero-sub{max-width:min(340px,100%);}.official-media{min-height:240px;padding-top:1.6rem}.official-media img{height:min(500px,102vw);}.hero-cta{display:grid;grid-template-columns:minmax(0,1fr);gap:.75rem;width:100%;max-width:370px;margin-left:auto;margin-right:auto}.hero-cta .btn{width:100%;max-width:100%;text-align:center;padding:.9rem .75rem;background:#fff;color:#1D2D17;border:1px solid rgba(29,45,23,.28);box-shadow:0 10px 22px rgba(16,17,14,.08);white-space:normal}.hero-cta .btn-gold{background:#1D2D17;color:#fff;border-color:#1D2D17}.method-visual-img{width:min(230px,72vw);}.book-btns{display:grid;grid-template-columns:minmax(0,1fr);width:100%;}.book-btns .btn{width:100%;max-width:100%;text-align:center;white-space:normal}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}.products-grid,.feature-grid,.content-list,.creator-grid{grid-template-columns:1fr!important;width:100%;}.product-card,.feature-card,.content-item,.creator-card{width:100%;max-width:100%;}}
 .menu-btn{display:none;background:#fff;border:1px solid rgba(36,64,25,.16);color:#244019;width:40px;height:40px;align-items:center;justify-content:center;font-size:1.15rem;line-height:1;cursor:pointer;box-shadow:0 8px 20px rgba(36,64,25,.08);}
-#courses-section,#contents-section,#social-section,#events-section{display:none;}
 @media(max-width:760px){
   #topbar{padding:.72rem .9rem;gap:.55rem;align-items:center;}
   .topbar-logo{font-size:.7rem;max-width:38vw;white-space:normal;line-height:1.2;letter-spacing:.14em;}
@@ -543,76 +502,6 @@ body.lang-pt [data-en]{display:none!important;}
       </div>
     </div>
   </section>
-  <section id="contents-section" class="content-band alt">
-    <div class="container">
-      <div class="section-intro">
-        <p class="section-label" data-pt>Conteúdos oficiais</p><p class="section-label" data-en>Official Content</p>
-        <h2 class="section-title" data-pt>Conteúdos para acompanhar<br/><em>sua jornada</em></h2>
-        <h2 class="section-title" data-en>Resources to support<br/><em>your journey</em></h2>
-        <p data-pt>Materiais, vídeos, livro, escola e canais oficiais para aprender com clareza e continuar em contato com a Alquimia.</p>
-        <p data-en>Materials, videos, book, school, and official channels to learn clearly and stay connected with Bonsai Alchemy.</p>
-      </div>
-      <div class="content-showcase">
-        <div class="showcase-panel light">
-          <div>
-            <p class="section-label" data-pt>Cuide da sua Alma</p><p class="section-label" data-en>Take Care of Your Soul</p>
-            <h2 class="section-title" data-pt>Livro, método<br/><em>e prática diária</em></h2>
-            <h2 class="section-title" data-en>Book, method<br/><em>and daily practice</em></h2>
-            <p data-pt>O livro é o coração da experiência: lições do bonsai para transformar cuidado em presença, técnica em ritual e rotina em autoconhecimento.</p>
-            <p data-en>The book is the heart of the experience: bonsai lessons that turn care into presence, technique into ritual, and routine into self-knowledge.</p>
-          </div>
-          <div class="book-btns">
-            <a href="https://a.co/d/0cbGUyqV" target="_blank" class="btn btn-gold" data-pt>E-book PT</a>
-            <a href="https://a.co/d/092Vdt3q" target="_blank" class="btn btn-gold" data-en>English Book</a>
-            <a href="https://a.co/d/097Jza8C" target="_blank" class="btn btn-ghost" data-pt>Transformação PT</a>
-            <a href="https://a.co/d/02V0xGDl" target="_blank" class="btn btn-ghost" data-en>Transformation EN</a>
-          </div>
-        </div>
-        <div class="showcase-media">
-          <img src="assets/aprenda-bonsai-zero.jpg" alt="Aprenda Bonsai do Zero - material de avaliação"/>
-        </div>
-      </div>
-      <div class="content-list">
-        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20como%20receber%20o%20livro%20digital%20Cuide%20da%20Sua%20Alma." target="_blank"><span class="mini-label">WhatsApp</span><h3>Cuide da Sua Alma</h3><p>Converse para receber orientações sobre o livro digital.</p></a>
-        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20how%20to%20receive%20the%20digital%20book%20Take%20Care%20of%20Your%20Soul." target="_blank"><span class="mini-label">WhatsApp</span><h3>Take Care of Your Soul</h3><p>Message us to receive guidance about the digital book.</p></a>
-        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20material%20Introdu%C3%A7%C3%A3o%20ao%20Bonsai." target="_blank"><span class="mini-label">WhatsApp</span><h3>Introdução ao Bonsai</h3><p>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p></a>
-        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Bonsai%20Introduction%20Guide." target="_blank"><span class="mini-label">WhatsApp</span><h3>Introduction Guide</h3><p>Origin, styles, sizes, and fertilization for a clear beginner foundation.</p></a>
-        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20Guia%20de%20Cuidados%20B%C3%A1sicos%20de%20Bonsai." target="_blank"><span class="mini-label">WhatsApp</span><h3>Guia de Cuidados Básicos</h3><p>Rotina simples para observar, regar e manter seu bonsai saudável.</p></a>
-        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Basic%20Bonsai%20Care%20Guide." target="_blank"><span class="mini-label">WhatsApp</span><h3>Basic Bonsai Care</h3><p>A simple care routine for watering, observation, and healthy growth.</p></a>
-        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20M%C3%A9todo%20das%207%20Transforma%C3%A7%C3%B5es." target="_blank"><span class="mini-label">WhatsApp</span><h3>Método das 7 Transformações</h3><p>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p></a>
-        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%207%20Transformations%20Method." target="_blank"><span class="mini-label">WhatsApp</span><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p></a>
-        <div class="content-item"><span class="mini-label" data-pt>Livro digital</span><span class="mini-label" data-en>Digital book</span><h3 data-pt>Cuide da Sua Alma</h3><h3 data-en>Take Care of Your Soul</h3><p data-pt>Valor do livro digital em português: R$ 9,90.</p><p data-en>English digital book price: US$ 9.90.</p></div>
-        <a class="content-item" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><span class="mini-label" data-pt>Escola</span><span class="mini-label" data-en>School</span><h3 data-pt>Escola de Bonsai</h3><h3 data-en>Bonsai School</h3><p data-pt>Inscrição para cursos, turmas, workshops e mentorias com Luane e Alexandre.</p><p data-en>Registration for courses, groups, workshops, and mentorships with Luane and Alexandre.</p></a>
-        <a class="content-item" href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><span class="mini-label">International</span><h3>International Bonsai School</h3><p data-pt>Formulário internacional para aulas e experiências em inglês.</p><p data-en>International form for English classes and experiences.</p></a>
-        <a class="content-item" href="https://forms.gle/G12JG8frqDtsR9yS9" target="_blank"><span class="mini-label">Contato</span><h3 data-pt>Dúvidas sobre materiais</h3><h3 data-en>Questions about materials</h3><p data-pt>Canal para pedir orientação sobre livro, guias, escola e aulas.</p><p data-en>Channel for guidance about the book, guides, school, and classes.</p></a>
-        <a class="content-item" href="https://storage.googleapis.com/eleven-public-cdn/share-link/cb6b8feb4d4c104c8ecdd2e0edae2cdef6006fdadabc4d4a187ce3702b4f7381/ElevenLabs_EeOiBJi8V4tTg64w3cIh_colour.mp4" target="_blank"><span class="mini-label">Audiobook · Part 1</span><h3 data-pt>Fundamentos do Bonsai</h3><h3 data-en>Bonsai Basics</h3><p data-pt>Primeiro áudio/vídeo da série internacional.</p><p data-en>First audio/video from the international series.</p></a>
-        <a class="content-item" href="https://storage.googleapis.com/eleven-public-cdn/share-link/cb6b8feb4d4c104c8ecdd2e0edae2cdef6006fdadabc4d4a187ce3702b4f7381/ElevenLabs_53YuCbjrM1NV3MF4pYTQ_colour.mp4" target="_blank"><span class="mini-label">Audiobook · Part 2</span><h3 data-pt>Cuidados e técnicas</h3><h3 data-en>Care &amp; Techniques</h3><p data-pt>Segundo áudio/vídeo com cuidados e técnicas essenciais.</p><p data-en>Second audio/video with essential care and techniques.</p></a>
-        <a class="content-item" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><span class="mini-label">YouTube</span><h3 data-pt>Podcast</h3><h3 data-en>Podcast</h3><p data-pt>Conteúdo oficial em vídeo da Alquimia do Bonsai.</p><p data-en>Official video content from Bonsai Alchemy.</p></a>
-        <a class="content-item" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank"><span class="mini-label">WhatsApp</span><h3>Fale conosco</h3><p>Canal direto para materiais, compras, aulas e dúvidas.</p></a>
-        <a class="content-item" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank"><span class="mini-label">WhatsApp</span><h3>Contact us</h3><p>Direct channel for materials, purchases, classes, and questions.</p></a>
-        <a class="content-item" href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank"><span class="mini-label">Facebook</span><h3 data-pt>Página no Facebook</h3><h3 data-en>Facebook Page</h3><p data-pt>Rede social oficial listada no site antigo.</p><p data-en>Official social network listed on the previous site.</p></a>
-        <a class="content-item" data-pt href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><span class="mini-label">Instagram</span><h3>@alquimiadobonsai</h3><p>Perfil com arte, pré-bonsai, educação e transformação.</p></a>
-        <a class="content-item" data-en href="https://www.instagram.com/bonsaialchemy/" target="_blank"><span class="mini-label">Instagram</span><h3>@bonsaialchemy</h3><p>International English profile for Bonsai Alchemy.</p></a>
-      </div>
-    </div>
-  </section>
-  <section id="social-section" class="content-band alt">
-    <div class="container">
-      <div class="section-intro">
-        <p class="section-label" data-pt>Redes Sociais</p><p class="section-label" data-en>Social Media</p>
-        <h2 class="section-title" data-pt>Acompanhe a Alquimia<br/><em>todos os dias</em></h2>
-        <h2 class="section-title" data-en>Follow the Alchemy<br/><em>every day</em></h2>
-        <p data-pt>Vídeos, bastidores, aulas rápidas, antes e depois das árvores, lives e novidades da comunidade.</p>
-        <p data-en>Videos, behind the scenes, quick lessons, tree transformations, live sessions, and community updates.</p>
-      </div>
-      <div class="feature-grid">
-        <a class="feature-card link-card" data-pt href="https://www.instagram.com/alquimiadobonsai/" target="_blank"><div class="feature-icon">📸</div><h3>@alquimiadobonsai</h3><p>Rotina, árvores, escola, bastidores e conteúdos em português.</p></a>
-        <a class="feature-card link-card" data-en href="https://www.instagram.com/bonsaialchemy/" target="_blank"><div class="feature-icon">📸</div><h3>@bonsaialchemy</h3><p>International Bonsai Alchemy profile with English content.</p></a>
-        <a class="feature-card link-card" href="https://youtu.be/suXm5OQJaRw?si=WOaoEzXtH_F8g5eA" target="_blank"><div class="feature-icon">▶️</div><h3>YouTube / Podcast</h3><p data-pt>Conteúdo oficial em português da Alquimia do Bonsai.</p><p data-en>Official Portuguese content from Alquimia do Bonsai.</p></a>
-        <a class="feature-card link-card" href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank"><div class="feature-icon">f</div><h3>Facebook</h3><p data-pt>Rede social oficial encontrada no site atual da Alquimia do Bonsai.</p><p data-en>Official social channel found on the current Alquimia do Bonsai site.</p></a>
-      </div>
-    </div>
-  </section>
   <section id="about-section">
     <div class="container">
       <div class="about-grid">
@@ -649,22 +538,6 @@ body.lang-pt [data-en]{display:none!important;}
           <p data-pt>Transformação, comunicação e propósito para aproximar pessoas da natureza, do sagrado e de si mesmas.</p>
           <p data-en>Transformation, communication, and purpose to connect people with nature, the sacred, and themselves.</p>
         </div>
-      </div>
-    </div>
-  </section>
-  <section id="events-section" class="content-band">
-    <div class="container">
-      <div class="section-intro">
-        <p class="section-label" data-pt>Eventos</p><p class="section-label" data-en>Events</p>
-        <h2 class="section-title" data-pt>Agenda, encontros<br/><em>e inscrições</em></h2>
-        <h2 class="section-title" data-en>Calendar, gatherings<br/><em>and registration</em></h2>
-        <p data-pt>Uma área para divulgar workshops, vivências, aulas abertas, feiras, lives e experiências presenciais no Brasil e nos Estados Unidos.</p>
-        <p data-en>A place for workshops, experiences, open classes, fairs, live sessions, and in-person events in Brazil and the United States.</p>
-      </div>
-      <div class="feature-grid">
-        <a class="feature-card link-card" href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><div class="feature-icon">📅</div><h3 data-pt>Agenda Brasil</h3><h3 data-en>Brazil Calendar</h3><p data-pt>Inscrições e lista de interesse para aulas, escola, turmas e encontros no Brasil.</p><p data-en>Registration and interest list for classes, school, groups, and gatherings in Brazil.</p><span class="tag" data-pt>Inscrições</span><span class="tag" data-en>Registration</span></a>
-        <a class="feature-card link-card" href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><div class="feature-icon">🌎</div><h3 data-pt>Agenda Internacional</h3><h3 data-en>International Calendar</h3><p data-pt>Turmas e experiências em inglês pela International Bonsai School.</p><p data-en>English-speaking groups and experiences through the International Bonsai School.</p><span class="tag">International</span></a>
-        <a class="feature-card link-card" href="https://forms.gle/G12JG8frqDtsR9yS9" target="_blank"><div class="feature-icon">🤲</div><h3 data-pt>Dúvidas sobre materiais</h3><h3 data-en>Questions about materials</h3><p data-pt>Canal para orientação sobre livro, guias, escola e aulas.</p><p data-en>Channel for guidance about the book, guides, school, and classes.</p><span class="tag">Contato</span></a>
       </div>
     </div>
   </section>
@@ -717,88 +590,8 @@ body.lang-pt [data-en]{display:none!important;}
   </div>
   <div class="shop-page-grid"><div class="container"><div class="products-grid" id="shop-products-grid"></div><div id="shop-empty" class="empty-state hidden"><div class="empty-icon">🌿</div><p data-pt>Nenhum produto nesta categoria.</p><p data-en>No products in this category.</p></div></div></div>
 </div>
-<!-- WISHLIST -->
-<div id="page-wishlist" class="page">
-  <div class="wishlist-header"><div class="container"><p class="section-label" data-pt>Seus favoritos</p><p class="section-label" data-en>Your favorites</p><h1 class="section-title" data-pt>Lista de <em>desejos</em></h1><h1 class="section-title" data-en><em>Wish</em> list</h1></div></div>
-  <div class="wishlist-grid"><div class="container"><div class="products-grid" id="wish-products-grid"></div><div id="wish-empty" class="empty-state hidden"><div class="empty-icon">🤍</div><p data-pt>Sua lista está vazia.</p><p data-en>Your list is empty.</p><br/><button class="btn btn-ghost btn-sm" onclick="showPage('shop')"><span data-pt>Explorar loja</span><span data-en>Explore shop</span></button></div></div></div>
-</div>
-<!-- CART -->
-<div id="page-cart" class="page">
-  <div class="cart-header"><div class="container"><h1 class="section-title" data-pt>Seu <em>carrinho</em></h1><h1 class="section-title" data-en>Your <em>cart</em></h1></div></div>
-  <div class="container cart-layout">
-    <div>
-      <div id="cart-items-list"></div>
-      <div id="cart-empty" class="empty-state hidden"><div class="empty-icon">🛒</div><p data-pt>Seu carrinho está vazio.</p><p data-en>Your cart is empty.</p><br/><button class="btn btn-ghost btn-sm" onclick="showPage('shop')"><span data-pt>Explorar loja</span><span data-en>Explore shop</span></button></div>
-    </div>
-    <div id="cart-summary-box" class="cart-summary">
-      <h3 data-pt>Resumo do pedido</h3><h3 data-en>Order summary</h3>
-      <div class="summary-row"><span data-pt>Subtotal</span><span data-en>Subtotal</span><span id="cart-subtotal">R$ 0</span></div>
-      <div class="summary-row"><span data-pt>Frete</span><span data-en>Shipping</span><span data-pt>A calcular</span><span data-en>To calculate</span></div>
-      <div class="summary-row total"><span>Total</span><span id="cart-total">R$ 0</span></div>
-      <div style="margin-top:1.5rem;">
-        <div class="form-group"><label>CEP / ZIP</label><input type="text" id="cep-input" placeholder="00000-000"/></div>
-        <div class="form-group"><label><span data-pt>Rua</span><span data-en>Street</span></label><input type="text" id="rua-input"/></div>
-        <div class="form-row">
-          <div class="form-group"><label><span data-pt>Cidade</span><span data-en>City</span></label><input type="text" id="cidade-input"/></div>
-          <div class="form-group"><label><span data-pt>Estado</span><span data-en>State</span></label><input type="text" id="estado-input"/></div>
-        </div>
-        <button class="btn btn-gold" style="width:100%;margin-top:.5rem;" onclick="finalizarPedido()"><span data-pt>Finalizar pedido</span><span data-en>Place order</span></button>
-        <p style="font-size:.65rem;color:var(--muted);text-align:center;margin-top:.8rem;" data-pt>Pagamento confirmado via WhatsApp</p>
-        <p style="font-size:.65rem;color:var(--muted);text-align:center;margin-top:.8rem;" data-en>Payment confirmed via WhatsApp</p>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- PROFILE -->
-<div id="page-profile" class="page">
-  <div class="container profile-layout">
-    <div class="profile-sidebar">
-      <div class="profile-avatar">👤</div>
-      <div class="profile-name" id="profile-display-name">—</div>
-      <div class="profile-email" id="profile-display-email">—</div>
-      <div class="profile-nav">
-        <button class="active" onclick="showProfileTab('orders',this)" data-pt>📦 Meus Pedidos</button>
-        <button onclick="showProfileTab('address',this)" data-pt>📍 Endereço</button>
-        <button onclick="showProfileTab('settings',this)" data-pt>⚙️ Configurações</button>
-        <button class="active" onclick="showProfileTab('orders',this)" data-en>📦 My Orders</button>
-        <button onclick="showProfileTab('address',this)" data-en>📍 Address</button>
-        <button onclick="showProfileTab('settings',this)" data-en>⚙️ Settings</button>
-        <button onclick="logout()" style="color:var(--red);margin-top:1rem;" data-pt>↩ Sair</button>
-        <button onclick="logout()" style="color:var(--red);margin-top:1rem;" data-en>↩ Logout</button>
-      </div>
-    </div>
-    <div class="profile-content">
-      <div class="profile-tab active" id="tab-orders">
-        <h2 data-pt>Meus Pedidos</h2><h2 data-en>My Orders</h2>
-        <div id="orders-list"></div>
-        <div id="orders-empty" class="empty-state hidden"><div class="empty-icon">📦</div><p data-pt>Você ainda não fez pedidos.</p><p data-en>No orders yet.</p></div>
-      </div>
-      <div class="profile-tab" id="tab-address">
-        <h2 data-pt>Meu Endereço</h2><h2 data-en>My Address</h2>
-        <div class="form-group"><label><span data-pt>Nome completo</span><span data-en>Full name</span></label><input type="text" id="addr-name"/></div>
-        <div class="form-group"><label>CEP / ZIP</label><input type="text" id="addr-cep"/></div>
-        <div class="form-group"><label><span data-pt>Rua</span><span data-en>Street</span></label><input type="text" id="addr-rua"/></div>
-        <div class="form-row">
-          <div class="form-group"><label><span data-pt>Número</span><span data-en>Number</span></label><input type="text" id="addr-num"/></div>
-          <div class="form-group"><label><span data-pt>Complemento</span><span data-en>Address line 2</span></label><input type="text" id="addr-comp"/></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label><span data-pt>Cidade</span><span data-en>City</span></label><input type="text" id="addr-cidade"/></div>
-          <div class="form-group"><label><span data-pt>Estado</span><span data-en>State</span></label><input type="text" id="addr-estado"/></div>
-        </div>
-        <div class="form-group"><label><span data-pt>País</span><span data-en>Country</span></label><input type="text" id="addr-pais" value="Brasil"/></div>
-        <button class="btn btn-gold" onclick="saveAddress()"><span data-pt>Salvar endereço</span><span data-en>Save address</span></button>
-      </div>
-      <div class="profile-tab" id="tab-settings">
-        <h2 data-pt>Configurações</h2><h2 data-en>Settings</h2>
-        <div class="form-group"><label><span data-pt>Nome</span><span data-en>Name</span></label><input type="text" id="settings-name"/></div>
-        <div class="form-group"><label>E-mail</label><input type="email" id="settings-email" readonly style="opacity:.5;cursor:not-allowed;"/></div>
-        <div class="form-group"><label><span data-pt>Nova senha</span><span data-en>New password</span></label><input type="password" id="settings-pass" placeholder="Deixe em branco para manter"/></div>
-        <button class="btn btn-gold" onclick="saveSettings()"><span data-pt>Salvar</span><span data-en>Save</span></button>
-      </div>
-    </div>
-  </div>
-</div>
+
+
 <!-- ADMIN -->
 <div id="page-admin" class="page">
   <div class="admin-layout">
@@ -806,23 +599,21 @@ body.lang-pt [data-en]{display:none!important;}
       <h3>ADMIN PANEL</h3>
       <div class="admin-nav">
         <button class="active" onclick="showAdminTab('dashboard',this)">📊 Dashboard</button>
-        <button onclick="showAdminTab('products',this)">🛒 Itens da loja</button>
-        <button onclick="showAdminTab('orders',this)">📦 Pedidos</button>
-        <button onclick="showAdminTab('users',this)">👥 Usuários</button>
+        <button onclick="showAdminTab('products',this)">🌳 Catálogo</button>
         <button onclick="showAdminTab('site',this)">✏️ Conteúdo</button>
         <button onclick="logout()" style="color:var(--red);margin-top:2rem;">↩ Sair</button>
       </div>
     </div>
     <div class="admin-main">
       <div class="admin-tab active" id="atab-dashboard">
-        <h2>Dashboard</h2><p class="subtitle">Visão geral da loja</p>
+        <h2>Dashboard</h2><p class="subtitle">Visão geral do catálogo</p>
         <div class="admin-cards">
           <div class="admin-card"><div class="num" id="dash-products">0</div><div class="lbl">Itens</div></div>
-          <div class="admin-card"><div class="num" id="dash-orders">0</div><div class="lbl">Pedidos</div></div>
-          <div class="admin-card"><div class="num" id="dash-users">0</div><div class="lbl">Usuários</div></div>
-          <div class="admin-card"><div class="num" id="dash-revenue">R$ 0</div><div class="lbl">Receita</div></div>
+          <div class="admin-card"><div class="num" id="dash-orders">WhatsApp</div><div class="lbl">Vendas</div></div>
+          <div class="admin-card"><div class="num" id="dash-users">Supabase</div><div class="lbl">Login</div></div>
+          <div class="admin-card"><div class="num" id="dash-revenue">Sob consulta</div><div class="lbl">Valores</div></div>
         </div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;">Últimos pedidos</h3>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;">Fluxo do site</h3>
         <div id="dash-recent-orders"></div>
       </div>
       <div class="admin-tab" id="atab-products">
@@ -832,15 +623,6 @@ body.lang-pt [data-en]{display:none!important;}
           <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Adicionar item</button>
         </div>
         <table class="admin-table"><thead><tr><th>Nome</th><th>Tipo</th><th>Cat.</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead><tbody id="admin-products-table"></tbody></table>
-      </div>
-      <div class="admin-tab" id="atab-orders">
-        <h2>Pedidos</h2><p class="subtitle">Gerencie os pedidos recebidos</p>
-        <table class="admin-table"><thead><tr><th>ID</th><th>Cliente</th><th>Itens</th><th>Total</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead><tbody id="admin-orders-table"></tbody></table>
-        <div id="admin-orders-empty" class="empty-state hidden"><div class="empty-icon">📦</div><p>Nenhum pedido ainda.</p></div>
-      </div>
-      <div class="admin-tab" id="atab-users">
-        <h2>Usuários</h2><p class="subtitle">Usuários cadastrados</p>
-        <table class="admin-table"><thead><tr><th>Nome</th><th>E-mail</th><th>Tipo</th><th>Cadastro</th><th>Pedidos</th></tr></thead><tbody id="admin-users-table"></tbody></table>
       </div>
       <div class="admin-tab" id="atab-site">
         <h2>Conteúdo do Site</h2><p class="subtitle">Edite textos e informações exibidas no site</p>
@@ -864,24 +646,13 @@ body.lang-pt [data-en]{display:none!important;}
   <div class="modal">
     <button class="modal-close" onclick="closeModal('modal-auth')">✕</button>
     <div id="auth-login">
-      <h2 data-pt>Entrar</h2><h2 data-en>Sign In</h2>
-      <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com"/></div>
+      <h2 data-pt>Área administrativa</h2><h2 data-en>Admin area</h2>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;" data-pt>Entrada exclusiva para atualizar o catálogo real.</p>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;" data-en>Private access for updating the live catalog.</p>
+      <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="admin@email.com"/></div>
       <div class="form-group"><label data-pt>Senha</label><input type="password" id="login-pass" placeholder="••••••"/></div>
       <div id="login-error" class="form-error hidden"></div>
-      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doLogin()"><span data-pt>Entrar</span><span data-en>Sign In</span></button>
-      <p style="text-align:center;margin-top:1.2rem;font-size:.78rem;color:var(--muted);">
-        <span data-pt>Não tem conta?</span><span data-en>No account?</span>
-        <a style="color:var(--gold);cursor:pointer;margin-left:.3rem;" onclick="showAuthPanel('register')"><span data-pt>Criar conta</span><span data-en>Sign up</span></a>
-      </p>
-    </div>
-    <div id="auth-register" class="hidden">
-      <h2 data-pt>Criar conta</h2><h2 data-en>Create account</h2>
-      <div class="form-group"><label data-pt>Nome</label><input type="text" id="reg-name" placeholder="Seu nome"/></div>
-      <div class="form-group"><label>E-mail</label><input type="email" id="reg-email" placeholder="seu@email.com"/></div>
-      <div class="form-group"><label data-pt>Senha</label><input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres"/></div>
-      <div id="reg-error" class="form-error hidden"></div>
-      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doRegister()"><span data-pt>Criar conta</span><span data-en>Sign up</span></button>
-      <p style="text-align:center;margin-top:1.2rem;font-size:.78rem;"><a style="color:var(--gold);cursor:pointer;" onclick="showAuthPanel('login')"><span data-pt>← Voltar ao login</span><span data-en>← Back to login</span></a></p>
+      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doLogin()"><span data-pt>Entrar no painel</span><span data-en>Open admin panel</span></button>
     </div>
   </div>
 </div>
@@ -1008,12 +779,13 @@ function productToRow(p){
 const SITE_VERSION='real-catalog-work-copy-2026-07-22-market-catalog';
 if(DB.get('siteVersion')!==SITE_VERSION){
   localStorage.removeItem('adb_products');
-  const existingUsers=DB.get('users')||[];
-  DB.set('users',existingUsers.filter(u=>u&&u.role!=='admin'));
+  localStorage.removeItem('adb_users');
+  localStorage.removeItem('adb_cart');
+  localStorage.removeItem('adb_wishlist');
+  localStorage.removeItem('adb_orders');
   DB.set('siteVersion',SITE_VERSION);
 }
 function initDB(){
-  if(!DB.get('users')) DB.set('users',[]);
   const catalogWhats='5521964109840';
   const catalogImageByAge={
     'Bonsai 2 anos':'',
@@ -1106,9 +878,6 @@ function initDB(){
     });
     DB.set('products',merged);
   }
-  if(!DB.get('cart')) DB.set('cart',[]);
-  if(!DB.get('wishlist')) DB.set('wishlist',[]);
-  if(!DB.get('orders')) DB.set('orders',[]);
   if(!DB.get('siteContent')) DB.set('siteContent',{taglinePt:'Transformando árvores. Inspirando vidas.',taglineEn:'Transforming trees. Inspiring lives.',waBr:'5521964109840',waUsa:'17869780745',igBr:'alquimiadobonsai',igUsa:'bonsaialchemy',aboutPt:'Somos Alexandre Braga e Luane Salles.',aboutEn:'We are Alexandre Braga and Luane Salles.'});
 }
 initDB();
@@ -1132,8 +901,9 @@ function showPage(p){
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   const el=document.getElementById('page-'+p);if(el){el.classList.add('active');window.scrollTo(0,0);}
   currentPage=p;
-  if(p==='shop')renderShop();if(p==='cart')renderCart();if(p==='wishlist')renderWishlist();
-  if(p==='profile')renderProfile();if(p==='admin')renderAdmin();if(p==='home')renderHomeProducts();
+  if(p==='shop')renderShop();
+  if(p==='admin')renderAdmin();
+  if(p==='home')renderHomeProducts();
 }
 function doScroll(sel){setTimeout(()=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth'});},100);}
 function navigateHome(sel){showPage('home');doScroll(sel||'#hero');}
@@ -1144,9 +914,9 @@ function closeModal(id){document.getElementById(id).classList.add('hidden');}
 document.querySelectorAll('.modal-overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.add('hidden');}));
 let currentUser=null;
 try{currentUser=JSON.parse(sessionStorage.getItem('adb_session'));}catch{}
-function handleAccount(){if(currentUser){showPage('profile');}else{showAuthPanel('login');openModal('modal-auth');}}
+function handleAccount(){openAdminLogin();}
 function openAdminLogin(){if(currentUser&&currentUser.role==='admin'){showPage('admin');return;}showAuthPanel('login');openModal('modal-auth');}
-function showAuthPanel(p){document.getElementById('auth-login').classList.toggle('hidden',p!=='login');document.getElementById('auth-register').classList.toggle('hidden',p!=='register');}
+function showAuthPanel(){document.getElementById('auth-login').classList.remove('hidden');}
 async function doLogin(){
   const email=document.getElementById('login-email').value.trim(),pass=document.getElementById('login-pass').value;
   const err=document.getElementById('login-error');
@@ -1162,22 +932,8 @@ async function doLogin(){
       await supabaseClient.auth.signOut();
     }
   }
-  const u=(DB.get('users')||[]).find(u=>u.email===email&&u.pass===pass);
-  if(!u){err.textContent='E-mail ou senha incorretos.';err.classList.remove('hidden');return;}
-  err.classList.add('hidden');currentUser=u;sessionStorage.setItem('adb_session',JSON.stringify(u));
-  closeModal('modal-auth');toast('Bem-vindo(a), '+u.name+'! 🌳');
-  showPage('profile');
-}
-function doRegister(){
-  const name=document.getElementById('reg-name').value.trim(),email=document.getElementById('reg-email').value.trim(),pass=document.getElementById('reg-pass').value;
-  const err=document.getElementById('reg-error');
-  if(!name||!email||!pass){err.textContent='Preencha todos os campos.';err.classList.remove('hidden');return;}
-  if(pass.length<6){err.textContent='Senha: mínimo 6 caracteres.';err.classList.remove('hidden');return;}
-  const users=DB.get('users')||[];
-  if(users.find(u=>u.email===email)){err.textContent='E-mail já cadastrado.';err.classList.remove('hidden');return;}
-  const u={id:'u'+Date.now(),name,email,pass,role:'user',created:new Date().toISOString(),address:{}};
-  users.push(u);DB.set('users',users);currentUser=u;sessionStorage.setItem('adb_session',JSON.stringify(u));
-  err.classList.add('hidden');closeModal('modal-auth');toast('Conta criada! Bem-vindo(a), '+name+' 🌿');showPage('profile');
+  err.textContent='Acesso permitido apenas para administradores cadastrados no Supabase.';
+  err.classList.remove('hidden');
 }
 async function logout(){if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;sessionStorage.removeItem('adb_session');showPage('home');toast('Até logo! 🌳');}
 function getProducts(){return remoteProducts||DB.get('products')||[];}
@@ -1217,14 +973,14 @@ function productSpeciesHtml(p,cls='product-species'){
 function productAccessAction(p,small=true){
   const btnClass=small?'btn btn-gold btn-sm':'btn btn-gold';
   const label=small?'<span data-pt>Consultar</span><span data-en>Ask</span>':'<span data-pt>Consultar no WhatsApp</span><span data-en>Ask on WhatsApp</span> →';
-  if(!p.buyUrl) return p.price>0?`<button class="${btnClass}" onclick="addToCart('${p.id}')">${small?'🛒':'<span data-pt>Adicionar ao carrinho</span><span data-en>Add to cart</span> 🛒'}</button>`:'';
-  if(p.buyUrlEn&&p.buyUrlEn!==p.buyUrl){
-    return `<a class="${btnClass}" data-pt href="${p.buyUrl}" target="_blank" onclick="event.stopPropagation()">${small?'Consultar':'Consultar no WhatsApp →'}</a><a class="${btnClass}" data-en href="${p.buyUrlEn}" target="_blank" onclick="event.stopPropagation()">${small?'Ask':'Ask on WhatsApp →'}</a>`;
+  const ptUrl=p.buyUrl||productWhatsappPt(p);
+  const enUrl=p.buyUrlEn||productWhatsappEn(p);
+  if(enUrl&&enUrl!==ptUrl){
+    return `<a class="${btnClass}" data-pt href="${ptUrl}" target="_blank" onclick="event.stopPropagation()">${small?'Consultar':'Consultar no WhatsApp →'}</a><a class="${btnClass}" data-en href="${enUrl}" target="_blank" onclick="event.stopPropagation()">${small?'Ask':'Ask on WhatsApp →'}</a>`;
   }
-  return `<a class="${btnClass}" href="${p.buyUrl}" target="_blank" onclick="event.stopPropagation()">${label}</a>`;
+  return `<a class="${btnClass}" href="${ptUrl}" target="_blank" onclick="event.stopPropagation()">${label}</a>`;
 }
 function productCard(p){
-  const wish=DB.get('wishlist')||[];const isW=wish.includes(p.id);
   const price=productPriceHtml(p);
   const mainAction=productAccessAction(p,true);
   return`<div class="product-card" data-id="${p.id}" data-cat="${p.category}">
@@ -1273,88 +1029,26 @@ function openProductDetail(id){
         ${p.carePt&&p.carePt!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Cuidados</span><span data-en>Care</span></span><span class="spec-value"><span data-pt>${p.carePt}</span><span data-en>${p.careEn||p.carePt}</span></span></div>`:''}
       </div>
       <div class="product-detail-btns">
-        ${p.buyUrl?productAccessAction(p,false):(p.price>0?`<button class="btn btn-gold" onclick="addToCart('${p.id}');closeModal('modal-product')"><span data-pt>Adicionar ao carrinho</span><span data-en>Add to cart</span> 🛒</button>`:`<a href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20este%20item%20da%20Alquimia%20do%20Bonsai." target="_blank" class="btn btn-gold" data-pt>Falar no WhatsApp →</a><a href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20this%20Bonsai%20Alchemy%20item." target="_blank" class="btn btn-gold" data-en>Ask on WhatsApp →</a>`)}
+        ${productAccessAction(p,false)}
       </div>
     </div>`;
   openModal('modal-product');
 }
-function addToCart(id){const cart=DB.get('cart')||[];const i=cart.findIndex(x=>x.id===id);if(i>=0)cart[i].qty++;else cart.push({id,qty:1});DB.set('cart',cart);updateBadges();toast('Adicionado ao carrinho! 🛒');}
-function removeFromCart(id){DB.set('cart',(DB.get('cart')||[]).filter(x=>x.id!==id));updateBadges();renderCart();}
-function changeQty(id,d){const c=DB.get('cart')||[];const i=c.findIndex(x=>x.id===id);if(i<0)return;c[i].qty=Math.max(1,c[i].qty+d);DB.set('cart',c);renderCart();updateBadges();}
-function renderCart(){
-  const cart=DB.get('cart')||[];const prods=getProducts();
-  const list=document.getElementById('cart-items-list');const empty=document.getElementById('cart-empty');if(!list)return;
-  if(cart.length===0){list.innerHTML='';empty.classList.remove('hidden');document.getElementById('cart-summary-box').style.opacity='.4';document.getElementById('cart-summary-box').style.pointerEvents='none';return;}
-  empty.classList.add('hidden');document.getElementById('cart-summary-box').style.opacity='1';document.getElementById('cart-summary-box').style.pointerEvents='auto';
-  let total=0;
-  list.innerHTML=cart.map(item=>{const p=prods.find(x=>x.id===item.id);if(!p)return'';const sub=p.price*item.qty;total+=sub;
-    return`<div class="cart-item"><div class="cart-item-img">${p.emoji||'🌳'}</div><div class="cart-item-info"><p class="cart-item-species">${p.species!=='—'?p.species:''}</p><p class="cart-item-name">${p.namePt}</p><p class="cart-item-price">R$ ${Number(p.price).toLocaleString('pt-BR',{minimumFractionDigits:2})}</p><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty('${p.id}',-1)">−</button><span>${item.qty}</span><button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button><button class="cart-item-remove" onclick="removeFromCart('${p.id}')">🗑️</button></div></div><div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;flex-shrink:0;">R$ ${Number(sub).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div></div>`;
-  }).join('');
-  const fmt=v=>'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
-  document.getElementById('cart-subtotal').textContent=fmt(total);document.getElementById('cart-total').textContent=fmt(total);
-}
-function finalizarPedido(){
-  if(!currentUser){toast('Faça login para finalizar.');openModal('modal-auth');return;}
-  const cart=DB.get('cart')||[];if(!cart.length){toast('Carrinho vazio!');return;}
-  const prods=getProducts();let total=0;
-  const items=cart.map(item=>{const p=prods.find(x=>x.id===item.id);if(!p)return null;total+=p.price*item.qty;return{id:p.id,name:p.namePt,qty:item.qty,price:p.price};}).filter(Boolean);
-  const order={id:'PED'+Date.now(),userId:currentUser.id,userName:currentUser.name,userEmail:currentUser.email,items,total,address:{cep:document.getElementById('cep-input').value,rua:document.getElementById('rua-input').value,cidade:document.getElementById('cidade-input').value,estado:document.getElementById('estado-input').value},status:'Aguardando confirmação',created:new Date().toISOString()};
-  const orders=DB.get('orders')||[];orders.unshift(order);DB.set('orders',orders);DB.set('cart',[]);updateBadges();
-  toast('Pedido '+order.id+' enviado! Entraremos em contato via WhatsApp 🌳');showPage('profile');
-}
-function toggleWish(id,btn){
-  let w=DB.get('wishlist')||[];const i=w.indexOf(id);
-  if(i>=0){w.splice(i,1);toast('Removido dos favoritos.');if(btn)btn.textContent='🤍';}
-  else{w.push(id);toast('Adicionado aos favoritos! ❤️');if(btn)btn.textContent='❤️';}
-  DB.set('wishlist',w);updateBadges();if(currentPage==='wishlist')renderWishlist();
-}
-function renderWishlist(){
-  const w=DB.get('wishlist')||[];const prods=getProducts().filter(p=>w.includes(p.id));
-  const g=document.getElementById('wish-products-grid');const e=document.getElementById('wish-empty');if(!g)return;
-  if(!prods.length){g.innerHTML='';e.classList.remove('hidden');}else{e.classList.add('hidden');g.innerHTML=prods.map(productCard).join('');}
-}
-function updateBadges(){
-  const c=(DB.get('cart')||[]).reduce((s,x)=>s+x.qty,0);
-  const cartBadge=document.getElementById('badge-cart');
-  const wishBadge=document.getElementById('badge-wish');
-  if(cartBadge)cartBadge.textContent=c;
-  if(wishBadge)wishBadge.textContent=(DB.get('wishlist')||[]).length;
-}
-updateBadges();
-function renderProfile(){
-  if(!currentUser){showPage('home');openModal('modal-auth');return;}
-  document.getElementById('profile-display-name').textContent=currentUser.name;
-  document.getElementById('profile-display-email').textContent=currentUser.email;
-  document.getElementById('settings-name').value=currentUser.name;
-  document.getElementById('settings-email').value=currentUser.email;
-  const u=(DB.get('users')||[]).find(x=>x.id===currentUser.id);
-  if(u&&u.address){['name','cep','rua','num','comp','cidade','estado','pais'].forEach(f=>{const el=document.getElementById('addr-'+f);if(el)el.value=u.address[f]||'';});}
-  const orders=(DB.get('orders')||[]).filter(o=>o.userId===currentUser.id);
-  const list=document.getElementById('orders-list');const empty=document.getElementById('orders-empty');
-  if(!orders.length){list.innerHTML='';empty.classList.remove('hidden');}
-  else{empty.classList.add('hidden');list.innerHTML=orders.map(o=>`<div class="order-card"><div class="order-card-header"><span class="order-id">${o.id}</span><span class="order-date">${new Date(o.created).toLocaleDateString('pt-BR')}</span><span class="order-status">${o.status}</span></div><div class="order-items">${o.items.map(i=>i.name+' x'+i.qty).join(', ')}</div><div class="order-total">Total: R$ ${Number(o.total).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div></div>`).join('');}
-}
-function showProfileTab(tab,btn){
-  document.querySelectorAll('.profile-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-  document.querySelectorAll('.profile-nav button').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-}
-function saveAddress(){
-  const users=DB.get('users')||[];const idx=users.findIndex(u=>u.id===currentUser.id);if(idx<0)return;
-  users[idx].address={name:document.getElementById('addr-name').value,cep:document.getElementById('addr-cep').value,rua:document.getElementById('addr-rua').value,num:document.getElementById('addr-num').value,comp:document.getElementById('addr-comp').value,cidade:document.getElementById('addr-cidade').value,estado:document.getElementById('addr-estado').value,pais:document.getElementById('addr-pais').value};
-  DB.set('users',users);currentUser=users[idx];sessionStorage.setItem('adb_session',JSON.stringify(currentUser));toast('Endereço salvo! 📦');
-}
-function saveSettings(){
-  const name=document.getElementById('settings-name').value.trim(),pass=document.getElementById('settings-pass').value;
-  const users=DB.get('users')||[];const idx=users.findIndex(u=>u.id===currentUser.id);if(idx<0)return;
-  if(name)users[idx].name=name;if(pass.length>=6)users[idx].pass=pass;
-  DB.set('users',users);currentUser=users[idx];sessionStorage.setItem('adb_session',JSON.stringify(currentUser));
-  document.getElementById('profile-display-name').textContent=currentUser.name;toast('Configurações salvas!');
-}
+function addToCart(){toast(currentLang==='en'?'Please use WhatsApp to check availability.':'Consulte disponibilidade pelo WhatsApp.');}
+function removeFromCart(){}
+function changeQty(){}
+function renderCart(){}
+function finalizarPedido(){showPage('shop');}
+function toggleWish(){toast(currentLang==='en'?'Favorites are not used on this site.':'Favoritos não são usados neste site.');}
+function renderWishlist(){}
+function updateBadges(){}
+function renderProfile(){showPage(currentUser&&currentUser.role==='admin'?'admin':'home');}
+function showProfileTab(){}
+function saveAddress(){}
+function saveSettings(){}
 function renderAdmin(){
   if(!currentUser||currentUser.role!=='admin'){showPage('home');return;}
-  renderDashboard();renderAdminProducts();renderAdminOrders();renderAdminUsers();loadSiteContent();
+  renderDashboard();renderAdminProducts();loadSiteContent();
 }
 function showAdminTab(tab,btn){
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
@@ -1363,13 +1057,12 @@ function showAdminTab(tab,btn){
   if(btn)btn.classList.add('active');
 }
 function renderDashboard(){
-  const prods=getProducts(),orders=DB.get('orders')||[],users=(DB.get('users')||[]).filter(u=>u.role!=='admin');
-  const rev=orders.reduce((s,o)=>s+o.total,0);
-  document.getElementById('dash-products').textContent=prods.length;document.getElementById('dash-orders').textContent=orders.length;document.getElementById('dash-users').textContent=users.length;
-  document.getElementById('dash-revenue').textContent='R$ '+Number(rev).toLocaleString('pt-BR',{minimumFractionDigits:2});
-  document.getElementById('dash-recent-orders').innerHTML=orders.slice(0,5).length?
-    `<table class="admin-table"><thead><tr><th>ID</th><th>Cliente</th><th>Total</th><th>Status</th></tr></thead><tbody>${orders.slice(0,5).map(o=>`<tr><td style="color:var(--gold)">${o.id}</td><td>${o.userName}</td><td>R$ ${Number(o.total).toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td style="color:var(--success)">${o.status}</td></tr>`).join('')}</tbody></table>`:
-    '<p style="color:var(--muted);font-size:.82rem;">Nenhum pedido ainda.</p>';
+  const prods=getProducts();
+  document.getElementById('dash-products').textContent=prods.length;
+  document.getElementById('dash-orders').textContent='WhatsApp';
+  document.getElementById('dash-users').textContent='Supabase';
+  document.getElementById('dash-revenue').textContent='Sob consulta';
+  document.getElementById('dash-recent-orders').innerHTML='<p style="color:var(--muted);font-size:.82rem;">As vendas fecham pelo WhatsApp. Use este painel para manter fotos, valores, descrições e links do catálogo atualizados.</p>';
 }
 let apf='';
 function filterAdminProducts(v){apf=v.toLowerCase();renderAdminProducts();}
@@ -1429,16 +1122,6 @@ async function deleteProduct(id){
   }
   DB.set('products',getProducts().filter(p=>p.id!==id));renderAdminProducts();renderHomeProducts();renderDashboard();toast('Item removido.');
 }
-function renderAdminOrders(){
-  const orders=DB.get('orders')||[];const t=document.getElementById('admin-orders-table');const e=document.getElementById('admin-orders-empty');if(!t)return;
-  if(!orders.length){t.innerHTML='';e.classList.remove('hidden');return;}e.classList.add('hidden');
-  t.innerHTML=orders.map(o=>`<tr><td style="color:var(--gold);font-family:'Cinzel',serif;font-size:.7rem">${o.id}</td><td>${o.userName}<br/><span style="font-size:.68rem;color:var(--muted)">${o.userEmail}</span></td><td style="font-size:.75rem">${o.items.map(i=>i.name+' x'+i.qty).join('<br/>')}</td><td style="color:var(--gold)">R$ ${Number(o.total).toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td style="font-size:.7rem;color:var(--muted)">${new Date(o.created).toLocaleDateString('pt-BR')}</td><td style="color:var(--success);font-size:.7rem">${o.status}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="updateOrderStatus('${o.id}')">Status</button><a href="https://wa.me/${(DB.get('siteContent')||{}).waBr||'5521964109840'}?text=Pedido+${o.id}" target="_blank" class="btn btn-gold btn-sm">WhatsApp</a></div></td></tr>`).join('');
-}
-function updateOrderStatus(id){const s=prompt('Novo status:','Confirmado');if(!s)return;const o=DB.get('orders')||[];const i=o.findIndex(x=>x.id===id);if(i>=0){o[i].status=s;DB.set('orders',o);renderAdminOrders();renderDashboard();toast('Status atualizado!');}}
-function renderAdminUsers(){
-  const users=DB.get('users')||[];const orders=DB.get('orders')||[];const t=document.getElementById('admin-users-table');if(!t)return;
-  t.innerHTML=users.map(u=>`<tr><td>${u.name}</td><td style="color:var(--muted)">${u.email}</td><td><span class="tag" style="${u.role==='admin'?'border-color:var(--gold);color:var(--gold)':''}">${u.role}</span></td><td style="font-size:.7rem;color:var(--muted)">${new Date(u.created).toLocaleDateString('pt-BR')}</td><td style="text-align:center">${orders.filter(o=>o.userId===u.id).length}</td></tr>`).join('');
-}
 function loadSiteContent(){const sc=DB.get('siteContent')||{};[['taglinePt','site-tagline-pt'],['taglineEn','site-tagline-en'],['waBr','site-wabr'],['waUsa','site-wausa'],['igBr','site-igbr'],['igUsa','site-igusa'],['aboutPt','site-about-pt'],['aboutEn','site-about-en']].forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.value=sc[k]||'';});}
 function saveSiteContent(){DB.set('siteContent',{taglinePt:document.getElementById('site-tagline-pt').value,taglineEn:document.getElementById('site-tagline-en').value,waBr:document.getElementById('site-wabr').value,waUsa:document.getElementById('site-wausa').value,igBr:document.getElementById('site-igbr').value,igUsa:document.getElementById('site-igusa').value,aboutPt:document.getElementById('site-about-pt').value,aboutEn:document.getElementById('site-about-en').value});toast('Conteúdo salvo! ✅');}
 // PARTICLES
@@ -1467,4 +1150,7 @@ bootSupabase();
 </script>
 </body>
 </html>
+
+
+
 
