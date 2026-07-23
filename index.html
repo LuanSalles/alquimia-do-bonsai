@@ -297,20 +297,20 @@ body{background:#F7F3E9;color:#2B2B24;font-weight:400;}
 #lang-toggle{border-color:rgba(36,64,25,.18);}
 #lang-toggle button{background:#fff;color:#746F62;}
 .badge,#lang-toggle button.active{background:#1D2D17;color:#fff;}
-#hero{min-height:calc(100vh - 10px);padding-top:4.5rem;background:linear-gradient(105deg,#F7F3E9 0%,#EFE6D2 68%,#1B2417 68%,#0F150D 100%);}
+#hero{min-height:calc(100vh - 10px);padding-top:4.5rem;background:linear-gradient(105deg,#F7F3E9 0%,#EFE6D2 76%,#1B2417 76%,#0F150D 100%);}
 canvas#particles{opacity:.16;}
 .official-hero{width:min(1180px,100%);max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.82fr);align-items:center;gap:4rem;text-align:left;}
 .official-copy{position:relative;z-index:2;}
 .official-logo{width:116px;aspect-ratio:1;object-fit:cover;border-radius:50%;margin-bottom:1.7rem;filter:drop-shadow(0 12px 24px rgba(16,17,14,.12));opacity:0;animation:fadeUp 1s .2s forwards;}
 .official-logo[data-en]{width:128px;}
-.official-media{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;}
+.official-media{position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;}
 .official-media::before{display:none;}
-.official-media img{position:relative;z-index:1;width:min(520px,100%);height:min(610px,78vw);object-fit:cover;object-position:center top;border-radius:2px;filter:drop-shadow(0 30px 60px rgba(0,0,0,.32));}
+.official-media img{position:relative;z-index:1;width:min(520px,100%);height:min(560px,72vw);object-fit:cover;object-position:center 34%;border-radius:2px;filter:drop-shadow(0 30px 60px rgba(0,0,0,.32));}
 .hero-eyebrow{color:#7C652D;letter-spacing:.22em;margin-bottom:1rem;}
 .hero-title{color:#1B1B16;font-size:clamp(3rem,7vw,6.7rem);letter-spacing:0;}
 .hero-title em{color:#1D2D17;}
 .hero-sub{max-width:560px;color:#5E594E;font-family:'Inter',sans-serif;font-style:normal;font-size:clamp(1rem,1.6vw,1.18rem);line-height:1.8;}
-.hero-cta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;justify-content:flex-start;width:min(760px,100%);}
+.hero-cta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;justify-content:flex-start;width:min(660px,100%);}
 .hero-cta .btn{display:flex;align-items:center;justify-content:center;min-height:56px;text-align:center;white-space:normal;}
 .btn{border-radius:0;padding:.92rem 1.45rem;font-size:.66rem;letter-spacing:.12em;}
 .btn-gold{background:#1D2D17;color:#fff;}
@@ -357,8 +357,8 @@ canvas#particles{opacity:.16;}
 .form-group input,.form-group select,.form-group textarea{background:#fff;color:#2B2B24;border-color:rgba(36,64,25,.18);}
 #page-shop,#page-wishlist,#page-cart,#page-profile,#page-admin{background:#F7F3E9;color:#2B2B24;}
 .shop-page-header,.wishlist-header,.cart-header,.profile-header,.admin-header{background:#fff;border-bottom-color:rgba(36,64,25,.12);}
-@media(max-width:900px){.official-hero{grid-template-columns:1fr;text-align:center;gap:2rem;padding:3rem 1rem 0;width:100%;}.official-logo{margin-left:auto;margin-right:auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-cta{justify-content:center}.official-media{min-height:320px;width:100%;}#hero{background:linear-gradient(180deg,#F7F3E9 0%,#EFE6D2 58%,#1B2417 58%,#0F150D 100%);}.official-media img{width:min(420px,90vw);height:min(620px,112vw);object-position:center top;}}
-@media(max-width:600px){#hero{align-items:flex-start;padding-top:5.6rem;min-height:auto;}.official-logo{width:88px}.official-logo[data-en]{width:98px}.hero-title{font-size:clamp(2.5rem,15vw,3.9rem);max-width:100%;overflow-wrap:break-word}.hero-sub{max-width:min(340px,100%);}.official-media{min-height:260px}.official-media img{height:min(560px,112vw);}.hero-cta{display:grid;grid-template-columns:minmax(0,1fr);gap:.75rem;width:100%;max-width:370px;margin-left:auto;margin-right:auto}.hero-cta .btn{width:100%;max-width:100%;text-align:center;padding:.9rem .75rem;background:#fff;color:#1D2D17;border:1px solid rgba(29,45,23,.28);box-shadow:0 10px 22px rgba(16,17,14,.08);white-space:normal}.hero-cta .btn-gold{background:#1D2D17;color:#fff;border-color:#1D2D17}.method-visual-img{width:min(230px,72vw);}.book-btns{display:grid;grid-template-columns:minmax(0,1fr);width:100%;}.book-btns .btn{width:100%;max-width:100%;text-align:center;white-space:normal}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}.products-grid,.feature-grid,.content-list,.creator-grid{grid-template-columns:1fr!important;width:100%;}.product-card,.feature-card,.content-item,.creator-card{width:100%;max-width:100%;}}
+@media(max-width:900px){.official-hero{grid-template-columns:1fr;text-align:center;gap:0;padding:3rem 0 0;width:100%;}.official-copy{padding:0 1rem 1.5rem;}.official-logo{margin-left:auto;margin-right:auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-cta{justify-content:center}.official-media{min-height:320px;width:100vw;margin-left:calc(50% - 50vw);padding:2rem 1rem 0;background:#0F150D;}#hero{background:linear-gradient(180deg,#F7F3E9 0%,#EFE6D2 100%);}.official-media img{width:min(420px,90vw);height:min(520px,106vw);object-position:center 34%;}}
+@media(max-width:600px){#hero{align-items:flex-start;padding-top:5.6rem;min-height:auto;}.official-logo{width:88px}.official-logo[data-en]{width:98px}.hero-title{font-size:clamp(2.5rem,15vw,3.9rem);max-width:100%;overflow-wrap:break-word}.hero-sub{max-width:min(340px,100%);}.official-media{min-height:240px;padding-top:1.6rem}.official-media img{height:min(500px,102vw);}.hero-cta{display:grid;grid-template-columns:minmax(0,1fr);gap:.75rem;width:100%;max-width:370px;margin-left:auto;margin-right:auto}.hero-cta .btn{width:100%;max-width:100%;text-align:center;padding:.9rem .75rem;background:#fff;color:#1D2D17;border:1px solid rgba(29,45,23,.28);box-shadow:0 10px 22px rgba(16,17,14,.08);white-space:normal}.hero-cta .btn-gold{background:#1D2D17;color:#fff;border-color:#1D2D17}.method-visual-img{width:min(230px,72vw);}.book-btns{display:grid;grid-template-columns:minmax(0,1fr);width:100%;}.book-btns .btn{width:100%;max-width:100%;text-align:center;white-space:normal}.content-band,#philosophy,#shop-section,#book-section,#about-section,#contact-section{padding:4rem 1rem;}.products-grid,.feature-grid,.content-list,.creator-grid{grid-template-columns:1fr!important;width:100%;}.product-card,.feature-card,.content-item,.creator-card{width:100%;max-width:100%;}}
 .menu-btn{display:none;background:#fff;border:1px solid rgba(36,64,25,.16);color:#244019;width:40px;height:40px;align-items:center;justify-content:center;font-size:1.15rem;line-height:1;cursor:pointer;box-shadow:0 8px 20px rgba(36,64,25,.08);}
 #courses-section,#contents-section,#social-section,#events-section{display:none;}
 @media(max-width:760px){
@@ -445,7 +445,7 @@ body.lang-pt [data-en]{display:none!important;}
           </div>
         </div>
         <div class="philosophy-visual">
-          <img class="method-visual-img" src="assets/method-bonsai-symbol-light.png" alt="Símbolo do bonsai com geometria sagrada representando transformação"/>
+          <img class="method-visual-img" src="assets/method-bonsai-symbol-transparent.png" alt="Símbolo do bonsai com geometria sagrada representando transformação"/>
           <p class="phil-quote" data-pt>"O que recebe cuidado, cresce."</p>
           <p class="phil-quote" data-en>"What receives care, grows."</p>
         </div>
