@@ -18,6 +18,8 @@
 <meta name="twitter:image" content="https://www.alquimiadobonsai.com/assets/hero-alexandre-luane-grande-bonsai.jpg"/>
 <link rel="icon" type="image/jpeg" href="assets/brand-bonsai-alchemy-logo.jpg"/>
 <link rel="apple-touch-icon" href="assets/brand-bonsai-alchemy-logo.jpg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -352,6 +354,9 @@ canvas#particles{opacity:.16;}
 }
 body.lang-en [data-pt]{display:none!important;}
 body.lang-pt [data-en]{display:none!important;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;}
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
@@ -379,8 +384,8 @@ body.lang-pt [data-en]{display:none!important;}
     <canvas id="particles"></canvas>
     <div class="hero-content official-hero">
       <div class="official-copy">
-        <img class="official-logo" data-pt src="assets/brand-alquimia-logo.jpg" alt="Alquimia do Bonsai"/>
-        <img class="official-logo" data-en src="assets/brand-bonsai-alchemy-logo.jpg" alt="Bonsai Alchemy"/>
+        <img class="official-logo" data-pt src="assets/brand-alquimia-logo.jpg" alt="Alquimia do Bonsai" decoding="async"/>
+        <img class="official-logo" data-en src="assets/brand-bonsai-alchemy-logo.jpg" alt="Bonsai Alchemy" decoding="async"/>
         <p class="hero-eyebrow" data-pt>Bonsai como arte, transformação e conexão com a natureza</p>
         <p class="hero-eyebrow" data-en>Bonsai as art, transformation and connection with nature</p>
         <h1 class="hero-title" data-pt>Alquimia<br/><em>do Bonsai</em></h1>
@@ -394,7 +399,7 @@ body.lang-pt [data-en]{display:none!important;}
         </div>
       </div>
       <div class="official-media" aria-hidden="true">
-        <img src="assets/hero-alexandre-luane-grande-bonsai.jpg" alt="Alexandre e Luane com um grande bonsai"/>
+        <img src="assets/hero-alexandre-luane-grande-bonsai.jpg" alt="Alexandre e Luane com um grande bonsai" decoding="async" fetchpriority="high"/>
       </div>
     </div>
     <div class="scroll-hint"><span data-pt>Role</span><span data-en>Scroll</span><div class="scroll-line"></div></div>
@@ -422,7 +427,7 @@ body.lang-pt [data-en]{display:none!important;}
           </div>
         </div>
         <div class="philosophy-visual">
-          <img class="method-visual-img" src="assets/method-bonsai-symbol-transparent.png" alt="Símbolo do bonsai com geometria sagrada representando transformação"/>
+          <img class="method-visual-img" src="assets/method-bonsai-symbol-transparent.png" alt="Símbolo do bonsai com geometria sagrada representando transformação" loading="lazy" decoding="async"/>
           <p class="phil-quote" data-pt>"O que recebe cuidado, cresce."</p>
           <p class="phil-quote" data-en>"What receives care, grows."</p>
         </div>
@@ -434,10 +439,10 @@ body.lang-pt [data-en]{display:none!important;}
       <div class="book-grid">
         <div class="book-cover">
           <div class="book-gallery">
-            <img class="book-cover-portrait" data-pt src="assets/book-cover-pt-standard.jpg" alt="Capa do livro Cuide da sua Alma - Lições do Bonsai"/>
-            <img class="book-cover-portrait" data-en src="assets/book-en-3d.jpg" alt="Take Care of Your Soul book cover"/>
-            <img class="book-cover-wide" data-pt src="assets/book-open-pt.jpg" alt="Livro Cuide da sua Alma aberto em português"/>
-            <img class="book-cover-wide" data-en src="assets/book-open-en.jpg" alt="Take Care of Your Soul open book in English"/>
+            <img class="book-cover-portrait" data-pt src="assets/book-cover-pt-standard.jpg" alt="Capa do livro Cuide da sua Alma - Lições do Bonsai" loading="lazy" decoding="async"/>
+            <img class="book-cover-portrait" data-en src="assets/book-en-3d.jpg" alt="Take Care of Your Soul book cover" loading="lazy" decoding="async"/>
+            <img class="book-cover-wide" data-pt src="assets/book-open-pt.jpg" alt="Livro Cuide da sua Alma aberto em português" loading="lazy" decoding="async"/>
+            <img class="book-cover-wide" data-en src="assets/book-open-en.jpg" alt="Take Care of Your Soul open book in English" loading="lazy" decoding="async"/>
           </div>
         </div>
         <div class="book-info">
@@ -528,13 +533,13 @@ body.lang-pt [data-en]{display:none!important;}
       </div>
       <div class="creator-grid">
         <div class="creator-card">
-          <img src="assets/alexandre-braga.jpg" alt="Alexandre Braga trabalhando com bonsai" style="object-position:42% center;"/>
+          <img src="assets/alexandre-braga.jpg" alt="Alexandre Braga trabalhando com bonsai" style="object-position:42% center;" loading="lazy" decoding="async"/>
           <h3>Alexandre Braga</h3>
           <p data-pt>Arte, técnica, educação e cuidado com árvores vivas. Alexandre conduz a parte prática, estética e técnica da formação em bonsai.</p>
           <p data-en>Art, technique, education, and care for living trees. Alexandre leads the practical, aesthetic, and technical side of bonsai training.</p>
         </div>
         <div class="creator-card">
-          <img src="assets/luane-salles-bonsai-cinza.jpg" alt="Luane Salles ao lado de um bonsai" style="object-position:center;"/>
+          <img src="assets/luane-salles-bonsai-cinza.jpg" alt="Luane Salles ao lado de um bonsai" style="object-position:center;" loading="lazy" decoding="async"/>
           <h3>Luane Salles</h3>
           <p data-pt>Transformação, comunicação e propósito para aproximar pessoas da natureza, do sagrado e de si mesmas.</p>
           <p data-en>Transformation, communication, and purpose to connect people with nature, the sacred, and themselves.</p>
@@ -944,8 +949,8 @@ function productVisibleForLang(p){
   return market==='both'||market===currentLang;
 }
 function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category)&&productVisibleForLang(p));}
-function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
-function productDetailImage(p){return p.imageUrl?`<div class="product-detail-img has-image"><img src="${p.imageUrl}" alt="${p.namePt}"/></div>`:`<div class="product-detail-img">${p.emoji||'🌳'}</div>`;}
+function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}" loading="lazy" decoding="async"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
+function productDetailImage(p){return p.imageUrl?`<div class="product-detail-img has-image"><img src="${p.imageUrl}" alt="${p.namePt}" loading="lazy" decoding="async"/></div>`:`<div class="product-detail-img">${p.emoji||'🌳'}</div>`;}
 function moneyLabel(p){
   const value=Number(p.price||0).toLocaleString(p.currency==='USD'?'en-US':'pt-BR',{minimumFractionDigits:2});
   return p.currency==='USD'?'US$ '+value:'R$ '+value;
