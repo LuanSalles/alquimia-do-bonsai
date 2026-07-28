@@ -16,8 +16,9 @@
 <meta name="twitter:title" content="Bonsai Alchemy · Alquimia do Bonsai"/>
 <meta name="twitter:description" content="Live bonsai catalog, bonsai education, courses, and the book Take Care of Your Soul."/>
 <meta name="twitter:image" content="https://www.alquimiadobonsai.com/assets/hero-alexandre-luane-grande-bonsai.jpg"/>
-<link rel="icon" type="image/jpeg" href="assets/brand-bonsai-alchemy-logo.jpg"/>
-<link rel="apple-touch-icon" href="assets/brand-bonsai-alchemy-logo.jpg"/>
+<link rel="icon" type="image/png" href="/assets/favicon.png"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <script type="application/ld+json">
@@ -893,8 +894,6 @@ function setLang(l){
   document.body.className=document.body.className.replace(/lang-\w+/,'')+' lang-'+l;
   document.documentElement.lang=l==='en'?'en':'pt';
   document.title=l==='en'?'Bonsai Alchemy':'Alquimia do Bonsai';
-  document.querySelector("link[rel='icon']")?.setAttribute('href',l==='en'?'assets/brand-bonsai-alchemy-logo.jpg':'assets/brand-alquimia-logo.jpg');
-  document.querySelector("link[rel='apple-touch-icon']")?.setAttribute('href',l==='en'?'assets/brand-bonsai-alchemy-logo.jpg':'assets/brand-alquimia-logo.jpg');
   document.querySelectorAll('#lang-toggle button').forEach((b,i)=>b.classList.toggle('active',(i===0&&l==='pt')||(i===1&&l==='en')));
   renderHomeProducts();
   if(currentPage==='shop')renderShop();
