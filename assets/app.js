@@ -29,11 +29,17 @@ function safeImageUrl(value){
   return safeUrl(value,{fallback:'',allowedProtocols:['https:','http:']});
 }
 function safeYoutubeUrl(value){
-  const url=safeUrl(value,{fallback:'#',allowedProtocols:['https:']});
+  let raw=String(value??'').trim();
+  if(!raw)return '#';
+  const found=raw.match(/(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com|youtu\.be|youtube-nocookie\.com)\/[^\s<>"']+/i);
+  raw=found?found[0]:raw;
+  if(/^www\./i.test(raw)||/^m\./i.test(raw)||/^(youtube\.com|youtu\.be|youtube-nocookie\.com)\//i.test(raw))raw='https://'+raw;
+  const url=safeUrl(raw,{fallback:'#',allowedProtocols:['https:']});
   if(url==='#')return '#';
   try{
-    const host=new URL(url).hostname.replace(/^www\./,'');
-    return ['youtube.com','youtu.be','m.youtube.com'].includes(host)?url:'#';
+    const parsed=new URL(url);
+    const host=parsed.hostname.replace(/^www\./,'').replace(/^m\./,'');
+    return ['youtube.com','youtu.be','youtube-nocookie.com'].includes(host)?parsed.href:'#';
   }catch{
     return '#';
   }
@@ -378,7 +384,24 @@ function productVisibleForLang(p){
 function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category)&&productVisibleForLang(p));}
 function getVideos(){return remoteVideos||DB.get('youtubeVideos')||[];}
 function videoVisibleForLang(v){const locale=v.locale||'pt';return locale==='both'||locale===currentLang;}
-function youtubeId(url){const m=String(url||'').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([A-Za-z0-9_-]{6,})/);return m?m[1]:'';}
+function youtubeId(url){
+  const safe=safeYoutubeUrl(url);
+  if(safe==='#')return '';
+  try{
+    const parsed=new URL(safe);
+    const host=parsed.hostname.replace(/^www\./,'').replace(/^m\./,'');
+    if(host==='youtu.be')return parsed.pathname.split('/').filter(Boolean)[0]||'';
+    if(host==='youtube.com'||host==='youtube-nocookie.com'){
+      const watchId=parsed.searchParams.get('v');
+      if(watchId)return watchId;
+      const parts=parsed.pathname.split('/').filter(Boolean);
+      const markerIndex=parts.findIndex(part=>['shorts','embed','live'].includes(part));
+      if(markerIndex>=0&&parts[markerIndex+1])return parts[markerIndex+1];
+    }
+  }catch{}
+  const fallback=String(url||'').match(/([A-Za-z0-9_-]{11})(?:[?&#/\s]|$)/);
+  return fallback?fallback[1]:'';
+}
 function youtubeThumb(url){const id=youtubeId(url);return id?`https://img.youtube.com/vi/${id}/hqdefault.jpg`:'';}
 function videoCard(v){
   const thumb=youtubeThumb(v.url);
