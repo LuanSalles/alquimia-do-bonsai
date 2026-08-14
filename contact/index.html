@@ -270,7 +270,7 @@
       <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
       <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
       <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
-      <a class="footer-admin-link" href="/admin" onclick="openAdminLogin();return false;"><span data-pt>Admin</span><span data-en>Admin</span></a>
+      <a class="footer-admin-link" href="/admin" rel="nofollow"><span data-pt>Admin</span><span data-en>Admin</span></a>
     </div>
     <div class="footer-copy">© 2026 Alquimia do Bonsai · Bonsai Alchemy — Todos os direitos reservados.</div>
   </footer>
@@ -292,155 +292,9 @@
 </div>
 
 
-<!-- ADMIN -->
-<div id="page-admin" class="page">
-  <div class="admin-layout">
-    <div class="admin-sidebar">
-      <h3>ADMIN PANEL</h3>
-      <div class="admin-nav">
-        <button class="active" onclick="showAdminTab('dashboard',this)">📊 Dashboard</button>
-        <button onclick="showAdminTab('products',this)">🌳 Catálogo</button>
-        <button onclick="showAdminTab('videos',this)">▶️ YouTube</button>
-        <button onclick="showAdminTab('site',this)">✏️ Conteúdo</button>
-        <button onclick="logout()" style="color:var(--red);margin-top:2rem;">↩ Sair</button>
-      </div>
-    </div>
-    <div class="admin-main">
-      <div class="admin-tab active" id="atab-dashboard">
-        <h2>Dashboard</h2><p class="subtitle">Visão geral do catálogo</p>
-        <div class="admin-cards">
-          <div class="admin-card"><div class="num" id="dash-products">0</div><div class="lbl">Itens</div></div>
-          <div class="admin-card"><div class="num" id="dash-orders">WhatsApp</div><div class="lbl">Vendas</div></div>
-          <div class="admin-card"><div class="num" id="dash-users">Supabase</div><div class="lbl">Login</div></div>
-          <div class="admin-card"><div class="num" id="dash-revenue">0</div><div class="lbl">Vídeos</div></div>
-        </div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;">Fluxo do site</h3>
-        <div id="dash-recent-orders"></div>
-      </div>
-      <div class="admin-tab" id="atab-products">
-        <h2>Gerenciar Catálogo</h2><p class="subtitle">Adicione bonsai, pré-bonsai e produtos de bonsai</p>
-        <div class="admin-toolbar">
-          <input type="text" placeholder="Buscar..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminProducts(this.value)"/>
-          <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Adicionar item</button>
-        </div>
-        <table class="admin-table"><thead><tr><th>Nome</th><th>Tipo</th><th>Cat.</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead><tbody id="admin-products-table"></tbody></table>
-      </div>
-      <div class="admin-tab" id="atab-videos">
-        <h2>Vídeos do YouTube</h2><p class="subtitle">Adicione links de vídeos curtos sobre poda, rega, transplante e cuidados</p>
-        <div class="admin-toolbar">
-          <input type="text" placeholder="Buscar vídeo..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminVideos(this.value)"/>
-          <button class="btn btn-gold btn-sm" onclick="openVideoModal()">+ Adicionar vídeo</button>
-        </div>
-        <table class="admin-table"><thead><tr><th>Título</th><th>Idioma</th><th>Link</th><th>Ordem</th><th>Ações</th></tr></thead><tbody id="admin-videos-table"></tbody></table>
-      </div>
-      <div class="admin-tab" id="atab-site">
-        <h2>Conteúdo do Site</h2><p class="subtitle">Edite textos e informações exibidas no site</p>
-        <div style="display:grid;gap:1.5rem;max-width:600px;">
-          <div class="form-group"><label>Tagline PT</label><input type="text" id="site-tagline-pt"/></div>
-          <div class="form-group"><label>Tagline EN</label><input type="text" id="site-tagline-en"/></div>
-          <div class="form-group"><label>WhatsApp PT</label><input type="text" id="site-wabr"/></div>
-          <div class="form-group"><label>WhatsApp EN</label><input type="text" id="site-wausa"/></div>
-          <div class="form-group"><label>Instagram PT</label><input type="text" id="site-igbr"/></div>
-          <div class="form-group"><label>Instagram EN</label><input type="text" id="site-igusa"/></div>
-          <div class="form-group"><label>Sobre - PT</label><textarea id="site-about-pt" rows="4"></textarea></div>
-          <div class="form-group"><label>Sobre - EN</label><textarea id="site-about-en" rows="4"></textarea></div>
-          <button class="btn btn-gold" onclick="saveSiteContent()">Salvar conteúdo</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- MODAL: AUTH -->
-<div id="modal-auth" class="modal-overlay hidden">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('modal-auth')">✕</button>
-    <div id="auth-login">
-      <h2 data-pt>Área administrativa</h2><h2 data-en>Admin area</h2>
-      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;" data-pt>Entrada exclusiva para atualizar o catálogo real.</p>
-      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;" data-en>Private access for updating the live catalog.</p>
-      <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="admin@email.com"/></div>
-      <div class="form-group"><label data-pt>Senha</label><input type="password" id="login-pass" placeholder="••••••"/></div>
-      <div id="login-error" class="form-error hidden"></div>
-      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doLogin()"><span data-pt>Entrar no painel</span><span data-en>Open admin panel</span></button>
-    </div>
-  </div>
-</div>
 <!-- MODAL: PRODUCT DETAIL -->
 <div id="modal-product" class="modal-overlay hidden">
   <div class="modal" style="max-width:680px;"><button class="modal-close" onclick="closeModal('modal-product')">✕</button><div class="product-detail-grid" id="product-detail-content"></div></div>
-</div>
-<!-- MODAL: ADMIN EDIT PRODUCT -->
-<div id="modal-product-edit" class="modal-overlay hidden">
-  <div class="modal" style="max-width:640px;">
-    <button class="modal-close" onclick="closeModal('modal-product-edit')">✕</button>
-    <h2 id="product-edit-title">Adicionar item</h2>
-    <input type="hidden" id="edit-product-id"/>
-    <div class="form-row">
-      <div class="form-group"><label>Nome PT</label><input type="text" id="ep-name-pt" placeholder="Nome em português"/></div>
-      <div class="form-group"><label>Nome EN</label><input type="text" id="ep-name-en" placeholder="Name in English"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Tipo / espécie</label><input type="text" id="ep-species" placeholder="ex: Livro, Ficus retusa, Curso"/></div>
-      <div class="form-group"><label>Categoria</label>
-        <select id="ep-category"><option value="bonsai">Bonsai</option><option value="prebonsai">Pré-Bonsai</option><option value="produto">Produto de bonsai</option></select>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Mostrar em</label>
-        <select id="ep-market"><option value="pt">Português / Brasil</option><option value="en">Inglês / EUA</option><option value="both">PT e EN</option></select>
-      </div>
-      <div class="form-group"><label>Estoque</label><input type="number" id="ep-stock" placeholder="1" min="0"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Preço Brasil (R$)</label><input type="number" id="ep-price" placeholder="0.00" step="0.01" min="0"/></div>
-      <div class="form-group"><label>Preço EUA (US$)</label><input type="number" id="ep-price-usd" placeholder="0.00" step="0.01" min="0"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Altura (cm)</label><input type="text" id="ep-height" placeholder="ex: 25–30 cm"/></div>
-      <div class="form-group"><label>Idade</label><input type="text" id="ep-age" placeholder="ex: 5 anos"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Estilo</label><input type="text" id="ep-style" placeholder="ex: Informal upright"/></div>
-      <div class="form-group"><label>Vaso</label><input type="text" id="ep-pot" placeholder="ex: Cerâmica japonesa"/></div>
-    </div>
-    <div class="form-group"><label>Imagem do item</label><input type="text" id="ep-image" placeholder="URL da imagem ou caminho em assets"/></div>
-    <div class="form-group"><label>Enviar nova imagem</label><input type="file" id="ep-file" accept="image/png,image/jpeg,image/webp,image/gif"/></div>
-    <div class="form-group"><label>Link de compra/acesso</label><input type="text" id="ep-link" placeholder="Amazon, WhatsApp, formulário, Drive..."/></div>
-    <div class="form-group"><label>Emoji</label><input type="text" id="ep-emoji" placeholder="🌳" style="width:80px;font-size:1.5rem;"/></div>
-    <div class="form-group"><label>Descrição PT</label><textarea id="ep-desc-pt" rows="3" placeholder="Descrição em português..."></textarea></div>
-    <div class="form-group"><label>Descrição EN</label><textarea id="ep-desc-en" rows="3" placeholder="Description in English..."></textarea></div>
-    <div class="form-group"><label>Cuidados PT</label><textarea id="ep-care-pt" rows="2" placeholder="Instruções de cuidado..."></textarea></div>
-    <div class="form-group"><label>Cuidados EN</label><textarea id="ep-care-en" rows="2" placeholder="Care instructions..."></textarea></div>
-    <div style="display:flex;gap:1rem;margin-top:1rem;">
-      <button class="btn btn-gold" onclick="saveProduct()">Salvar item</button>
-      <button class="btn btn-ghost" onclick="closeModal('modal-product-edit')">Cancelar</button>
-    </div>
-  </div>
-</div>
-<!-- MODAL: ADMIN EDIT VIDEO -->
-<div id="modal-video-edit" class="modal-overlay hidden">
-  <div class="modal" style="max-width:640px;">
-    <button class="modal-close" onclick="closeModal('modal-video-edit')">✕</button>
-    <h2 id="video-edit-title">Adicionar vídeo</h2>
-    <input type="hidden" id="edit-video-id"/>
-    <div class="form-row">
-      <div class="form-group"><label>Título PT</label><input type="text" id="ev-title-pt" placeholder="Como regar um bonsai"/></div>
-      <div class="form-group"><label>Título EN</label><input type="text" id="ev-title-en" placeholder="How to water a bonsai"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Mostrar em</label>
-        <select id="ev-locale"><option value="pt">Português / Brasil</option><option value="en">Inglês / EUA</option><option value="both">PT e EN</option></select>
-      </div>
-      <div class="form-group"><label>Ordem</label><input type="number" id="ev-sort" value="100" min="0"/></div>
-    </div>
-    <div class="form-group"><label>Link do YouTube</label><input type="text" id="ev-url" placeholder="https://www.youtube.com/shorts/..."/></div>
-    <div class="form-group"><label>Descrição PT</label><textarea id="ev-desc-pt" rows="3" placeholder="Descrição curta em português..."></textarea></div>
-    <div class="form-group"><label>Descrição EN</label><textarea id="ev-desc-en" rows="3" placeholder="Short description in English..."></textarea></div>
-    <div style="display:flex;gap:1rem;margin-top:1rem;">
-      <button class="btn btn-gold" onclick="saveVideo()">Salvar vídeo</button>
-      <button class="btn btn-ghost" onclick="closeModal('modal-video-edit')">Cancelar</button>
-    </div>
-  </div>
 </div>
 <script src="/assets/app.js"></script>
 </body>
