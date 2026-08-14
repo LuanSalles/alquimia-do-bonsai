@@ -7,6 +7,9 @@
 <meta name="description" content="Bonsai Alchemy / Alquimia do Bonsai: live bonsai catalog, bonsai education, courses, and the book Take Care of Your Soul / Cuide da Sua Alma."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://www.alquimiadobonsai.com/"/>
+<link rel="alternate" hreflang="en" href="https://www.alquimiadobonsai.com/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://www.alquimiadobonsai.com/"/>
+<link rel="alternate" hreflang="x-default" href="https://www.alquimiadobonsai.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.alquimiadobonsai.com/"/>
 <meta property="og:title" content="Bonsai Alchemy · Alquimia do Bonsai"/>
@@ -784,6 +787,40 @@ const SUPABASE_KEY='sb_publishable_IgkFCy47fAKzZ-EjaR_flg_sqEqnyHL';
 const supabaseClient=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
 let remoteProducts=null;
 let remoteVideos=null;
+function escapeHTML(value){
+  return String(value??'').replace(/[&<>"']/g,(char)=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[char]));
+}
+function safeUrl(value,{fallback='#',allowedProtocols=['https:','http:','mailto:','tel:']}={}){
+  const raw=String(value??'').trim();
+  if(!raw)return fallback;
+  try{
+    const url=new URL(raw,window.location.origin);
+    return allowedProtocols.includes(url.protocol)?url.href:fallback;
+  }catch{
+    return fallback;
+  }
+}
+function safeImageUrl(value){
+  const raw=String(value??'').trim();
+  if(/^\/?assets\//.test(raw))return raw;
+  return safeUrl(value,{fallback:'',allowedProtocols:['https:','http:']});
+}
+function safeYoutubeUrl(value){
+  const url=safeUrl(value,{fallback:'#',allowedProtocols:['https:']});
+  if(url==='#')return '#';
+  try{
+    const host=new URL(url).hostname.replace(/^www\./,'');
+    return ['youtube.com','youtu.be','m.youtube.com'].includes(host)?url:'#';
+  }catch{
+    return '#';
+  }
+}
 function rowToProduct(row){
   const fallbackPt=`https://wa.me/5521964109840?text=${encodeURIComponent('Olá! Tenho interesse em '+row.name_pt+' do catálogo Alquimia do Bonsai. Pode me passar disponibilidade, valor e envio?')}`;
   const fallbackEn=`https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+(row.name_en||row.name_pt)+' from the Bonsai Alchemy catalog. Could you send availability, price, and shipping details?')}`;
@@ -1043,12 +1080,13 @@ function youtubeId(url){const m=String(url||'').match(/(?:youtu\.be\/|youtube\.c
 function youtubeThumb(url){const id=youtubeId(url);return id?`https://img.youtube.com/vi/${id}/hqdefault.jpg`:'';}
 function videoCard(v){
   const thumb=youtubeThumb(v.url);
-  const titlePt=v.titlePt||v.titleEn||'Vídeo no YouTube';
-  const titleEn=v.titleEn||v.titlePt||'YouTube video';
-  const descPt=v.descPt||'Assista no canal Alquimia do Bonsai.';
-  const descEn=v.descEn||v.descPt||'Watch on the Bonsai Alchemy channel.';
-  return `<a class="video-card" href="${v.url}" target="_blank" rel="noopener">
-    <div class="video-thumb">${thumb?`<img src="${thumb}" alt="${titlePt}" loading="lazy" decoding="async"/>`:''}<span class="video-play">▶</span></div>
+  const titlePt=escapeHTML(v.titlePt||v.titleEn||'Vídeo no YouTube');
+  const titleEn=escapeHTML(v.titleEn||v.titlePt||'YouTube video');
+  const descPt=escapeHTML(v.descPt||'Assista no canal Alquimia do Bonsai.');
+  const descEn=escapeHTML(v.descEn||v.descPt||'Watch on the Bonsai Alchemy channel.');
+  const href=safeYoutubeUrl(v.url);
+  return `<a class="video-card" href="${href}" target="_blank" rel="noopener">
+    <div class="video-thumb">${thumb?`<img src="${safeImageUrl(thumb)}" alt="${titlePt}" loading="lazy" decoding="async"/>`:''}<span class="video-play">▶</span></div>
     <div class="video-body">
       <h3><span data-pt>${titlePt}</span><span data-en>${titleEn}</span></h3>
       <p><span data-pt>${descPt}</span><span data-en>${descEn}</span></p>
@@ -1064,8 +1102,14 @@ function renderHomeVideos(){
   g.innerHTML=videos.map(videoCard).join('');
   if(e)e.classList.toggle('hidden',videos.length>0);
 }
-function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}" loading="lazy" decoding="async"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
-function productDetailImage(p){return p.imageUrl?`<div class="product-detail-img has-image"><img src="${p.imageUrl}" alt="${p.namePt}" loading="lazy" decoding="async"/></div>`:`<div class="product-detail-img">${p.emoji||'🌳'}</div>`;}
+function productImage(p){
+  const img=safeImageUrl(p.imageUrl);
+  return img?`<div class="product-img-placeholder has-image"><img src="${img}" alt="${escapeHTML(p.namePt||p.nameEn||'Bonsai')}" loading="lazy" decoding="async"/></div>`:`<div class="product-img-placeholder">${escapeHTML(p.emoji||'🌳')}</div>`;
+}
+function productDetailImage(p){
+  const img=safeImageUrl(p.imageUrl);
+  return img?`<div class="product-detail-img has-image"><img src="${img}" alt="${escapeHTML(p.namePt||p.nameEn||'Bonsai')}" loading="lazy" decoding="async"/></div>`:`<div class="product-detail-img">${escapeHTML(p.emoji||'🌳')}</div>`;
+}
 function moneyLabel(p){
   const value=Number(p.price||0).toLocaleString(p.currency==='USD'?'en-US':'pt-BR',{minimumFractionDigits:2});
   return p.currency==='USD'?'US$ '+value:'R$ '+value;
@@ -1084,18 +1128,18 @@ function productPriceLabels(p){
 }
 function productPriceHtml(p,cls='product-price-card'){
   const label=productPriceLabels(p);
-  return `<div class="${cls}"><span data-pt>${label.pt}</span><span data-en>${label.en}</span></div>`;
+  return `<div class="${escapeHTML(cls)}"><span data-pt>${escapeHTML(label.pt)}</span><span data-en>${escapeHTML(label.en)}</span></div>`;
 }
 function productSpeciesHtml(p,cls='product-species'){
   const pt=p.species&&p.species!=='—'?p.species:p.category;
   const en=p.speciesEn||pt;
-  return `<p class="${cls}"><span data-pt>${pt}</span><span data-en>${en}</span></p>`;
+  return `<p class="${escapeHTML(cls)}"><span data-pt>${escapeHTML(pt)}</span><span data-en>${escapeHTML(en)}</span></p>`;
 }
 function productAccessAction(p,small=true){
   const btnClass=small?'btn btn-gold btn-sm':'btn btn-gold';
   const label=small?'<span data-pt>Consultar</span><span data-en>Ask</span>':'<span data-pt>Consultar no WhatsApp</span><span data-en>Ask on WhatsApp</span> →';
-  const ptUrl=p.buyUrl||productWhatsappPt(p);
-  const enUrl=p.buyUrlEn||productWhatsappEn(p);
+  const ptUrl=safeUrl(p.buyUrl||productWhatsappPt(p));
+  const enUrl=safeUrl(p.buyUrlEn||productWhatsappEn(p));
   if(enUrl&&enUrl!==ptUrl){
     return `<a class="${btnClass}" data-pt href="${ptUrl}" target="_blank" onclick="event.stopPropagation()">${small?'Consultar':'Consultar no WhatsApp →'}</a><a class="${btnClass}" data-en href="${enUrl}" target="_blank" onclick="event.stopPropagation()">${small?'Ask':'Ask on WhatsApp →'}</a>`;
   }
@@ -1104,14 +1148,16 @@ function productAccessAction(p,small=true){
 function productCard(p){
   const price=productPriceHtml(p);
   const mainAction=productAccessAction(p,true);
-  return`<div class="product-card" data-id="${p.id}" data-cat="${p.category}">
+  const descPt=escapeHTML((p.descPt||'').substring(0,90));
+  const descEn=escapeHTML((p.descEn||p.descPt||'').substring(0,90));
+  return`<div class="product-card" data-id="${escapeHTML(p.id)}" data-cat="${escapeHTML(p.category)}">
     ${productImage(p)}
     ${productSpeciesHtml(p)}
-    <h3 class="product-name-card"><span data-pt>${p.namePt}</span><span data-en>${p.nameEn||p.namePt}</span></h3>
-    <p class="product-desc-card"><span data-pt>${(p.descPt||'').substring(0,90)}...</span><span data-en>${(p.descEn||p.descPt||'').substring(0,90)}...</span></p>
+    <h3 class="product-name-card"><span data-pt>${escapeHTML(p.namePt)}</span><span data-en>${escapeHTML(p.nameEn||p.namePt)}</span></h3>
+    <p class="product-desc-card"><span data-pt>${descPt}${descPt?'...':''}</span><span data-en>${descEn}${descEn?'...':''}</span></p>
     ${price}
     <div class="product-card-btns">
-      <button class="btn btn-ghost btn-sm" onclick="openProductDetail('${p.id}')"><span data-pt>Detalhes</span><span data-en>Details</span></button>
+      <button class="btn btn-ghost btn-sm" onclick="openProductDetail('${escapeHTML(p.id)}')"><span data-pt>Detalhes</span><span data-en>Details</span></button>
       ${mainAction}
     </div>
   </div>`;
@@ -1144,20 +1190,22 @@ function filterShop(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=
 function openProductDetail(id){
   const p=getShopProducts().find(x=>x.id===id);if(!p)return;
   const price=productPriceHtml(p,'product-detail-price');
+  const descPt=escapeHTML(p.descPt||'');
+  const descEn=escapeHTML(p.descEn||p.descPt||'');
   document.getElementById('product-detail-content').innerHTML=`
     ${productDetailImage(p)}
     <div class="product-detail-info">
       ${productSpeciesHtml(p,'product-detail-species')}
-      <h2><span data-pt>${p.namePt}</span><span data-en>${p.nameEn||p.namePt}</span></h2>
+      <h2><span data-pt>${escapeHTML(p.namePt)}</span><span data-en>${escapeHTML(p.nameEn||p.namePt)}</span></h2>
       ${price}
-      <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;"><span data-pt>${p.descPt||''}</span><span data-en>${p.descEn||p.descPt||''}</span></p>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;"><span data-pt>${descPt}</span><span data-en>${descEn}</span></p>
       <div>
-        ${p.height!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Altura</span><span data-en>Height</span></span><span class="spec-value"><span data-pt>${p.height}</span><span data-en>${p.heightEn||p.height}</span></span></div>`:''}
-        ${p.age!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Idade</span><span data-en>Age</span></span><span class="spec-value"><span data-pt>${p.age}</span><span data-en>${p.ageEn||p.age}</span></span></div>`:''}
-        ${p.style!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Estilo</span><span data-en>Style</span></span><span class="spec-value"><span data-pt>${p.style}</span><span data-en>${p.styleEn||p.style}</span></span></div>`:''}
-        ${p.pot!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Vaso</span><span data-en>Pot</span></span><span class="spec-value"><span data-pt>${p.pot}</span><span data-en>${p.potEn||p.pot}</span></span></div>`:''}
-        ${p.stock?`<div class="spec-row"><span class="spec-label"><span data-pt>Disponível</span><span data-en>Available</span></span><span class="spec-value" style="color:var(--success)">${p.stock} <span data-pt>un.</span><span data-en>pc.</span></span></div>`:''}
-        ${p.carePt&&p.carePt!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Cuidados</span><span data-en>Care</span></span><span class="spec-value"><span data-pt>${p.carePt}</span><span data-en>${p.careEn||p.carePt}</span></span></div>`:''}
+        ${p.height!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Altura</span><span data-en>Height</span></span><span class="spec-value"><span data-pt>${escapeHTML(p.height)}</span><span data-en>${escapeHTML(p.heightEn||p.height)}</span></span></div>`:''}
+        ${p.age!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Idade</span><span data-en>Age</span></span><span class="spec-value"><span data-pt>${escapeHTML(p.age)}</span><span data-en>${escapeHTML(p.ageEn||p.age)}</span></span></div>`:''}
+        ${p.style!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Estilo</span><span data-en>Style</span></span><span class="spec-value"><span data-pt>${escapeHTML(p.style)}</span><span data-en>${escapeHTML(p.styleEn||p.style)}</span></span></div>`:''}
+        ${p.pot!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Vaso</span><span data-en>Pot</span></span><span class="spec-value"><span data-pt>${escapeHTML(p.pot)}</span><span data-en>${escapeHTML(p.potEn||p.pot)}</span></span></div>`:''}
+        ${p.stock?`<div class="spec-row"><span class="spec-label"><span data-pt>Disponível</span><span data-en>Available</span></span><span class="spec-value" style="color:var(--success)">${escapeHTML(p.stock)} <span data-pt>un.</span><span data-en>pc.</span></span></div>`:''}
+        ${p.carePt&&p.carePt!=='—'?`<div class="spec-row"><span class="spec-label"><span data-pt>Cuidados</span><span data-en>Care</span></span><span class="spec-value"><span data-pt>${escapeHTML(p.carePt)}</span><span data-en>${escapeHTML(p.careEn||p.carePt)}</span></span></div>`:''}
       </div>
       <div class="product-detail-btns">
         ${productAccessAction(p,false)}
@@ -1201,14 +1249,14 @@ function filterAdminProducts(v){apf=v.toLowerCase();renderAdminProducts();}
 function renderAdminProducts(){
   const prods=getProducts().filter(p=>!apf||p.namePt.toLowerCase().includes(apf)||(p.nameEn||'').toLowerCase().includes(apf)||p.species.toLowerCase().includes(apf));
   const t=document.getElementById('admin-products-table');if(!t)return;
-  t.innerHTML=prods.map(p=>`<tr><td>${p.emoji||'🌳'} ${p.namePt||p.nameEn}</td><td style="color:var(--muted);font-style:italic">${p.species}</td><td><span class="tag">${p.category}</span> <span class="tag">${p.market==='en'?'EUA/EN':p.market==='both'?'PT+EN':'BR/PT'}</span></td><td style="color:var(--gold)">${p.market==='en'?usdLabel(p.priceUsd):brlLabel(p.price)}${p.market==='both'&&p.priceUsd?` / ${usdLabel(p.priceUsd)}`:''}</td><td>${p.stock}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openProductModal('${p.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button></div></td></tr>`).join('');
+  t.innerHTML=prods.map(p=>`<tr><td>${escapeHTML(p.emoji||'🌳')} ${escapeHTML(p.namePt||p.nameEn)}</td><td style="color:var(--muted);font-style:italic">${escapeHTML(p.species)}</td><td><span class="tag">${escapeHTML(p.category)}</span> <span class="tag">${p.market==='en'?'EUA/EN':p.market==='both'?'PT+EN':'BR/PT'}</span></td><td style="color:var(--gold)">${p.market==='en'?usdLabel(p.priceUsd):brlLabel(p.price)}${p.market==='both'&&p.priceUsd?` / ${usdLabel(p.priceUsd)}`:''}</td><td>${escapeHTML(p.stock)}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openProductModal('${escapeHTML(p.id)}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${escapeHTML(p.id)}')">🗑️</button></div></td></tr>`).join('');
 }
 let avf='';
 function filterAdminVideos(v){avf=v.toLowerCase();renderAdminVideos();}
 function renderAdminVideos(){
   const videos=getVideos().filter(v=>!avf||(v.titlePt||'').toLowerCase().includes(avf)||(v.titleEn||'').toLowerCase().includes(avf)||(v.url||'').toLowerCase().includes(avf));
   const t=document.getElementById('admin-videos-table');if(!t)return;
-  t.innerHTML=videos.length?videos.map(v=>`<tr><td>${v.titlePt||v.titleEn}</td><td><span class="tag">${v.locale==='en'?'EN':v.locale==='both'?'PT+EN':'PT'}</span></td><td><div class="admin-video-url">${v.url}</div></td><td>${v.sort||100}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openVideoModal('${v.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteVideo('${v.id}')">🗑️</button></div></td></tr>`).join(''):'<tr><td colspan="5" style="color:var(--muted);padding:1.2rem;">Nenhum vídeo cadastrado ainda.</td></tr>';
+  t.innerHTML=videos.length?videos.map(v=>`<tr><td>${escapeHTML(v.titlePt||v.titleEn)}</td><td><span class="tag">${v.locale==='en'?'EN':v.locale==='both'?'PT+EN':'PT'}</span></td><td><div class="admin-video-url">${escapeHTML(v.url)}</div></td><td>${escapeHTML(v.sort||100)}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openVideoModal('${escapeHTML(v.id)}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteVideo('${escapeHTML(v.id)}')">🗑️</button></div></td></tr>`).join(''):'<tr><td colspan="5" style="color:var(--muted);padding:1.2rem;">Nenhum vídeo cadastrado ainda.</td></tr>';
 }
 function openVideoModal(id){
   document.getElementById('video-edit-title').textContent=id?'Editar vídeo':'Adicionar vídeo';
@@ -1233,18 +1281,19 @@ function openVideoModal(id){
 async function saveVideo(){
   const id=document.getElementById('edit-video-id').value;
   const videos=getVideos();
+  const videoUrl=safeYoutubeUrl(document.getElementById('ev-url').value.trim());
   const v={
     id:id||'v'+Date.now(),
     titlePt:document.getElementById('ev-title-pt').value.trim(),
     titleEn:document.getElementById('ev-title-en').value.trim(),
     locale:document.getElementById('ev-locale').value,
     sort:parseInt(document.getElementById('ev-sort').value)||100,
-    url:document.getElementById('ev-url').value.trim(),
+    url:videoUrl,
     descPt:document.getElementById('ev-desc-pt').value.trim(),
     descEn:document.getElementById('ev-desc-en').value.trim(),
     created:id?(videos.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()
   };
-  if(!v.url||!youtubeId(v.url)){toast('Cole um link válido do YouTube.');return;}
+  if(v.url==='#'||!youtubeId(v.url)){toast('Cole um link válido do YouTube.');return;}
   if((v.locale==='pt'||v.locale==='both')&&!v.titlePt){toast('Título PT é obrigatório.');return;}
   if((v.locale==='en'||v.locale==='both')&&!v.titleEn){toast('Título EN é obrigatório.');return;}
   if(currentUser&&currentUser.role==='admin'&&supabaseClient){
@@ -1281,7 +1330,7 @@ function openProductModal(id){
 async function uploadCatalogImage(){
   const fileInput=document.getElementById('ep-file');
   const file=fileInput&&fileInput.files?fileInput.files[0]:null;
-  if(!file||!supabaseClient)return document.getElementById('ep-image').value.trim();
+  if(!file||!supabaseClient)return safeImageUrl(document.getElementById('ep-image').value.trim());
   const safeName=file.name.toLowerCase().replace(/[^a-z0-9._-]+/g,'-');
   const path=`catalog/${Date.now()}-${safeName}`;
   const {error}=await supabaseClient.storage.from('catalog-images').upload(path,file,{cacheControl:'3600',upsert:false});
@@ -1296,7 +1345,7 @@ async function saveProduct(){
   let imageUrl;
   try{imageUrl=await uploadCatalogImage();}catch(error){toast('Erro ao enviar imagem: '+error.message);return;}
   const p={id:id||'p'+Date.now(),namePt:document.getElementById('ep-name-pt').value.trim(),nameEn:document.getElementById('ep-name-en').value.trim(),species:document.getElementById('ep-species').value||'—',category:document.getElementById('ep-category').value,market:document.getElementById('ep-market').value,price:parseFloat(document.getElementById('ep-price').value)||0,priceUsd:parseFloat(document.getElementById('ep-price-usd').value)||0,stock:parseInt(document.getElementById('ep-stock').value)||0,height:document.getElementById('ep-height').value||'—',age:document.getElementById('ep-age').value||'—',style:document.getElementById('ep-style').value||'—',pot:document.getElementById('ep-pot').value||'—',imageUrl,emoji:document.getElementById('ep-emoji').value||'🌳',descPt:document.getElementById('ep-desc-pt').value,descEn:document.getElementById('ep-desc-en').value,carePt:document.getElementById('ep-care-pt').value,careEn:document.getElementById('ep-care-en').value,created:id?(prods.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()};
-  p.buyUrl=document.getElementById('ep-link').value.trim()||productWhatsappPt(p);
+  p.buyUrl=safeUrl(document.getElementById('ep-link').value.trim()||productWhatsappPt(p));
   p.buyUrlEn=productWhatsappEn(p);
   if((p.market==='pt'||p.market==='both')&&!p.namePt){toast('Nome PT é obrigatório para itens do Brasil.');return;}
   if((p.market==='en'||p.market==='both')&&!p.nameEn){toast('Nome EN é obrigatório para itens dos EUA.');return;}
