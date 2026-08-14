@@ -606,7 +606,10 @@ function openVideoModal(id){
 async function saveVideo(){
   const id=document.getElementById('edit-video-id').value;
   const videos=getVideos();
-  const videoUrl=safeYoutubeUrl(document.getElementById('ev-url').value.trim());
+  const rawVideoUrl=document.getElementById('ev-url').value.trim();
+  const videoUrl=safeYoutubeUrl(rawVideoUrl)!=='#'
+    ?safeYoutubeUrl(rawVideoUrl)
+    :safeUrl(rawVideoUrl,{fallback:'#',allowedProtocols:['https:','http:']});
   const v={
     id:id||'v'+Date.now(),
     titlePt:document.getElementById('ev-title-pt').value.trim(),
@@ -618,7 +621,7 @@ async function saveVideo(){
     descEn:document.getElementById('ev-desc-en').value.trim(),
     created:id?(videos.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()
   };
-  if(v.url==='#'){toast('Cole um link válido do YouTube.');return;}
+  if(v.url==='#'){toast('Cole um link completo, começando com https://');return;}
   if((v.locale==='pt'||v.locale==='both')&&!v.titlePt){toast('Título PT é obrigatório.');return;}
   if((v.locale==='en'||v.locale==='both')&&!v.titleEn){toast('Título EN é obrigatório.');return;}
   if(currentUser&&currentUser.role==='admin'&&supabaseClient){
