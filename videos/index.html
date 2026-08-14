@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bonsai Alchemy | Alquimia do Bonsai</title>
+<meta name="description" content="Bonsai Alchemy / Alquimia do Bonsai: live bonsai catalog, bonsai education, courses, and the book Take Care of Your Soul / Cuide da Sua Alma."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.alquimiadobonsai.com/"/>
+<link rel="alternate" hreflang="en" href="https://www.alquimiadobonsai.com/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://www.alquimiadobonsai.com/"/>
+<link rel="alternate" hreflang="x-default" href="https://www.alquimiadobonsai.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.alquimiadobonsai.com/"/>
+<meta property="og:title" content="Bonsai Alchemy · Alquimia do Bonsai"/>
+<meta property="og:description" content="Pre-bonsai, bonsai and education to cultivate living trees with technique, presence and purpose."/>
+<meta property="og:image" content="https://www.alquimiadobonsai.com/assets/hero-alexandre-luane-grande-bonsai.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Bonsai Alchemy · Alquimia do Bonsai"/>
+<meta name="twitter:description" content="Live bonsai catalog, bonsai education, courses, and the book Take Care of Your Soul."/>
+<meta name="twitter:image" content="https://www.alquimiadobonsai.com/assets/hero-alexandre-luane-grande-bonsai.jpg"/>
+<link rel="icon" type="image/png" href="/assets/favicon-v2.png"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon-v2.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bonsai Alchemy / Alquimia do Bonsai",
+  "url": "https://www.alquimiadobonsai.com/",
+  "logo": "https://www.alquimiadobonsai.com/assets/brand-bonsai-alchemy-logo-v2.jpg",
+  "sameAs": [
+    "https://www.instagram.com/bonsaialchemy/",
+    "https://www.instagram.com/alquimiadobonsai/"
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body class="lang-en">
+<div id="topbar">
+  <span class="topbar-logo" onclick="navigateHome('#hero')"><span data-pt>✦ Alquimia do Bonsai</span><span data-en>✦ Bonsai Alchemy</span></span>
+  <button class="menu-btn" onclick="toggleMobileNav()" aria-label="Abrir menu">☰</button>
+  <nav class="topbar-nav">
+    <a onclick="navigateHome('#hero')"><span data-pt>Início</span><span data-en>Home</span></a>
+    <a onclick="navigateHome('#book-section')"><span data-pt>Livro</span><span data-en>Book</span></a>
+    <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
+    <a onclick="navigateHome('#youtube-section')"><span data-pt>Vídeos</span><span data-en>Videos</span></a>
+    <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
+    <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
+    <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
+    <a onclick="openAdminLogin()"><span data-pt>Admin</span><span data-en>Admin</span></a>
+  </nav>
+  <div class="topbar-icons">
+    <div id="lang-toggle"><button onclick="setLang('pt')">PT</button><button class="active" onclick="setLang('en')">EN</button></div>
+  </div>
+</div>
+<div id="toast"></div>
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section id="hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-content official-hero">
+      <div class="official-copy">
+        <img class="official-logo" data-pt src="assets/brand-alquimia-logo.jpg" alt="Alquimia do Bonsai" decoding="async"/>
+        <img class="official-logo" data-en src="assets/brand-bonsai-alchemy-logo-v2.jpg" alt="Bonsai Alchemy" decoding="async"/>
+        <p class="hero-eyebrow" data-pt>Bonsai como arte, transformação e conexão com a natureza</p>
+        <p class="hero-eyebrow" data-en>Bonsai as art, transformation and connection with nature</p>
+        <h1 class="hero-title" data-pt>Alquimia<br/><em>do Bonsai</em></h1>
+        <h1 class="hero-title" data-en>Bonsai<br/><em>Alchemy</em></h1>
+        <p class="hero-sub" data-pt>Pré-bonsai, bonsai e educação para cultivar árvores vivas com técnica, presença e propósito.</p>
+        <p class="hero-sub" data-en>Pre-bonsai, bonsai and education to cultivate living trees with technique, presence and purpose.</p>
+        <div class="hero-cta">
+          <button class="btn btn-gold" onclick="navigateHome('#shop-section')"><span data-pt>Ver bonsai disponíveis</span><span data-en>See available bonsai</span></button>
+          <button class="btn btn-ghost" onclick="navigateHome('#learn-section')"><span data-pt>Conhecer a Escola</span><span data-en>Discover the School</span></button>
+          <button class="btn btn-ghost" onclick="navigateHome('#book-section')"><span data-pt>Comprar o livro</span><span data-en>Buy the book</span></button>
+        </div>
+      </div>
+      <div class="official-media" aria-hidden="true">
+        <img src="assets/hero-alexandre-luane-grande-bonsai.jpg" alt="Alexandre e Luane com um grande bonsai" decoding="async" fetchpriority="high"/>
+      </div>
+    </div>
+    <div class="scroll-hint"><span data-pt>Role</span><span data-en>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+  <section id="philosophy">
+    <div class="container">
+      <p class="section-label" data-pt>Início · Apresentação e Novidades</p><p class="section-label" data-en>Home · Introduction and News</p>
+      <h2 class="section-title" data-pt>O bonsai como<br/><em>espelho da alma</em></h2>
+      <h2 class="section-title" data-en>The bonsai as<br/><em>mirror of the soul</em></h2>
+      <div class="divider"></div>
+      <div class="philosophy-grid">
+        <div class="philosophy-text">
+          <p data-pt>Na Alquimia do Bonsai, acreditamos que cuidar de uma árvore é cuidar de si mesmo. Cada poda, cada rega, cada cuidado é um ato de autoconhecimento — um ritual de presença e transformação.</p>
+          <p data-en>At Bonsai Alchemy, we believe that caring for a tree is caring for yourself. Each pruning, each watering, each act of care is an act of self-knowledge — a ritual of presence and transformation.</p>
+          <p data-pt>Fundada por Alexandre &amp; Luane, nossa marca nasceu em Niterói e floresceu para os Estados Unidos e outros países, conectando pessoas à natureza, ao sagrado e a si mesmas através do Método das 7 Transformações.</p>
+          <p data-en>Founded by Alexandre &amp; Luane, our brand was born in Niterói and expanded to the United States and other countries, connecting people to nature, the sacred, and themselves through the 7 Transformations Method.</p>
+          <div class="seven-transform">
+            <div class="transform-step"><span class="step-num">01</span><span><span class="step-name" data-pt>Conectar</span><span class="step-name" data-en>Connect</span><span class="step-desc" data-pt>Reconectar-se com Deus, consigo mesmo e com a natureza.</span><span class="step-desc" data-en>Reconnect with God, yourself, and nature.</span></span></div>
+            <div class="transform-step"><span class="step-num">02</span><span><span class="step-name" data-pt>Despertar</span><span class="step-name" data-en>Awaken</span><span class="step-desc" data-pt>Perceber o que precisa ser transformado.</span><span class="step-desc" data-en>Notice what needs to be transformed.</span></span></div>
+            <div class="transform-step"><span class="step-num">03</span><span><span class="step-name" data-pt>Cultivar</span><span class="step-name" data-en>Cultivate</span><span class="step-desc" data-pt>Criar hábitos que fortalecem uma nova vida.</span><span class="step-desc" data-en>Create habits that strengthen a new life.</span></span></div>
+            <div class="transform-step"><span class="step-num">04</span><span><span class="step-name" data-pt>Podar</span><span class="step-name" data-en>Prune</span><span class="step-desc" data-pt>Deixar para trás o que impede seu crescimento.</span><span class="step-desc" data-en>Leave behind what prevents your growth.</span></span></div>
+            <div class="transform-step"><span class="step-num">05</span><span><span class="step-name" data-pt>Fortalecer</span><span class="step-name" data-en>Strengthen</span><span class="step-desc" data-pt>Desenvolver raízes profundas e uma base sólida.</span><span class="step-desc" data-en>Develop deep roots and a solid foundation.</span></span></div>
+            <div class="transform-step"><span class="step-num">06</span><span><span class="step-name" data-pt>Florescer</span><span class="step-name" data-en>Flourish</span><span class="step-desc" data-pt>Expressar o seu potencial com equilíbrio.</span><span class="step-desc" data-en>Express your potential with balance.</span></span></div>
+            <div class="transform-step"><span class="step-num">07</span><span><span class="step-name" data-pt>Transbordar</span><span class="step-name" data-en>Overflow</span><span class="step-desc" data-pt>Compartilhar sua transformação e inspirar outras pessoas.</span><span class="step-desc" data-en>Share your transformation and inspire other people.</span></span></div>
+          </div>
+        </div>
+        <div class="philosophy-visual">
+          <img class="method-visual-img" src="assets/method-bonsai-symbol-transparent.png" alt="Símbolo do bonsai com geometria sagrada representando transformação" loading="lazy" decoding="async"/>
+          <p class="phil-quote" data-pt>"O que recebe cuidado, cresce."</p>
+          <p class="phil-quote" data-en>"What receives care, grows."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="book-section">
+    <div class="container">
+      <div class="book-grid">
+        <div class="book-cover">
+          <div class="book-gallery">
+            <img class="book-cover-portrait" data-pt src="assets/book-cover-pt-standard.jpg" alt="Capa do livro Cuide da sua Alma - Lições do Bonsai" loading="lazy" decoding="async"/>
+            <img class="book-cover-portrait" data-en src="assets/book-en-3d.jpg" alt="Take Care of Your Soul book cover" loading="lazy" decoding="async"/>
+            <img class="book-cover-wide" data-pt src="assets/book-open-pt.jpg" alt="Livro Cuide da sua Alma aberto em português" loading="lazy" decoding="async"/>
+            <img class="book-cover-wide" data-en src="assets/book-open-en.jpg" alt="Take Care of Your Soul open book in English" loading="lazy" decoding="async"/>
+          </div>
+        </div>
+        <div class="book-info">
+          <p class="section-label" data-pt>Livro · Método · Exercícios</p><p class="section-label" data-en>Book · Method · Exercises</p>
+          <h2 class="section-title" data-pt>Cuide da<br/><em>sua alma</em></h2>
+          <h2 class="section-title" data-en>Take care of<br/><em>your soul</em></h2>
+          <blockquote data-pt>"O bonsai não é apenas uma árvore. É uma lição de vida, presença e transformação."</blockquote>
+          <blockquote data-en>"The bonsai is not just a tree. It is a lesson in life, presence, and transformation."</blockquote>
+          <p data-pt>Escrito por Luane Salles &amp; Alexandre Braga. Um convite para iniciar sua transformação pelo Método das 7 Transformações: Conectar, Despertar, Cultivar, Podar, Fortalecer, Florescer e Transbordar.</p>
+          <p data-en>Written by Luane Salles &amp; Alexandre Braga. An invitation to begin your transformation through the 7 Transformations Method: Connect, Awaken, Cultivate, Prune, Strengthen, Flourish, and Overflow.</p>
+          <div class="divider"></div>
+          <div class="book-btns">
+            <a href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20comprar%20o%20livro%20digital%20Cuide%20da%20Sua%20Alma." target="_blank" class="btn btn-gold" data-pt>Comprar livro digital</a>
+            <a href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20buy%20the%20digital%20book%20Take%20Care%20of%20Your%20Soul." target="_blank" class="btn btn-gold" data-en>Buy digital book</a>
+            <a href="https://a.co/d/0cbGUyqV" target="_blank" class="btn btn-ghost" data-pt>Comprar na Amazon</a>
+            <a href="https://a.co/d/092Vdt3q" target="_blank" class="btn btn-ghost" data-en>Buy on Amazon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="shop-section">
+    <div class="container">
+      <div class="shop-intro">
+        <p class="section-label" data-pt>Catálogo real</p><p class="section-label" data-en>Live Catalog</p>
+        <h2 class="section-title" data-pt>Bonsai <em>disponíveis</em></h2>
+        <h2 class="section-title" data-en>Available <em>bonsai</em></h2>
+        <p data-pt>Peças reais do catálogo, com valor, descrição e consulta direta pelo WhatsApp.</p>
+        <p data-en>Real catalog pieces with price, description and direct inquiry.</p>
+        <div class="book-btns" style="margin-top:1.4rem;">
+          <a class="btn btn-gold" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20ver%20o%20cat%C3%A1logo%20de%20bonsai%20dispon%C3%ADveis." target="_blank">Ver bonsai disponíveis</a>
+          <a class="btn btn-gold" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20see%20the%20available%20bonsai%20catalog." target="_blank">Request availability</a>
+          <a class="btn btn-ghost" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20ver%20os%20bonsai%20dispon%C3%ADveis%20no%20cat%C3%A1logo." target="_blank">Falar com a Alquimia</a>
+          <a class="btn btn-ghost" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20check%20the%20available%20bonsai%20catalog." target="_blank">WhatsApp option</a>
+        </div>
+      </div>
+      <div class="products-grid" id="home-products-grid"></div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <button class="btn btn-ghost" onclick="showPage('shop')"><span data-pt>Ver catálogo completo →</span><span data-en>View full catalog →</span></button>
+      </div>
+    </div>
+  </section>
+  <section id="learn-section" class="content-band">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Cursos e materiais</p><p class="section-label" data-en>Courses and guides</p>
+        <h2 class="section-title" data-pt>Formação em bonsai<br/><em>com técnica e presença</em></h2>
+        <h2 class="section-title" data-en>Bonsai education<br/><em>with technique and presence</em></h2>
+        <p data-pt>Materiais, escola, mentorias e workshops reunidos em um só lugar para começar com base, evoluir a prática e cultivar com segurança.</p>
+        <p data-en>Guides, school programs, mentorships, and workshops in one place to build a clear foundation, improve your practice, and cultivate with confidence.</p>
+      </div>
+      <div class="feature-grid">
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20material%20Introdu%C3%A7%C3%A3o%20ao%20Bonsai." target="_blank"><h3>Introdução ao Bonsai</h3><p>Origem, estilos, tamanhos e adubação para começar com uma base clara.</p><span class="tag">Pedir no WhatsApp</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20receber%20o%20Guia%20de%20Cuidados%20B%C3%A1sicos%20de%20Bonsai." target="_blank"><h3>Guia de cuidados básicos</h3><p>Rotina simples para observar, regar e manter seu bonsai saudável.</p><span class="tag">Pedir no WhatsApp</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20M%C3%A9todo%20das%207%20Transforma%C3%A7%C3%B5es." target="_blank"><h3>Método das 7 Transformações</h3><p>Exercício diário com 7 ações simples para sustentar foco, presença e propósito.</p><span class="tag">Falar no WhatsApp</span></a>
+        <a class="feature-card link-card" data-pt href="https://forms.gle/pdd7E9Nx9yZcntEs5" target="_blank"><h3>Escola de Bonsai</h3><p>Formação, aulas, prática e acompanhamento com Luane &amp; Alexandre.</p><span class="tag">Inscrição / valor sob consulta</span></a>
+        <a class="feature-card link-card" data-pt href="https://wa.me/5521964109840?text=Quero%20saber%20sobre%20mentorias%20e%20workshops%20de%20bonsai" target="_blank"><h3>Mentorias e workshops</h3><p>Aulas práticas, turmas e orientação individual pelo WhatsApp.</p><span class="tag">Valor sob consulta</span></a>
+        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1aXCLQfiTG8FE692-kJEXREBjligMUTDv/view" target="_blank"><h3>Bonsai introduction guide</h3><p>Origin, styles, sizes, and fertilization for a clear beginner foundation.</p><span class="tag">Open PDF</span></a>
+        <a class="feature-card link-card" data-en href="https://drive.google.com/file/d/1YXaixomSOkd7NKmW99gefqbHep8Kr6zq/view" target="_blank"><h3>Basic bonsai care guide</h3><p>A simple care routine for watering, observation, and healthy growth.</p><span class="tag">Open PDF</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%207%20Transformations%20Method." target="_blank"><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p><span class="tag">Ask on WhatsApp</span></a>
+        <a class="feature-card link-card" data-en href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><h3>International Bonsai School</h3><p>Classes, practice, and guidance with Luane &amp; Alexandre.</p><span class="tag">Registration / ask for price</span></a>
+        <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20talk%20about%20bonsai%20guides%2C%20classes%2C%20or%20available%20trees." target="_blank"><h3>Prefer to message us?</h3><p>If WhatsApp is convenient for you, send us a note and we will guide you personally.</p><span class="tag">WhatsApp option</span></a>
+        <a class="feature-card link-card" href="#youtube-section" onclick="navigateHome('#youtube-section');return false;"><h3><span data-pt>Como cuidar</span><span data-en>Care videos</span></h3><p><span data-pt>Vídeos rápidos com poda, rega, transplante e cuidados diários no YouTube.</span><span data-en>Short YouTube videos about pruning, watering, repotting, and daily care.</span></p><span class="tag"><span data-pt>Assistir no YouTube</span><span data-en>Watch on YouTube</span></span></a>
+      </div>
+    </div>
+  </section>
+  <section id="youtube-section" class="content-band alt">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Como cuidar</p><p class="section-label" data-en>How to care</p>
+        <h2 class="section-title" data-pt>Assista no<br/><em>YouTube</em></h2>
+        <h2 class="section-title" data-en>Watch on<br/><em>YouTube</em></h2>
+        <p data-pt>Vídeos curtos e práticos para aprender cuidados essenciais sem deixar o site cheio. Clique e assista direto no canal.</p>
+        <p data-en>Short practical videos for essential bonsai care. Click and watch directly on the channel.</p>
+      </div>
+      <div class="video-grid" id="youtube-video-grid"></div>
+      <div class="video-empty hidden" id="youtube-empty"><span data-pt>Novos vídeos serão adicionados em breve.</span><span data-en>New videos will be added soon.</span></div>
+    </div>
+  </section>
+  <section id="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label" data-pt>Sobre Nós</p><p class="section-label" data-en>About Us</p>
+          <h2 class="section-title" data-pt>Alexandre<br/>&amp; <em>Luane</em></h2>
+          <h2 class="section-title" data-en>Alexandre<br/>&amp; <em>Luane</em></h2>
+          <div class="divider"></div>
+          <p data-pt>Somos Alexandre Braga e Luane Salles — um casal que transformou a paixão pelo bonsai em missão: ajudar pessoas a se reconectarem com a natureza, o presente e si mesmas.</p>
+          <p data-en>We are Alexandre Braga and Luane Salles — a couple who turned a passion for bonsai into a mission: helping people reconnect with nature, the present, and themselves.</p>
+          <div class="locations">
+            <div class="location-item"><span class="location-flag">🇧🇷</span><div class="location-info"><div class="city">Niterói · Rio de Janeiro</div><div class="detail">WhatsApp: (21) 96410-9840</div></div></div>
+            <div class="location-item"><span class="location-flag">🇺🇸</span><div class="location-info"><div class="city">Estados Unidos · Outros países</div><div class="detail">WhatsApp: +1 (786) 978-0745</div></div></div>
+          </div>
+        </div>
+        <div class="about-values">
+          <p class="section-label" data-pt>O que acreditamos</p><p class="section-label" data-en>What we believe</p>
+          <div class="value-item"><div class="value-title" data-pt>Arte Viva</div><div class="value-title" data-en>Living Art</div><p data-pt>O bonsai é a única forma de arte que respira. Cresce, muda e te acompanha.</p><p data-en>Bonsai is the only art form that breathes. It grows, changes, and accompanies you.</p></div>
+          <div class="value-item"><div class="value-title" data-pt>Presença</div><div class="value-title" data-en>Presence</div><p data-pt>Cuidar de um bonsai exige atenção plena. Meditação com as mãos na terra.</p><p data-en>Caring for a bonsai demands full attention. Meditation with hands in the soil.</p></div>
+          <div class="value-item"><div class="value-title" data-pt>Transformação</div><div class="value-title" data-en>Transformation</div><p data-pt>Como a árvore moldada com paciência, nós também podemos nos reinventar.</p><p data-en>Like the tree shaped with patience, we too can reinvent ourselves.</p></div>
+          <div class="value-item"><div class="value-title" data-pt>Escola Internacional</div><div class="value-title" data-en>International School</div><p data-pt>A Escola de Bonsai conecta aprendizes no Brasil e no mundo.</p><p data-en>The Bonsai School connects learners in Brazil and worldwide.</p></div>
+        </div>
+      </div>
+      <div class="creator-grid">
+        <div class="creator-card">
+          <img src="assets/alexandre-braga.jpg" alt="Alexandre Braga trabalhando com bonsai" style="object-position:42% center;" loading="lazy" decoding="async"/>
+          <h3>Alexandre Braga</h3>
+          <p data-pt>Arte, técnica, educação e cuidado com árvores vivas. Alexandre conduz a parte prática, estética e técnica da formação em bonsai.</p>
+          <p data-en>Art, technique, education, and care for living trees. Alexandre leads the practical, aesthetic, and technical side of bonsai training.</p>
+        </div>
+        <div class="creator-card">
+          <img src="assets/luane-salles-bonsai-cinza.jpg" alt="Luane Salles ao lado de um bonsai" style="object-position:center;" loading="lazy" decoding="async"/>
+          <h3>Luane Salles</h3>
+          <p data-pt>Transformação, comunicação e propósito para aproximar pessoas da natureza, do sagrado e de si mesmas.</p>
+          <p data-en>Transformation, communication, and purpose to connect people with nature, the sacred, and themselves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact-section">
+    <div class="container">
+      <div class="contact-inner">
+        <p class="section-label" data-pt>Fale Conosco</p><p class="section-label" data-en>Get in Touch</p>
+        <h2 class="section-title" data-pt>Vamos <em>conversar</em></h2>
+        <h2 class="section-title" data-en>Let's <em>connect</em></h2>
+        <div class="divider" style="margin:1.5rem auto;"></div>
+        <p data-pt>Quer comprar um bonsai, saber mais sobre o livro ou trocar uma ideia?</p>
+        <p data-en>Want to buy a bonsai, learn about the book, or have a conversation?</p>
+        <div class="contact-links">
+          <a data-pt href="https://wa.me/5521964109840?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20bonsai%2C%20livro%20ou%20aulas." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp</span></a>
+          <a data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20bonsai%2C%20the%20book%2C%20or%20classes." target="_blank" class="contact-link"><span class="contact-link-icon">💬</span><span class="contact-link-label">WhatsApp</span></a>
+          <a data-pt href="https://www.instagram.com/alquimiadobonsai/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram</span></a>
+          <a data-en href="https://www.instagram.com/bonsaialchemy/" target="_blank" class="contact-link"><span class="contact-link-icon">📸</span><span class="contact-link-label">Instagram</span></a>
+          <a href="https://www.facebook.com/share/18TzApASZV/?mibextid=wwXIfr" target="_blank" class="contact-link"><span class="contact-link-icon">f</span><span class="contact-link-label">Facebook</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">✦ Alquimia do Bonsai · Bonsai Alchemy ✦</div>
+    <div class="footer-tagline" data-pt>Transformando árvores. Inspirando vidas.</div>
+    <div class="footer-tagline" data-en>Transforming trees. Inspiring lives.</div>
+    <div class="footer-links">
+      <a onclick="navigateHome('#hero')"><span data-pt>Início</span><span data-en>Home</span></a>
+      <a onclick="navigateHome('#book-section')"><span data-pt>Livro</span><span data-en>Book</span></a>
+      <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
+      <a onclick="navigateHome('#youtube-section')"><span data-pt>Vídeos</span><span data-en>Videos</span></a>
+      <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
+      <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
+      <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
+      <a href="/privacy"><span data-pt>Privacidade</span><span data-en>Privacy</span></a>
+    </div>
+    <div class="footer-copy">© 2026 Alquimia do Bonsai · Bonsai Alchemy — Todos os direitos reservados.</div>
+  </footer>
+</div>
+<!-- SHOP -->
+<div id="page-shop" class="page">
+  <div class="shop-page-header">
+    <div class="container">
+      <p class="section-label" data-pt>Catálogo</p><p class="section-label" data-en>Catalog</p>
+      <h1 class="section-title" data-pt>Catálogo real de <em>bonsai</em></h1><h1 class="section-title" data-en>Live bonsai <em>catalog</em></h1>
+      <div class="shop-filters">
+        <button class="filter-btn active" onclick="filterShop('all',this)"><span data-pt>Todos</span><span data-en>All</span></button>
+        <button class="filter-btn" onclick="filterShop('prebonsai',this)"><span data-pt>Pré-Bonsai</span><span data-en>Pre-Bonsai</span></button>
+        <button class="filter-btn" onclick="filterShop('bonsai',this)"><span data-pt>Bonsai</span><span data-en>Bonsai</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="shop-page-grid"><div class="container"><div class="products-grid" id="shop-products-grid"></div><div id="shop-empty" class="empty-state hidden"><div class="empty-icon">🌿</div><p data-pt>Nenhum produto nesta categoria.</p><p data-en>No products in this category.</p></div></div></div>
+</div>
+
+
+<!-- ADMIN -->
+<div id="page-admin" class="page">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <h3>ADMIN PANEL</h3>
+      <div class="admin-nav">
+        <button class="active" onclick="showAdminTab('dashboard',this)">📊 Dashboard</button>
+        <button onclick="showAdminTab('products',this)">🌳 Catálogo</button>
+        <button onclick="showAdminTab('videos',this)">▶️ YouTube</button>
+        <button onclick="showAdminTab('site',this)">✏️ Conteúdo</button>
+        <button onclick="logout()" style="color:var(--red);margin-top:2rem;">↩ Sair</button>
+      </div>
+    </div>
+    <div class="admin-main">
+      <div class="admin-tab active" id="atab-dashboard">
+        <h2>Dashboard</h2><p class="subtitle">Visão geral do catálogo</p>
+        <div class="admin-cards">
+          <div class="admin-card"><div class="num" id="dash-products">0</div><div class="lbl">Itens</div></div>
+          <div class="admin-card"><div class="num" id="dash-orders">WhatsApp</div><div class="lbl">Vendas</div></div>
+          <div class="admin-card"><div class="num" id="dash-users">Supabase</div><div class="lbl">Login</div></div>
+          <div class="admin-card"><div class="num" id="dash-revenue">0</div><div class="lbl">Vídeos</div></div>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;">Fluxo do site</h3>
+        <div id="dash-recent-orders"></div>
+      </div>
+      <div class="admin-tab" id="atab-products">
+        <h2>Gerenciar Catálogo</h2><p class="subtitle">Adicione bonsai, pré-bonsai e produtos de bonsai</p>
+        <div class="admin-toolbar">
+          <input type="text" placeholder="Buscar..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminProducts(this.value)"/>
+          <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Adicionar item</button>
+        </div>
+        <table class="admin-table"><thead><tr><th>Nome</th><th>Tipo</th><th>Cat.</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead><tbody id="admin-products-table"></tbody></table>
+      </div>
+      <div class="admin-tab" id="atab-videos">
+        <h2>Vídeos do YouTube</h2><p class="subtitle">Adicione links de vídeos curtos sobre poda, rega, transplante e cuidados</p>
+        <div class="admin-toolbar">
+          <input type="text" placeholder="Buscar vídeo..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminVideos(this.value)"/>
+          <button class="btn btn-gold btn-sm" onclick="openVideoModal()">+ Adicionar vídeo</button>
+        </div>
+        <table class="admin-table"><thead><tr><th>Título</th><th>Idioma</th><th>Link</th><th>Ordem</th><th>Ações</th></tr></thead><tbody id="admin-videos-table"></tbody></table>
+      </div>
+      <div class="admin-tab" id="atab-site">
+        <h2>Conteúdo do Site</h2><p class="subtitle">Edite textos e informações exibidas no site</p>
+        <div style="display:grid;gap:1.5rem;max-width:600px;">
+          <div class="form-group"><label>Tagline PT</label><input type="text" id="site-tagline-pt"/></div>
+          <div class="form-group"><label>Tagline EN</label><input type="text" id="site-tagline-en"/></div>
+          <div class="form-group"><label>WhatsApp PT</label><input type="text" id="site-wabr"/></div>
+          <div class="form-group"><label>WhatsApp EN</label><input type="text" id="site-wausa"/></div>
+          <div class="form-group"><label>Instagram PT</label><input type="text" id="site-igbr"/></div>
+          <div class="form-group"><label>Instagram EN</label><input type="text" id="site-igusa"/></div>
+          <div class="form-group"><label>Sobre - PT</label><textarea id="site-about-pt" rows="4"></textarea></div>
+          <div class="form-group"><label>Sobre - EN</label><textarea id="site-about-en" rows="4"></textarea></div>
+          <button class="btn btn-gold" onclick="saveSiteContent()">Salvar conteúdo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL: AUTH -->
+<div id="modal-auth" class="modal-overlay hidden">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-auth')">✕</button>
+    <div id="auth-login">
+      <h2 data-pt>Área administrativa</h2><h2 data-en>Admin area</h2>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;" data-pt>Entrada exclusiva para atualizar o catálogo real.</p>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;" data-en>Private access for updating the live catalog.</p>
+      <div class="form-group"><label>E-mail</label><input type="email" id="login-email" placeholder="admin@email.com"/></div>
+      <div class="form-group"><label data-pt>Senha</label><input type="password" id="login-pass" placeholder="••••••"/></div>
+      <div id="login-error" class="form-error hidden"></div>
+      <button class="btn btn-gold" style="width:100%;margin-top:1rem;" onclick="doLogin()"><span data-pt>Entrar no painel</span><span data-en>Open admin panel</span></button>
+    </div>
+  </div>
+</div>
+<!-- MODAL: PRODUCT DETAIL -->
+<div id="modal-product" class="modal-overlay hidden">
+  <div class="modal" style="max-width:680px;"><button class="modal-close" onclick="closeModal('modal-product')">✕</button><div class="product-detail-grid" id="product-detail-content"></div></div>
+</div>
+<!-- MODAL: ADMIN EDIT PRODUCT -->
+<div id="modal-product-edit" class="modal-overlay hidden">
+  <div class="modal" style="max-width:640px;">
+    <button class="modal-close" onclick="closeModal('modal-product-edit')">✕</button>
+    <h2 id="product-edit-title">Adicionar item</h2>
+    <input type="hidden" id="edit-product-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Nome PT</label><input type="text" id="ep-name-pt" placeholder="Nome em português"/></div>
+      <div class="form-group"><label>Nome EN</label><input type="text" id="ep-name-en" placeholder="Name in English"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Tipo / espécie</label><input type="text" id="ep-species" placeholder="ex: Livro, Ficus retusa, Curso"/></div>
+      <div class="form-group"><label>Categoria</label>
+        <select id="ep-category"><option value="bonsai">Bonsai</option><option value="prebonsai">Pré-Bonsai</option><option value="produto">Produto de bonsai</option></select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Mostrar em</label>
+        <select id="ep-market"><option value="pt">Português / Brasil</option><option value="en">Inglês / EUA</option><option value="both">PT e EN</option></select>
+      </div>
+      <div class="form-group"><label>Estoque</label><input type="number" id="ep-stock" placeholder="1" min="0"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Preço Brasil (R$)</label><input type="number" id="ep-price" placeholder="0.00" step="0.01" min="0"/></div>
+      <div class="form-group"><label>Preço EUA (US$)</label><input type="number" id="ep-price-usd" placeholder="0.00" step="0.01" min="0"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Altura (cm)</label><input type="text" id="ep-height" placeholder="ex: 25–30 cm"/></div>
+      <div class="form-group"><label>Idade</label><input type="text" id="ep-age" placeholder="ex: 5 anos"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Estilo</label><input type="text" id="ep-style" placeholder="ex: Informal upright"/></div>
+      <div class="form-group"><label>Vaso</label><input type="text" id="ep-pot" placeholder="ex: Cerâmica japonesa"/></div>
+    </div>
+    <div class="form-group"><label>Imagem do item</label><input type="text" id="ep-image" placeholder="URL da imagem ou caminho em assets"/></div>
+    <div class="form-group"><label>Enviar nova imagem</label><input type="file" id="ep-file" accept="image/png,image/jpeg,image/webp,image/gif"/></div>
+    <div class="form-group"><label>Link de compra/acesso</label><input type="text" id="ep-link" placeholder="Amazon, WhatsApp, formulário, Drive..."/></div>
+    <div class="form-group"><label>Emoji</label><input type="text" id="ep-emoji" placeholder="🌳" style="width:80px;font-size:1.5rem;"/></div>
+    <div class="form-group"><label>Descrição PT</label><textarea id="ep-desc-pt" rows="3" placeholder="Descrição em português..."></textarea></div>
+    <div class="form-group"><label>Descrição EN</label><textarea id="ep-desc-en" rows="3" placeholder="Description in English..."></textarea></div>
+    <div class="form-group"><label>Cuidados PT</label><textarea id="ep-care-pt" rows="2" placeholder="Instruções de cuidado..."></textarea></div>
+    <div class="form-group"><label>Cuidados EN</label><textarea id="ep-care-en" rows="2" placeholder="Care instructions..."></textarea></div>
+    <div style="display:flex;gap:1rem;margin-top:1rem;">
+      <button class="btn btn-gold" onclick="saveProduct()">Salvar item</button>
+      <button class="btn btn-ghost" onclick="closeModal('modal-product-edit')">Cancelar</button>
+    </div>
+  </div>
+</div>
+<!-- MODAL: ADMIN EDIT VIDEO -->
+<div id="modal-video-edit" class="modal-overlay hidden">
+  <div class="modal" style="max-width:640px;">
+    <button class="modal-close" onclick="closeModal('modal-video-edit')">✕</button>
+    <h2 id="video-edit-title">Adicionar vídeo</h2>
+    <input type="hidden" id="edit-video-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Título PT</label><input type="text" id="ev-title-pt" placeholder="Como regar um bonsai"/></div>
+      <div class="form-group"><label>Título EN</label><input type="text" id="ev-title-en" placeholder="How to water a bonsai"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Mostrar em</label>
+        <select id="ev-locale"><option value="pt">Português / Brasil</option><option value="en">Inglês / EUA</option><option value="both">PT e EN</option></select>
+      </div>
+      <div class="form-group"><label>Ordem</label><input type="number" id="ev-sort" value="100" min="0"/></div>
+    </div>
+    <div class="form-group"><label>Link do YouTube</label><input type="text" id="ev-url" placeholder="https://www.youtube.com/shorts/..."/></div>
+    <div class="form-group"><label>Descrição PT</label><textarea id="ev-desc-pt" rows="3" placeholder="Descrição curta em português..."></textarea></div>
+    <div class="form-group"><label>Descrição EN</label><textarea id="ev-desc-en" rows="3" placeholder="Short description in English..."></textarea></div>
+    <div style="display:flex;gap:1rem;margin-top:1rem;">
+      <button class="btn btn-gold" onclick="saveVideo()">Salvar vídeo</button>
+      <button class="btn btn-ghost" onclick="closeModal('modal-video-edit')">Cancelar</button>
+    </div>
+  </div>
+</div>
+<script src="/assets/app.js"></script>
+</body>
+</html>
+
+
+
+
+
