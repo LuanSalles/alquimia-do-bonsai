@@ -124,3 +124,28 @@ Tabela sugerida: `catalog_items`
 7. Salve.
 8. Volte para a loja e confirme se o item apareceu.
 9. Clique em consultar e confirme se o WhatsApp abre com mensagem pronta.
+
+## Rotina recomendada de backup
+
+Faca este procedimento sempre que o catalogo tiver muitas mudancas importantes.
+
+1. Abra o Supabase.
+2. Va em **Table Editor > catalog_items**.
+3. Use a opcao de exportar/baixar CSV, quando disponivel.
+4. Repita o processo em **youtube_videos**.
+5. Guarde os arquivos em uma pasta com a data, por exemplo:
+   - `backup-catalogo-2026-08-14.csv`
+   - `backup-videos-2026-08-14.csv`
+
+Tambem e recomendado guardar as fotos originais em uma pasta separada no computador ou Google Drive. O site usa as imagens publicadas, mas o backup das originais facilita recuperar ou trocar arquivos no futuro.
+
+## Conferencia mensal
+
+Uma vez por mes, confira:
+
+- se todos os itens ativos ainda estao disponiveis;
+- se os valores em real e dolar estao corretos;
+- se os links de WhatsApp abrem a mensagem certa;
+- se os videos do YouTube ainda existem;
+- se o Google Search Console continua sem erros graves;
+- se a pagina abre bem no celular.

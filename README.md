@@ -16,13 +16,40 @@ Site oficial da Alquimia do Bonsai / Bonsai Alchemy, criado para apresentar a ma
 - HTML
 - CSS
 - JavaScript
+- Supabase Auth, Database e Storage para painel administrativo e catalogo
 - Vercel para hospedagem
 
 ## Estrutura
 
-- `index.html`: site completo.
+- `index.html`: estrutura principal do site.
+- `assets/site.css`: estilos visuais do site.
+- `assets/app.js`: idioma, catalogo, videos, admin e integracoes.
 - `assets/`: imagens, logos, livro e fotos do catalogo.
-- `vercel.json`: configuracao simples para deploy na Vercel.
+- `privacy.html`: politica de privacidade.
+- `sitemap.xml`: mapa do site enviado ao Google Search Console.
+- `robots.txt`: instrucao de rastreamento para buscadores.
+- `supabase-setup.sql`: estrutura de banco, seguranca e storage.
+- `CATALOGO-ADMIN.md`: manual de uso do painel administrativo.
+- `vercel.json`: rotas, headers de seguranca e configuracao de deploy.
+
+## Rotas publicas
+
+- `/`: pagina principal.
+- `/book`: secao do livro.
+- `/shop`: catalogo.
+- `/courses`: cursos e escola.
+- `/videos`: videos do YouTube.
+- `/about`: sobre.
+- `/contact`: contato.
+- `/privacy`: politica de privacidade.
+
+## Seguranca
+
+- O login administrativo usa Supabase Auth.
+- A escrita no catalogo depende de perfil admin em `admin_profiles`.
+- Conteudo vindo do banco e tratado antes de aparecer no HTML.
+- Headers de seguranca sao aplicados pela Vercel.
+- A chave Supabase publicada no front-end e uma chave publica; a protecao real fica nas politicas RLS.
 
 ## Publicacao
 
