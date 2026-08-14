@@ -193,6 +193,13 @@ footer{background:var(--deep);padding:3rem 2rem;text-align:center;border-top:1px
 .footer-links a{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .3s;}
 .footer-links a:hover{color:var(--gold);}
 .footer-copy{font-size:.62rem;color:rgba(138,138,122,.45);}
+.footer-admin-link{opacity:.55;}
+.policy-page{min-height:100vh;background:#F7F3E9;color:#2B2B24;padding:6rem 0;}
+.policy-container{max-width:820px;}
+.policy-back{color:#8D6C24;text-decoration:none;margin-bottom:2rem;}
+.policy-page p{color:#5B5B51;margin-bottom:1.2rem;}
+.policy-page h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.8rem;line-height:1.2;color:#1B1B16;margin:2rem 0 .8rem;}
+.policy-updated{color:#777!important;margin-top:2.5rem;font-size:.82rem;}
 /* SHOP PAGE */
 #page-shop{padding-top:80px;}
 .shop-page-header{padding:3rem 2rem;background:var(--deep);border-bottom:1px solid var(--gold-dim);}

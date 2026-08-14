@@ -272,6 +272,10 @@ const SEO={
   '/contact':{
     title:'Contact | Bonsai Alchemy',
     description:'Contact Bonsai Alchemy / Alquimia do Bonsai through WhatsApp, Instagram, Facebook, and official channels.'
+  },
+  '/admin':{
+    title:'Admin Area | Bonsai Alchemy',
+    description:'Restricted administrative area for Bonsai Alchemy catalog and YouTube video management.'
   }
 };
 function updateSeo(path){
@@ -328,7 +332,8 @@ function applyInitialRoute(){
     '/about':()=>navigateHome('#about-section'),
     '/sobre':()=>navigateHome('#about-section'),
     '/contact':()=>navigateHome('#contact-section'),
-    '/contato':()=>navigateHome('#contact-section')
+    '/contato':()=>navigateHome('#contact-section'),
+    '/admin':()=>openAdminLogin()
   };
   if(routeMap[path])routeMap[path]();
   else if(window.location.hash)navigateHome(window.location.hash);

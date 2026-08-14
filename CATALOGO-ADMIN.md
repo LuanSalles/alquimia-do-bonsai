@@ -116,7 +116,7 @@ Tabela sugerida: `catalog_items`
 ## Como testar
 
 1. Abra a copia do site.
-2. Clique no icone de conta.
+2. Role ate o rodape e clique em **Admin**.
 3. Entre com o e-mail admin criado no Supabase.
 4. Abra **Itens da loja**.
 5. Clique em **Adicionar item**.
@@ -124,6 +124,17 @@ Tabela sugerida: `catalog_items`
 7. Salve.
 8. Volte para a loja e confirme se o item apareceu.
 9. Clique em consultar e confirme se o WhatsApp abre com mensagem pronta.
+
+## Paginas comerciais
+
+O site tambem possui paginas simples para reforcar confianca antes da compra:
+
+- `/shipping` para informacoes de envio.
+- `/returns` para trocas, devolucoes e disponibilidade.
+- `/terms` para termos de uso.
+- `/privacy` para privacidade.
+
+Mantenha essas paginas alinhadas com a forma real de atendimento da Alquimia do Bonsai. Se a politica de envio, devolucao ou pagamento mudar, atualize essas paginas antes de divulgar.
 
 ## Rotina recomendada de backup
 
