@@ -4,6 +4,17 @@ const SUPABASE_KEY='sb_publishable_IgkFCy47fAKzZ-EjaR_flg_sqEqnyHL';
 const supabaseClient=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
 let remoteProducts=null;
 let remoteVideos=null;
+async function supabaseRestRows(table,query='select=*'){
+  const url=`${SUPABASE_URL}/rest/v1/${table}?${query}`;
+  const res=await fetch(url,{
+    headers:{
+      apikey:SUPABASE_KEY,
+      Authorization:`Bearer ${SUPABASE_KEY}`
+    }
+  });
+  if(!res.ok)throw new Error(await res.text());
+  return res.json();
+}
 function escapeHTML(value){
   return String(value??'').replace(/[&<>"']/g,(char)=>({
     '&':'&amp;',
@@ -501,11 +512,23 @@ async function loadRemoteCatalog(){
   return true;
 }
 async function loadRemoteVideos(){
-  if(!supabaseClient)return false;
-  const {data,error}=await supabaseClient.from('youtube_videos').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
-  if(error){console.warn('Videos Supabase indisponiveis:',error.message);return false;}
+  let data=[];
+  if(supabaseClient){
+    const result=await supabaseClient.from('youtube_videos').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
+    if(result.error)console.warn('Videos Supabase client indisponiveis:',result.error.message);
+    else data=result.data||[];
+  }
+  if(!data.length){
+    try{
+      data=await supabaseRestRows('youtube_videos','select=*&order=sort_order.asc,created_at.desc');
+    }catch(error){
+      console.warn('Videos Supabase REST indisponiveis:',error.message);
+      return false;
+    }
+  }
   remoteVideos=(data||[]).map(rowToVideo);
   renderHomeVideos();
+  if(currentPage==='videos')renderHomeVideos();
   if(currentUser&&currentUser.role==='admin'){renderAdminVideos();renderDashboard();}
   return true;
 }
@@ -709,17 +732,18 @@ for(let i=0;i<65;i++){const p=mkP();p.y=Math.random()*H;pt.push(p);}
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)';}});},{threshold:.1});
 document.querySelectorAll('.transform-step,.value-item,.location-item,.contact-link,.feature-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity .6s ease,transform .6s ease';io.observe(el);});
 async function bootSupabase(){
-  if(!supabaseClient)return;
-  const {data}=await supabaseClient.auth.getSession();
-  const user=data&&data.session&&data.session.user;
-  if(user&&!currentUser){
-    const {data:profile}=await supabaseClient.from('admin_profiles').select('role,email').eq('user_id',user.id).maybeSingle();
-    if(profile&&profile.role==='admin'){
-      currentUser={id:user.id,name:user.user_metadata?.name||profile.email||user.email,email:profile.email||user.email,role:'admin',created:user.created_at,address:{}};
-      sessionStorage.setItem('adb_session',JSON.stringify(currentUser));
+  if(supabaseClient){
+    const {data}=await supabaseClient.auth.getSession();
+    const user=data&&data.session&&data.session.user;
+    if(user&&!currentUser){
+      const {data:profile}=await supabaseClient.from('admin_profiles').select('role,email').eq('user_id',user.id).maybeSingle();
+      if(profile&&profile.role==='admin'){
+        currentUser={id:user.id,name:user.user_metadata?.name||profile.email||user.email,email:profile.email||user.email,role:'admin',created:user.created_at,address:{}};
+        sessionStorage.setItem('adb_session',JSON.stringify(currentUser));
+      }
     }
+    await loadRemoteCatalog();
   }
-  await loadRemoteCatalog();
   await loadRemoteVideos();
   applyInitialRoute();
 }

@@ -433,16 +433,16 @@
       </div>
       <div class="form-group"><label>Ordem</label><input type="number" id="ev-sort" value="100" min="0"/></div>
     </div>
-    <div class="form-group"><label>Link do YouTube</label><input type="text" id="ev-url" placeholder="https://www.youtube.com/shorts/..."/></div>
+    <div class="form-group"><label>Link do YouTube</label><input type="url" id="ev-url" placeholder="https://www.youtube.com/shorts/..." inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false"/><small class="form-help">Cole o link completo do Shorts ou do vídeo, começando com https://</small></div>
     <div class="form-group"><label>Descrição PT</label><textarea id="ev-desc-pt" rows="3" placeholder="Descrição curta em português..."></textarea></div>
     <div class="form-group"><label>Descrição EN</label><textarea id="ev-desc-en" rows="3" placeholder="Short description in English..."></textarea></div>
-    <div style="display:flex;gap:1rem;margin-top:1rem;">
+    <div class="modal-actions">
       <button class="btn btn-gold" onclick="saveVideo()">Salvar vídeo</button>
       <button class="btn btn-ghost" onclick="closeModal('modal-video-edit')">Cancelar</button>
     </div>
   </div>
 </div>
-<script src="/assets/app.js?v=20260814-videos3"></script>
+<script src="/assets/app.js?v=20260814-videos4"></script>
 </body>
 </html>
 
