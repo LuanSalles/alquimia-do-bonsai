@@ -618,7 +618,7 @@ async function saveVideo(){
     descEn:document.getElementById('ev-desc-en').value.trim(),
     created:id?(videos.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()
   };
-  if(v.url==='#'||!youtubeId(v.url)){toast('Cole um link válido do YouTube.');return;}
+  if(v.url==='#'){toast('Cole um link válido do YouTube.');return;}
   if((v.locale==='pt'||v.locale==='both')&&!v.titlePt){toast('Título PT é obrigatório.');return;}
   if((v.locale==='en'||v.locale==='both')&&!v.titleEn){toast('Título EN é obrigatório.');return;}
   if(currentUser&&currentUser.role==='admin'&&supabaseClient){
