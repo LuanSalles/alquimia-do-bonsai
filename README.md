@@ -25,10 +25,6 @@ Site oficial da Alquimia do Bonsai / Bonsai Alchemy, criado para apresentar a ma
 - `assets/site.css`: estilos visuais do site.
 - `assets/app.js`: idioma, catalogo, videos, admin e integracoes.
 - `assets/`: imagens, logos, livro e fotos do catalogo.
-- `privacy.html`: politica de privacidade.
-- `shipping.html`: politica de envio.
-- `returns.html`: politica de trocas e devolucoes.
-- `terms.html`: termos de uso.
 - `sitemap.xml`: mapa do site enviado ao Google Search Console.
 - `robots.txt`: instrucao de rastreamento para buscadores.
 - `supabase-setup.sql`: estrutura de banco, seguranca e storage.
@@ -44,11 +40,6 @@ Site oficial da Alquimia do Bonsai / Bonsai Alchemy, criado para apresentar a ma
 - `/videos`: videos do YouTube.
 - `/about`: sobre.
 - `/contact`: contato.
-- `/privacy`: politica de privacidade.
-- `/shipping`: politica de envio.
-- `/returns`: politica de trocas e devolucoes.
-- `/terms`: termos de uso.
-
 ## Seguranca
 
 - O login administrativo usa Supabase Auth.

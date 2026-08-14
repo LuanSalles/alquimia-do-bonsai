@@ -125,17 +125,6 @@ Tabela sugerida: `catalog_items`
 8. Volte para a loja e confirme se o item apareceu.
 9. Clique em consultar e confirme se o WhatsApp abre com mensagem pronta.
 
-## Paginas comerciais
-
-O site tambem possui paginas simples para reforcar confianca antes da compra:
-
-- `/shipping` para informacoes de envio.
-- `/returns` para trocas, devolucoes e disponibilidade.
-- `/terms` para termos de uso.
-- `/privacy` para privacidade.
-
-Mantenha essas paginas alinhadas com a forma real de atendimento da Alquimia do Bonsai. Se a politica de envio, devolucao ou pagamento mudar, atualize essas paginas antes de divulgar.
-
 ## Rotina recomendada de backup
 
 Faca este procedimento sempre que o catalogo tiver muitas mudancas importantes.
