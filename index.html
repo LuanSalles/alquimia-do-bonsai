@@ -170,6 +170,18 @@ canvas#particles{position:absolute;inset:0;pointer-events:none;}
 .product-card-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
 .product-card>*{position:relative;z-index:1;}
 .product-card-btns .btn{position:relative;z-index:2;}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem;margin-top:2.5rem;}
+.video-card{background:#fff;border:1px solid rgba(36,64,25,.12);box-shadow:0 18px 45px rgba(28,35,24,.08);display:flex;flex-direction:column;min-height:100%;text-decoration:none;}
+.video-thumb{position:relative;aspect-ratio:16/9;background:#132411;overflow:hidden;}
+.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+.video-card:hover .video-thumb img{transform:scale(1.04);}
+.video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;color:#1D2D17;font-size:1.2rem;box-shadow:0 12px 30px rgba(0,0,0,.18);}
+.video-body{padding:1.4rem;display:flex;flex-direction:column;gap:.8rem;flex:1;}
+.video-body h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:#1E1E19;}
+.video-body p{font-size:.9rem;color:#625D52;line-height:1.7;}
+.video-body .btn{margin-top:auto;align-self:flex-start;}
+.video-empty{border:1px solid rgba(36,64,25,.12);background:#fff;padding:2rem;text-align:center;color:#625D52;margin-top:2rem;}
+.admin-video-url{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);}
 /* BOOK */
 #book-section{background:linear-gradient(145deg,#0D1A09 0%,#111410 60%,#0A0A08 100%);padding:6rem 2rem;position:relative;overflow:hidden;}
 #book-section::before{content:'';position:absolute;top:-40%;right:-5%;width:550px;height:550px;background:radial-gradient(circle,rgba(201,168,76,.07),transparent 70%);pointer-events:none;}
@@ -369,6 +381,7 @@ body.lang-pt [data-en]{display:none!important;}
     <a onclick="navigateHome('#hero')"><span data-pt>Início</span><span data-en>Home</span></a>
     <a onclick="navigateHome('#book-section')"><span data-pt>Livro</span><span data-en>Book</span></a>
     <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
+    <a onclick="navigateHome('#youtube-section')"><span data-pt>Vídeos</span><span data-en>Videos</span></a>
     <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
     <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
     <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
@@ -506,7 +519,21 @@ body.lang-pt [data-en]{display:none!important;}
         <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%207%20Transformations%20Method." target="_blank"><h3>7 Transformations Method</h3><p>Daily exercise with 7 simple actions to support focus, presence, and purpose.</p><span class="tag">Ask on WhatsApp</span></a>
         <a class="feature-card link-card" data-en href="https://forms.gle/6kRaqymXCwEyGiko8" target="_blank"><h3>International Bonsai School</h3><p>Classes, practice, and guidance with Luane &amp; Alexandre.</p><span class="tag">Registration / ask for price</span></a>
         <a class="feature-card link-card" data-en href="https://wa.me/17869780745?text=Hello%2C%20I%20would%20like%20to%20talk%20about%20bonsai%20guides%2C%20classes%2C%20or%20available%20trees." target="_blank"><h3>Prefer to message us?</h3><p>If WhatsApp is convenient for you, send us a note and we will guide you personally.</p><span class="tag">WhatsApp option</span></a>
+        <a class="feature-card link-card" href="#youtube-section" onclick="navigateHome('#youtube-section');return false;"><h3><span data-pt>Como cuidar</span><span data-en>Care videos</span></h3><p><span data-pt>Vídeos rápidos com poda, rega, transplante e cuidados diários no YouTube.</span><span data-en>Short YouTube videos about pruning, watering, repotting, and daily care.</span></p><span class="tag"><span data-pt>Assistir no YouTube</span><span data-en>Watch on YouTube</span></span></a>
       </div>
+    </div>
+  </section>
+  <section id="youtube-section" class="content-band alt">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-label" data-pt>Como cuidar</p><p class="section-label" data-en>How to care</p>
+        <h2 class="section-title" data-pt>Assista no<br/><em>YouTube</em></h2>
+        <h2 class="section-title" data-en>Watch on<br/><em>YouTube</em></h2>
+        <p data-pt>Vídeos curtos e práticos para aprender cuidados essenciais sem deixar o site cheio. Clique e assista direto no canal.</p>
+        <p data-en>Short practical videos for essential bonsai care. Click and watch directly on the channel.</p>
+      </div>
+      <div class="video-grid" id="youtube-video-grid"></div>
+      <div class="video-empty hidden" id="youtube-empty"><span data-pt>Novos vídeos serão adicionados em breve.</span><span data-en>New videos will be added soon.</span></div>
     </div>
   </section>
   <section id="about-section">
@@ -575,6 +602,7 @@ body.lang-pt [data-en]{display:none!important;}
       <a onclick="navigateHome('#hero')"><span data-pt>Início</span><span data-en>Home</span></a>
       <a onclick="navigateHome('#book-section')"><span data-pt>Livro</span><span data-en>Book</span></a>
       <a onclick="navigateHome('#learn-section')"><span data-pt>Cursos</span><span data-en>Courses</span></a>
+      <a onclick="navigateHome('#youtube-section')"><span data-pt>Vídeos</span><span data-en>Videos</span></a>
       <a onclick="showPage('shop')"><span data-pt>Loja</span><span data-en>Shop</span></a>
       <a onclick="navigateHome('#about-section')"><span data-pt>Sobre</span><span data-en>About</span></a>
       <a onclick="navigateHome('#contact-section')"><span data-pt>Contato</span><span data-en>Contact</span></a>
@@ -607,6 +635,7 @@ body.lang-pt [data-en]{display:none!important;}
       <div class="admin-nav">
         <button class="active" onclick="showAdminTab('dashboard',this)">📊 Dashboard</button>
         <button onclick="showAdminTab('products',this)">🌳 Catálogo</button>
+        <button onclick="showAdminTab('videos',this)">▶️ YouTube</button>
         <button onclick="showAdminTab('site',this)">✏️ Conteúdo</button>
         <button onclick="logout()" style="color:var(--red);margin-top:2rem;">↩ Sair</button>
       </div>
@@ -618,7 +647,7 @@ body.lang-pt [data-en]{display:none!important;}
           <div class="admin-card"><div class="num" id="dash-products">0</div><div class="lbl">Itens</div></div>
           <div class="admin-card"><div class="num" id="dash-orders">WhatsApp</div><div class="lbl">Vendas</div></div>
           <div class="admin-card"><div class="num" id="dash-users">Supabase</div><div class="lbl">Login</div></div>
-          <div class="admin-card"><div class="num" id="dash-revenue">Sob consulta</div><div class="lbl">Valores</div></div>
+          <div class="admin-card"><div class="num" id="dash-revenue">0</div><div class="lbl">Vídeos</div></div>
         </div>
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1rem;">Fluxo do site</h3>
         <div id="dash-recent-orders"></div>
@@ -630,6 +659,14 @@ body.lang-pt [data-en]{display:none!important;}
           <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Adicionar item</button>
         </div>
         <table class="admin-table"><thead><tr><th>Nome</th><th>Tipo</th><th>Cat.</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead><tbody id="admin-products-table"></tbody></table>
+      </div>
+      <div class="admin-tab" id="atab-videos">
+        <h2>Vídeos do YouTube</h2><p class="subtitle">Adicione links de vídeos curtos sobre poda, rega, transplante e cuidados</p>
+        <div class="admin-toolbar">
+          <input type="text" placeholder="Buscar vídeo..." style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--cream);padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;width:240px;" oninput="filterAdminVideos(this.value)"/>
+          <button class="btn btn-gold btn-sm" onclick="openVideoModal()">+ Adicionar vídeo</button>
+        </div>
+        <table class="admin-table"><thead><tr><th>Título</th><th>Idioma</th><th>Link</th><th>Ordem</th><th>Ações</th></tr></thead><tbody id="admin-videos-table"></tbody></table>
       </div>
       <div class="admin-tab" id="atab-site">
         <h2>Conteúdo do Site</h2><p class="subtitle">Edite textos e informações exibidas no site</p>
@@ -715,12 +752,38 @@ body.lang-pt [data-en]{display:none!important;}
     </div>
   </div>
 </div>
+<!-- MODAL: ADMIN EDIT VIDEO -->
+<div id="modal-video-edit" class="modal-overlay hidden">
+  <div class="modal" style="max-width:640px;">
+    <button class="modal-close" onclick="closeModal('modal-video-edit')">✕</button>
+    <h2 id="video-edit-title">Adicionar vídeo</h2>
+    <input type="hidden" id="edit-video-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Título PT</label><input type="text" id="ev-title-pt" placeholder="Como regar um bonsai"/></div>
+      <div class="form-group"><label>Título EN</label><input type="text" id="ev-title-en" placeholder="How to water a bonsai"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Mostrar em</label>
+        <select id="ev-locale"><option value="pt">Português / Brasil</option><option value="en">Inglês / EUA</option><option value="both">PT e EN</option></select>
+      </div>
+      <div class="form-group"><label>Ordem</label><input type="number" id="ev-sort" value="100" min="0"/></div>
+    </div>
+    <div class="form-group"><label>Link do YouTube</label><input type="text" id="ev-url" placeholder="https://www.youtube.com/shorts/..."/></div>
+    <div class="form-group"><label>Descrição PT</label><textarea id="ev-desc-pt" rows="3" placeholder="Descrição curta em português..."></textarea></div>
+    <div class="form-group"><label>Descrição EN</label><textarea id="ev-desc-en" rows="3" placeholder="Short description in English..."></textarea></div>
+    <div style="display:flex;gap:1rem;margin-top:1rem;">
+      <button class="btn btn-gold" onclick="saveVideo()">Salvar vídeo</button>
+      <button class="btn btn-ghost" onclick="closeModal('modal-video-edit')">Cancelar</button>
+    </div>
+  </div>
+</div>
 <script>
 const DB={get(k){try{return JSON.parse(localStorage.getItem('adb_'+k));}catch{return null;}},set(k,v){localStorage.setItem('adb_'+k,JSON.stringify(v));}};
 const SUPABASE_URL='https://fmerpowodhrgfdzjcckm.supabase.co';
 const SUPABASE_KEY='sb_publishable_IgkFCy47fAKzZ-EjaR_flg_sqEqnyHL';
 const supabaseClient=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
 let remoteProducts=null;
+let remoteVideos=null;
 function rowToProduct(row){
   const fallbackPt=`https://wa.me/5521964109840?text=${encodeURIComponent('Olá! Tenho interesse em '+row.name_pt+' do catálogo Alquimia do Bonsai. Pode me passar disponibilidade, valor e envio?')}`;
   const fallbackEn=`https://wa.me/17869780745?text=${encodeURIComponent('Hello! I am interested in '+(row.name_en||row.name_pt)+' from the Bonsai Alchemy catalog. Could you send availability, price, and shipping details?')}`;
@@ -781,6 +844,31 @@ function productToRow(p){
     image_url:p.imageUrl||null,
     whatsapp_pt:p.buyUrl||null,
     whatsapp_en:p.buyUrlEn||null
+  };
+}
+function rowToVideo(row){
+  return {
+    id:row.id,
+    titlePt:row.title_pt||'',
+    titleEn:row.title_en||row.title_pt||'',
+    descPt:row.description_pt||'',
+    descEn:row.description_en||row.description_pt||'',
+    url:row.youtube_url||'',
+    locale:row.locale||'pt',
+    sort:Number(row.sort_order||100),
+    created:row.created_at||new Date().toISOString()
+  };
+}
+function videoToRow(v){
+  return {
+    active:true,
+    locale:v.locale||'pt',
+    title_pt:v.titlePt||v.titleEn,
+    title_en:v.titleEn||v.titlePt,
+    description_pt:v.descPt||null,
+    description_en:v.descEn||null,
+    youtube_url:v.url,
+    sort_order:Number(v.sort||100)
   };
 }
 const SITE_VERSION='real-catalog-work-copy-2026-07-22-market-catalog';
@@ -896,6 +984,7 @@ function setLang(l){
   document.title=l==='en'?'Bonsai Alchemy':'Alquimia do Bonsai';
   document.querySelectorAll('#lang-toggle button').forEach((b,i)=>b.classList.toggle('active',(i===0&&l==='pt')||(i===1&&l==='en')));
   renderHomeProducts();
+  renderHomeVideos();
   if(currentPage==='shop')renderShop();
 }
 let currentPage='home';
@@ -908,7 +997,7 @@ function showPage(p){
   currentPage=p;
   if(p==='shop')renderShop();
   if(p==='admin')renderAdmin();
-  if(p==='home')renderHomeProducts();
+  if(p==='home'){renderHomeProducts();renderHomeVideos();}
 }
 function doScroll(sel){setTimeout(()=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth'});},100);}
 function navigateHome(sel){showPage('home');doScroll(sel||'#hero');}
@@ -948,6 +1037,33 @@ function productVisibleForLang(p){
   return market==='both'||market===currentLang;
 }
 function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category)&&productVisibleForLang(p));}
+function getVideos(){return remoteVideos||DB.get('youtubeVideos')||[];}
+function videoVisibleForLang(v){const locale=v.locale||'pt';return locale==='both'||locale===currentLang;}
+function youtubeId(url){const m=String(url||'').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([A-Za-z0-9_-]{6,})/);return m?m[1]:'';}
+function youtubeThumb(url){const id=youtubeId(url);return id?`https://img.youtube.com/vi/${id}/hqdefault.jpg`:'';}
+function videoCard(v){
+  const thumb=youtubeThumb(v.url);
+  const titlePt=v.titlePt||v.titleEn||'Vídeo no YouTube';
+  const titleEn=v.titleEn||v.titlePt||'YouTube video';
+  const descPt=v.descPt||'Assista no canal Alquimia do Bonsai.';
+  const descEn=v.descEn||v.descPt||'Watch on the Bonsai Alchemy channel.';
+  return `<a class="video-card" href="${v.url}" target="_blank" rel="noopener">
+    <div class="video-thumb">${thumb?`<img src="${thumb}" alt="${titlePt}" loading="lazy" decoding="async"/>`:''}<span class="video-play">▶</span></div>
+    <div class="video-body">
+      <h3><span data-pt>${titlePt}</span><span data-en>${titleEn}</span></h3>
+      <p><span data-pt>${descPt}</span><span data-en>${descEn}</span></p>
+      <span class="btn btn-gold btn-sm"><span data-pt>Assistir</span><span data-en>Watch</span></span>
+    </div>
+  </a>`;
+}
+function renderHomeVideos(){
+  const g=document.getElementById('youtube-video-grid');
+  const e=document.getElementById('youtube-empty');
+  if(!g)return;
+  const videos=getVideos().filter(videoVisibleForLang).sort((a,b)=>(a.sort||100)-(b.sort||100));
+  g.innerHTML=videos.map(videoCard).join('');
+  if(e)e.classList.toggle('hidden',videos.length>0);
+}
 function productImage(p){return p.imageUrl?`<div class="product-img-placeholder has-image"><img src="${p.imageUrl}" alt="${p.namePt}" loading="lazy" decoding="async"/></div>`:`<div class="product-img-placeholder">${p.emoji||'🌳'}</div>`;}
 function productDetailImage(p){return p.imageUrl?`<div class="product-detail-img has-image"><img src="${p.imageUrl}" alt="${p.namePt}" loading="lazy" decoding="async"/></div>`:`<div class="product-detail-img">${p.emoji||'🌳'}</div>`;}
 function moneyLabel(p){
@@ -1002,6 +1118,7 @@ function productCard(p){
 }
 function renderHomeProducts(){const g=document.getElementById('home-products-grid');if(g)g.innerHTML=getShopProducts().slice(0,6).map(productCard).join('');}
 renderHomeProducts();
+renderHomeVideos();
 async function loadRemoteCatalog(){
   if(!supabaseClient)return false;
   const {data,error}=await supabaseClient.from('catalog_items').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
@@ -1010,6 +1127,15 @@ async function loadRemoteCatalog(){
   renderHomeProducts();
   if(currentPage==='shop')renderShop();
   if(currentUser&&currentUser.role==='admin'){renderAdminProducts();renderDashboard();}
+  return true;
+}
+async function loadRemoteVideos(){
+  if(!supabaseClient)return false;
+  const {data,error}=await supabaseClient.from('youtube_videos').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
+  if(error){console.warn('Videos Supabase indisponiveis:',error.message);return false;}
+  remoteVideos=(data||[]).map(rowToVideo);
+  renderHomeVideos();
+  if(currentUser&&currentUser.role==='admin'){renderAdminVideos();renderDashboard();}
   return true;
 }
 let curFilter='all';
@@ -1053,7 +1179,7 @@ function saveAddress(){}
 function saveSettings(){}
 function renderAdmin(){
   if(!currentUser||currentUser.role!=='admin'){showPage('home');return;}
-  renderDashboard();renderAdminProducts();loadSiteContent();
+  renderDashboard();renderAdminProducts();renderAdminVideos();loadSiteContent();
 }
 function showAdminTab(tab,btn){
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
@@ -1063,11 +1189,12 @@ function showAdminTab(tab,btn){
 }
 function renderDashboard(){
   const prods=getProducts();
+  const vids=getVideos();
   document.getElementById('dash-products').textContent=prods.length;
   document.getElementById('dash-orders').textContent='WhatsApp';
   document.getElementById('dash-users').textContent='Supabase';
-  document.getElementById('dash-revenue').textContent='Sob consulta';
-  document.getElementById('dash-recent-orders').innerHTML='<p style="color:var(--muted);font-size:.82rem;">As vendas fecham pelo WhatsApp. Use este painel para manter fotos, valores, descrições e links do catálogo atualizados.</p>';
+  document.getElementById('dash-revenue').textContent=vids.length;
+  document.getElementById('dash-recent-orders').innerHTML='<p style="color:var(--muted);font-size:.82rem;">As vendas fecham pelo WhatsApp. Use este painel para manter fotos, valores, descrições, links do catálogo e vídeos do YouTube atualizados.</p>';
 }
 let apf='';
 function filterAdminProducts(v){apf=v.toLowerCase();renderAdminProducts();}
@@ -1075,6 +1202,72 @@ function renderAdminProducts(){
   const prods=getProducts().filter(p=>!apf||p.namePt.toLowerCase().includes(apf)||(p.nameEn||'').toLowerCase().includes(apf)||p.species.toLowerCase().includes(apf));
   const t=document.getElementById('admin-products-table');if(!t)return;
   t.innerHTML=prods.map(p=>`<tr><td>${p.emoji||'🌳'} ${p.namePt||p.nameEn}</td><td style="color:var(--muted);font-style:italic">${p.species}</td><td><span class="tag">${p.category}</span> <span class="tag">${p.market==='en'?'EUA/EN':p.market==='both'?'PT+EN':'BR/PT'}</span></td><td style="color:var(--gold)">${p.market==='en'?usdLabel(p.priceUsd):brlLabel(p.price)}${p.market==='both'&&p.priceUsd?` / ${usdLabel(p.priceUsd)}`:''}</td><td>${p.stock}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openProductModal('${p.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑️</button></div></td></tr>`).join('');
+}
+let avf='';
+function filterAdminVideos(v){avf=v.toLowerCase();renderAdminVideos();}
+function renderAdminVideos(){
+  const videos=getVideos().filter(v=>!avf||(v.titlePt||'').toLowerCase().includes(avf)||(v.titleEn||'').toLowerCase().includes(avf)||(v.url||'').toLowerCase().includes(avf));
+  const t=document.getElementById('admin-videos-table');if(!t)return;
+  t.innerHTML=videos.length?videos.map(v=>`<tr><td>${v.titlePt||v.titleEn}</td><td><span class="tag">${v.locale==='en'?'EN':v.locale==='both'?'PT+EN':'PT'}</span></td><td><div class="admin-video-url">${v.url}</div></td><td>${v.sort||100}</td><td><div class="table-actions"><button class="btn btn-ghost btn-sm" onclick="openVideoModal('${v.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteVideo('${v.id}')">🗑️</button></div></td></tr>`).join(''):'<tr><td colspan="5" style="color:var(--muted);padding:1.2rem;">Nenhum vídeo cadastrado ainda.</td></tr>';
+}
+function openVideoModal(id){
+  document.getElementById('video-edit-title').textContent=id?'Editar vídeo':'Adicionar vídeo';
+  document.getElementById('edit-video-id').value=id||'';
+  ['title-pt','title-en','url','desc-pt','desc-en'].forEach(f=>{document.getElementById('ev-'+f).value='';});
+  document.getElementById('ev-locale').value='pt';
+  document.getElementById('ev-sort').value='100';
+  if(id){
+    const v=getVideos().find(x=>x.id===id);
+    if(v){
+      document.getElementById('ev-title-pt').value=v.titlePt||'';
+      document.getElementById('ev-title-en').value=v.titleEn||'';
+      document.getElementById('ev-locale').value=v.locale||'pt';
+      document.getElementById('ev-sort').value=v.sort||100;
+      document.getElementById('ev-url').value=v.url||'';
+      document.getElementById('ev-desc-pt').value=v.descPt||'';
+      document.getElementById('ev-desc-en').value=v.descEn||'';
+    }
+  }
+  openModal('modal-video-edit');
+}
+async function saveVideo(){
+  const id=document.getElementById('edit-video-id').value;
+  const videos=getVideos();
+  const v={
+    id:id||'v'+Date.now(),
+    titlePt:document.getElementById('ev-title-pt').value.trim(),
+    titleEn:document.getElementById('ev-title-en').value.trim(),
+    locale:document.getElementById('ev-locale').value,
+    sort:parseInt(document.getElementById('ev-sort').value)||100,
+    url:document.getElementById('ev-url').value.trim(),
+    descPt:document.getElementById('ev-desc-pt').value.trim(),
+    descEn:document.getElementById('ev-desc-en').value.trim(),
+    created:id?(videos.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()
+  };
+  if(!v.url||!youtubeId(v.url)){toast('Cole um link válido do YouTube.');return;}
+  if((v.locale==='pt'||v.locale==='both')&&!v.titlePt){toast('Título PT é obrigatório.');return;}
+  if((v.locale==='en'||v.locale==='both')&&!v.titleEn){toast('Título EN é obrigatório.');return;}
+  if(currentUser&&currentUser.role==='admin'&&supabaseClient){
+    const payload=videoToRow(v);
+    let result;
+    if(id&&/^[0-9a-f-]{36}$/i.test(id)) result=await supabaseClient.from('youtube_videos').update(payload).eq('id',id);
+    else result=await supabaseClient.from('youtube_videos').insert(payload);
+    if(result.error){toast('Erro ao salvar vídeo: '+result.error.message);return;}
+    closeModal('modal-video-edit');await loadRemoteVideos();toast(id?'Vídeo atualizado! ✅':'Vídeo adicionado! ▶️');return;
+  }
+  if(id){const idx=videos.findIndex(x=>x.id===id);if(idx>=0)videos[idx]=v;else videos.unshift(v);}else videos.unshift(v);
+  DB.set('youtubeVideos',videos);
+  closeModal('modal-video-edit');renderHomeVideos();renderAdminVideos();renderDashboard();toast(id?'Vídeo atualizado! ✅':'Vídeo adicionado! ▶️');
+}
+async function deleteVideo(id){
+  if(!confirm('Remover este vídeo?'))return;
+  if(currentUser&&currentUser.role==='admin'&&supabaseClient&&/^[0-9a-f-]{36}$/i.test(id)){
+    const {error}=await supabaseClient.from('youtube_videos').delete().eq('id',id);
+    if(error){toast('Erro ao remover vídeo: '+error.message);return;}
+    await loadRemoteVideos();toast('Vídeo removido.');return;
+  }
+  DB.set('youtubeVideos',getVideos().filter(v=>v.id!==id));
+  renderHomeVideos();renderAdminVideos();renderDashboard();toast('Vídeo removido.');
 }
 function openProductModal(id){
   document.getElementById('product-edit-title').textContent=id?'Editar item':'Adicionar item';
@@ -1150,6 +1343,7 @@ async function bootSupabase(){
     }
   }
   await loadRemoteCatalog();
+  await loadRemoteVideos();
 }
 bootSupabase();
 </script>

@@ -42,6 +42,20 @@ create table if not exists public.catalog_items (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.youtube_videos (
+  id uuid primary key default gen_random_uuid(),
+  active boolean not null default true,
+  locale text not null default 'pt' check (locale in ('pt','en','both')),
+  title_pt text not null,
+  title_en text,
+  description_pt text,
+  description_en text,
+  youtube_url text not null,
+  sort_order integer not null default 100,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 alter table public.catalog_items
 add column if not exists locale text not null default 'pt';
 
@@ -76,6 +90,11 @@ create trigger catalog_items_touch_updated_at
 before update on public.catalog_items
 for each row execute function public.touch_updated_at();
 
+drop trigger if exists youtube_videos_touch_updated_at on public.youtube_videos;
+create trigger youtube_videos_touch_updated_at
+before update on public.youtube_videos
+for each row execute function public.touch_updated_at();
+
 create or replace function public.is_admin()
 returns boolean
 language sql
@@ -93,10 +112,13 @@ $$;
 
 alter table public.admin_profiles enable row level security;
 alter table public.catalog_items enable row level security;
+alter table public.youtube_videos enable row level security;
 
 grant usage on schema public to anon, authenticated;
 grant select on public.catalog_items to anon, authenticated;
 grant insert, update, delete on public.catalog_items to authenticated;
+grant select on public.youtube_videos to anon, authenticated;
+grant insert, update, delete on public.youtube_videos to authenticated;
 grant select on public.admin_profiles to authenticated;
 grant execute on function public.is_admin() to anon, authenticated;
 
@@ -132,6 +154,35 @@ with check (public.is_admin());
 drop policy if exists "catalog admin delete" on public.catalog_items;
 create policy "catalog admin delete"
 on public.catalog_items
+for delete
+to authenticated
+using (public.is_admin());
+
+drop policy if exists "youtube public read active" on public.youtube_videos;
+create policy "youtube public read active"
+on public.youtube_videos
+for select
+to anon, authenticated
+using (active = true or public.is_admin());
+
+drop policy if exists "youtube admin insert" on public.youtube_videos;
+create policy "youtube admin insert"
+on public.youtube_videos
+for insert
+to authenticated
+with check (public.is_admin());
+
+drop policy if exists "youtube admin update" on public.youtube_videos;
+create policy "youtube admin update"
+on public.youtube_videos
+for update
+to authenticated
+using (public.is_admin())
+with check (public.is_admin());
+
+drop policy if exists "youtube admin delete" on public.youtube_videos;
+create policy "youtube admin delete"
+on public.youtube_videos
 for delete
 to authenticated
 using (public.is_admin());
