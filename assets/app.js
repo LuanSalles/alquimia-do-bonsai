@@ -42,6 +42,8 @@ function safeImageUrl(value){
 function safeYoutubeUrl(value){
   let raw=String(value??'').trim();
   if(!raw)return '#';
+  raw=raw.replace(/\s+/g,'');
+  if(/^[A-Za-z0-9_-]{11}$/.test(raw))raw='https://www.youtube.com/watch?v='+raw;
   const found=raw.match(/(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com|youtu\.be|youtube-nocookie\.com)\/[^\s<>"']+/i);
   raw=found?found[0]:raw;
   if(/^www\./i.test(raw)||/^m\./i.test(raw)||/^(youtube\.com|youtu\.be|youtube-nocookie\.com)\//i.test(raw))raw='https://'+raw;
@@ -141,6 +143,21 @@ function videoToRow(v){
     youtube_url:v.url,
     sort_order:Number(v.sort||100)
   };
+}
+function videoUrlFromForm(){
+  const candidates=[
+    document.getElementById('ev-url')?.value,
+    document.getElementById('ev-desc-pt')?.value,
+    document.getElementById('ev-desc-en')?.value,
+    document.getElementById('ev-title-pt')?.value,
+    document.getElementById('ev-title-en')?.value
+  ];
+  for(const value of candidates){
+    const safe=safeYoutubeUrl(value);
+    if(safe!=='#')return safe;
+  }
+  const raw=String(document.getElementById('ev-url')?.value||'').trim();
+  return safeUrl(raw,{fallback:'#',allowedProtocols:['https:','http:']});
 }
 const SITE_VERSION='real-catalog-work-copy-2026-07-22-market-catalog';
 if(DB.get('siteVersion')!==SITE_VERSION){
@@ -393,7 +410,7 @@ function productVisibleForLang(p){
   return market==='both'||market===currentLang;
 }
 function getShopProducts(){return getProducts().filter(p=>SHOP_CATEGORIES.includes(p.category)&&productVisibleForLang(p));}
-function getVideos(){return remoteVideos||DB.get('youtubeVideos')||[];}
+function getVideos(){return (remoteVideos&&remoteVideos.length?remoteVideos:null)||DB.get('youtubeVideos')||[];}
 function videoVisibleForLang(v){const locale=v.locale||'pt';return locale==='both'||locale===currentLang;}
 function youtubeId(url){
   const safe=safeYoutubeUrl(url);
@@ -527,6 +544,7 @@ async function loadRemoteVideos(){
     }
   }
   remoteVideos=(data||[]).map(rowToVideo);
+  DB.set('youtubeVideos',remoteVideos);
   renderHomeVideos();
   if(currentPage==='videos')renderHomeVideos();
   if(currentUser&&currentUser.role==='admin'){renderAdminVideos();renderDashboard();}
@@ -629,10 +647,7 @@ function openVideoModal(id){
 async function saveVideo(){
   const id=document.getElementById('edit-video-id').value;
   const videos=getVideos();
-  const rawVideoUrl=document.getElementById('ev-url').value.trim();
-  const videoUrl=safeYoutubeUrl(rawVideoUrl)!=='#'
-    ?safeYoutubeUrl(rawVideoUrl)
-    :safeUrl(rawVideoUrl,{fallback:'#',allowedProtocols:['https:','http:']});
+  const videoUrl=videoUrlFromForm();
   const v={
     id:id||'v'+Date.now(),
     titlePt:document.getElementById('ev-title-pt').value.trim(),
@@ -644,7 +659,7 @@ async function saveVideo(){
     descEn:document.getElementById('ev-desc-en').value.trim(),
     created:id?(videos.find(x=>x.id===id)||{}).created||new Date().toISOString():new Date().toISOString()
   };
-  if(v.url==='#'){toast('Cole um link completo, começando com https://');return;}
+  if(v.url==='#'){toast('Cole o link completo do YouTube no campo Link.');return;}
   if((v.locale==='pt'||v.locale==='both')&&!v.titlePt){toast('Título PT é obrigatório.');return;}
   if((v.locale==='en'||v.locale==='both')&&!v.titleEn){toast('Título EN é obrigatório.');return;}
   if(currentUser&&currentUser.role==='admin'&&supabaseClient){
