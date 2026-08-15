@@ -268,7 +268,7 @@ canvas#particles{opacity:.16;}
 .hero-title{color:#1B1B16;font-size:clamp(3rem,7vw,6.7rem);letter-spacing:0;}
 .hero-title em{color:#1D2D17;}
 .hero-sub{max-width:560px;color:#5E594E;font-family:'Inter',sans-serif;font-style:normal;font-size:clamp(1rem,1.6vw,1.18rem);line-height:1.8;}
-.hero-cta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;justify-content:flex-start;width:min(660px,100%);}
+.hero-cta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.85rem;justify-content:flex-start;width:min(900px,100%);}
 .hero-cta .btn{display:flex;align-items:center;justify-content:center;min-height:56px;text-align:center;white-space:normal;}
 .btn{border-radius:0;padding:.92rem 1.45rem;font-size:.66rem;letter-spacing:.12em;}
 .btn-gold{background:#1D2D17;color:#fff;}
